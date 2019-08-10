@@ -66,3 +66,4 @@ gem 'bootstrap'
 gem 'jquery-rails'
 
 gem 'enumerize'
+
