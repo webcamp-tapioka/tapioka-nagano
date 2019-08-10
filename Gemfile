@@ -65,4 +65,4 @@ gem 'devise'
 gem 'bootstrap'
 gem 'jquery-rails'
 
-gem 'enumrize'
+gem 'enumerize'
