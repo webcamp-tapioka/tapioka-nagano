@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_08_10_165332) do
+ActiveRecord::Schema.define(version: 2019_08_11_031023) do
 
   create_table "addresses", force: :cascade do |t|
     t.integer "user_id", null: false
@@ -123,7 +123,7 @@ ActiveRecord::Schema.define(version: 2019_08_10_165332) do
     t.integer "product_id", null: false
     t.text "song", null: false
     t.integer "track_number", null: false
-    t.integer "disc_number"
+    t.integer "disc_number", default: 1, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["product_id"], name: "index_songs_on_product_id"
