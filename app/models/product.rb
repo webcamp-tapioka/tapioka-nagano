@@ -9,4 +9,8 @@ class Product < ApplicationRecord
   has_many :order_products
   has_many :orders, through: :order_products
   belongs_to :label
+
+# defaultは1で、"販売停止中"になる
+  enum product_status_flag: %i( 販売中　販売停止中 )
+
 end
