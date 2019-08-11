@@ -7,7 +7,9 @@ Rails.application.routes.draw do
 
   namespace :admin do
 
-  resource :admins,only: %i(show edit update)
+  root to:'admins#show'
+
+  resource :admins,only: %i(edit update)
   resources :artists,only: %i(create edit update destroy index)
   resources :genres,only: %i(create edit update destroy index)
   resources :labels,only: %i(create edit update destroy index)
