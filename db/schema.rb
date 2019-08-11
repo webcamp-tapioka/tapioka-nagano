@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_08_11_031023) do
+ActiveRecord::Schema.define(version: 2019_08_11_043833) do
 
   create_table "addresses", force: :cascade do |t|
     t.integer "user_id", null: false
@@ -19,6 +19,7 @@ ActiveRecord::Schema.define(version: 2019_08_11_031023) do
     t.string "delivery_name", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "delivery_address_flag", null: false
     t.index ["user_id"], name: "index_addresses_on_user_id"
   end
 
