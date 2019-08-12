@@ -1,1 +1,33 @@
-<h2>lists-new</h2>
+<h1>収録曲入力画面</h1>
+
+<%= form_for(@to_register, url: new_admin_song_path) do |f| %>
+<%= f.label :disc_number, "ディスク番号" %>
+<%= f.number_field :disc_number %>
+<%= f.label :track_number, "ディスク番号" %>
+<%= f.number_field :track_number %>
+
+
+<%= f.submit "追加" %>
+<% end %
+
+
+
+
+
+<table>
+	<caption>収録曲入力フォーム</caption>
+	<thead>
+		<tr>
+			<th>ディスク番号</th>
+			<th>曲順</th>
+			<th>曲名</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr>
+			<td></td>
+			<td></td>
+			<td></td>
+		</tr>
+	</tbody>
+</table>
