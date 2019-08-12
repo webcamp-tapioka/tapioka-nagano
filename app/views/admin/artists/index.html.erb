@@ -1,20 +1,20 @@
 <h1>アーティストリスト編集画面</h1>
 
 
-<%= form_for(@newartist, url: admin_artists_path) do |f| %>
+<%= form_for(@new_artist, url: admin_artists_path) do |f| %>
 <%= f.label :name, "新規追加" %>
 <%= f.text_field :name %>
 <%= f.submit "追加" %>
 <% end %>
 
 <%# アーティスト名をクリックした時のみ、編集フォームを表示する %>
-<% if @editartist.id %>
-  <%= form_for(@editartist, url: admin_artist_path(@editartist)) do |f| %>
+<% if @edit_artist.id %>
+  <%= form_for(@edit_artist, url: admin_artist_path(@edit_artist)) do |f| %>
     <%= f.label :name, "編集" %>
     <%= f.text_field :name %>
     <%= f.submit "編集", "data-confirm" => "この内容でよろしいですか？" %>
   <% end %>
-  <%= link_to "削除", admin_artist_path(@editartist), method: :delete,
+  <%= link_to "削除", admin_artist_path(@edit_artist), method: :delete,
    "data-confirm" => "削除してよろしいですか？" %>
 <% end %>
 

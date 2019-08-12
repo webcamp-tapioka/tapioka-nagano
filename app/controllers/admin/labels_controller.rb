@@ -2,27 +2,27 @@ class Admin::LabelsController < ApplicationController
 
 
 	def index
-		@newlabel = Label.new
-		@editlabel = Label.new
+		@new_label = Label.new
+		@edit_label = Label.new
 		@labels = Label.all
 	end
 
 	def edit
-		@newlabel = Label.new
-		@editlabel = Label.find(params[:id])
+		@new_label = Label.new
+		@edit_label = Label.find(params[:id])
 		@labels = Label.all
 		render 'index'
 	end
 
 	def create
-		newlabel = Label.new(label_params)
-		newlabel.save
+		new_label = Label.new(label_params)
+		new_label.save
 		redirect_to admin_labels_path
 	end
 
 	def update
-		editlabel = Label.find(params[:id])
-		editlabel.update(label_params)
+		edit_label = Label.find(params[:id])
+		edit_label.update(label_params)
 		redirect_to admin_labels_path
 	end
 
