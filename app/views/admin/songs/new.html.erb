@@ -1,33 +1,50 @@
 <h1>収録曲入力画面</h1>
 
-<%= form_for(@to_register, url: new_admin_song_path) do |f| %>
-<%= f.label :disc_number, "ディスク番号" %>
-<%= f.number_field :disc_number %>
-<%= f.label :track_number, "ディスク番号" %>
-<%= f.number_field :track_number %>
+<%= form_for(@to_register, url: admin_songs_to_register_path) do |f| %>
+  <%= f.label :disc_number, "ディスク番号" %>
+  <%= f.number_field :disc_number %>
+  <%= f.label :track_number, "曲数" %>
+  <%= f.number_field :track_number %>
+  <%= f.submit "追加" %>
+<% end %>
 
 
-<%= f.submit "追加" %>
-<% end %
-
-
-
-
-
-<table>
-	<caption>収録曲入力フォーム</caption>
-	<thead>
-		<tr>
+<% if @create_form %>
+	<table>
+		<caption>収録曲入力フォーム</caption>
+		<thead>
+			<tr>
 			<th>ディスク番号</th>
 			<th>曲順</th>
 			<th>曲名</th>
-		</tr>
-	</thead>
-	<tbody>
-		<tr>
-			<td></td>
-			<td></td>
-			<td></td>
-		</tr>
-	</tbody>
-</table>
+			</tr>
+		</thead>
+		<tbody>
+
+
+			
+				<%= @create_form.track_number.to_i.times do |track_number| %>
+
+					<tr>
+				  
+				  <%= form_tag(model: :songs, url: admin_songs_path, method: :post) do |f| %>
+				  <% disc_number = @create_form.disc_number %>
+
+
+				    <td><%= text_field_tag "@new_song[][#{disc_number}]" %></td>
+				    
+				    
+				    <td><%= text_field_tag '@new_song[][track_number]' %></td>
+				    <td><%= text_field_tag '@new_song[][song]' %></td>
+				    <% if track_number == @create_form.track_number - 1 %>
+	           <%= submit_tag "登録" %>
+	           <% end %>
+	           </tr>
+	        <% end %>
+	        
+
+	      <% end %>
+			
+		</tbody>
+	</table>
+<% end %>

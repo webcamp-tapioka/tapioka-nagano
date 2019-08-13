@@ -18,7 +18,10 @@ Rails.application.routes.draw do
   resources :products
   resources :users
 
-  
+
+  post '/songs/to_register' => 'songs#to_register'
+
+
 
 
 
