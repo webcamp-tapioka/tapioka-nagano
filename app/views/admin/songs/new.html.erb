@@ -1,45 +1,71 @@
 <h1>収録曲入力画面</h1>
 
-
-
-
-<%= form_with(model: @new_song, url: admin_songs_path) do |f| %>
-  <%= f.label :disc_number, "ディスク番号" %>
-  <%= f.text_field :disc_number, name: "song[][disc_number]"%>
-  <%= f.label :track_number, "曲数" %>
-  <%= f.text_field :track_number, name: "song[][track_number]" %>
-  <%= f.label :product_id, "商品ID" %>
-  <%= f.text_field :product_id, name: "song[][product_id]" %>
-  <%= f.label :song, "曲名" %>
-  <%= f.text_field :song, name: "song[][song]" %>
-  <%= f.label :disc_number, "ディスク番号" %>
-  <%= f.text_field :disc_number, name: "song[][disc_number]"%>
-  <%= f.label :track_number, "曲数" %>
-  <%= f.text_field :track_number, name: "song[][track_number]" %>
-  <%= f.label :product_id, "商品ID" %>
-  <%= f.text_field :product_id, name: "song[][product_id]" %>
-  <%= f.label :song, "曲名" %>
-  <%= f.text_field :song, name: "song[][song]" %>
- <%= f.submit "追加" %>
-
-
-
-
-
+<p>フォーム作成</p>
+<%= form_tag(new_admin_song_path,:method => 'get') do %>
+  <%= label_tag :what_disc_number, "ディスク番号" %>
+  <%= text_field_tag :what_disc_number %>
+  <%= label_tag :from_what_track_number, "何曲目から？" %>
+  <%= text_field_tag :from_what_track_number %>
+  <%= submit_tag 'フォーム作成', :name => nil %>
 <% end %>
 
-<table>
-	<caption>一覧</caption>
-	<thead>
-		<tr>
-			<th>header</th>
-		</tr>
-	</thead>
-	<tbody>
-			<% @songs.each do |song| %>
-			　　<tr>
-			　　　　<td><%= song.song %></td>
-			　　</tr>
-			<% end %>
-	</tbody>
-</table>
+
+
+
+<% if @from_what_track_number %>
+
+  <p>10曲ずつ登録可能です</p>
+  <%= form_with(model: @new_song, url: admin_songs_path) do |f| %>
+    <table>
+      <caption>収録曲入力フォーム</caption>
+      <thead>
+        <tr>
+          <th><%= f.label :disc_number, "ディスク番号" %></th>
+          <th><%= f.label :track_number, "曲数" %></th>
+          <th><%= f.label :song, "曲名" %></th>
+        </tr>
+      </thead>
+      <tbody>
+          <% @from_what_track_number.upto(@from_what_track_number += 9) do |n| %>
+            <% @new_song.track_number = n %>
+            <tr>
+              <td><%= f.text_field :disc_number, name: "song[][disc_number]"%></td>
+              <td><%= f.text_field :track_number, name: "song[][track_number]" %></td>
+              <td><%= f.text_field :song, name: "song[][song]" %></td>
+            </tr>
+          <% end %>
+      </tbody>
+    </table>
+      <%= f.submit "追加" %>
+    <% end %>
+<% end %>
+
+
+
+ 
+    <table>
+    	<caption>一覧</caption>
+    	<thead>
+    	  <tr>
+    		  <th>ディスク番号</th>
+          <th>曲順</th>
+          <th>曲名</th>
+          <th>削除</th>
+    		</tr>
+    	</thead>
+    	<tbody>
+    			<% @songs.each do |song| %>
+    			　　<tr>
+                <td><%= song.disc_number %></td>
+                <td><%= song.track_number %></td>
+                <td><%= song.song %></td>
+                <td>
+                  <%= link_to "削除", admin_song_path(song), method: :delete, 
+                  "data-confirm" => "削除してよろしいですか？" %>
+                </td>
+    			　　</tr>
+    			<% end %>
+    	</tbody>
+    </table>
+
+
