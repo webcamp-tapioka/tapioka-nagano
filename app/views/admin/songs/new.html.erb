@@ -3,8 +3,8 @@
 <p>フォーム作成</p>
 <%= form_tag(new_admin_song_path,:method => 'get') do %>
   <%= label_tag :what_disc_number, "ディスク番号" %>
-  <!-- 全体で何曲かを取得 -->
   <%= text_field_tag :what_disc_number %>
+  <!-- 全体で何曲かを取得 -->
   <%= label_tag :what_track_number,"何曲ですか？"%>
   <%= text_field_tag :what_track_number %>
 <!--   <%= label_tag :from_what_track_number, "何曲目から？" %>
