@@ -1,12 +1,6 @@
 class Admin::SongsController < ApplicationController
 
 
-{"disc_number"=>"1", "track_number"=>"", "product_id"=>"", "song"=>""}
-{"disc_number"=>"1", "track_number"=>"", "product_id"=>"", "song"=>""}
-
-{"name"=>"となかい", "gender"=>"女性:"}
-
-
 
 
   def create
@@ -18,7 +12,7 @@ class Admin::SongsController < ApplicationController
   end
 
   def new
-    
+
     @new_song = Song.new
     @songs = Song.all
   end
