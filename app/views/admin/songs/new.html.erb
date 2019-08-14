@@ -3,9 +3,12 @@
 <p>フォーム作成</p>
 <%= form_tag(new_admin_song_path,:method => 'get') do %>
   <%= label_tag :what_disc_number, "ディスク番号" %>
+  <!-- 全体で何曲かを取得 -->
   <%= text_field_tag :what_disc_number %>
-  <%= label_tag :from_what_track_number, "何曲目から？" %>
-  <%= text_field_tag :from_what_track_number %>
+  <%= label_tag :what_track_number,"何曲ですか？"%>
+  <%= text_field_tag :what_track_number %>
+<!--   <%= label_tag :from_what_track_number, "何曲目から？" %>
+  <%= text_field_tag :from_what_track_number %> -->
   <%= submit_tag 'フォーム作成', :name => nil %>
 <% end %>
 
@@ -26,7 +29,8 @@
         </tr>
       </thead>
       <tbody>
-          <% @from_what_track_number.upto(@from_what_track_number += 9) do |n| %>
+        <!-- 全体の曲数分formを表示 -->
+          <% 1.upto(@what_track_number) do |n| %>
             <% @new_song.track_number = n %>
             <tr>
               <td><%= f.text_field :disc_number, name: "song[][disc_number]"%></td>

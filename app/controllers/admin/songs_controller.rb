@@ -10,8 +10,10 @@ class Admin::SongsController < ApplicationController
 
   def new
     if to_create_form_params[:what_disc_number]
-      @from_what_track_number = to_create_form_params[:from_what_track_number].to_i
+      # @from_what_track_number = to_create_form_params[:from_what_track_number].to_i
       @new_song = Product.last.songs.new(disc_number: to_create_form_params[:what_disc_number].to_i)
+      # 何曲から？ではなく全体で何曲かを取得する
+      @what_track_number = params[:what_track_number].to_i
     end
       @songs = Product.last.songs.all.order(:disc_number).order(:track_number)
   end
