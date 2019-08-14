@@ -1,36 +1,44 @@
 class Admin::SongsController < ApplicationController
 
+
+{"disc_number"=>"1", "track_number"=>"", "product_id"=>"", "song"=>""}
+{"disc_number"=>"1", "track_number"=>"", "product_id"=>"", "song"=>""}
+
+{"name"=>"となかい", "gender"=>"女性:"}
+
+
+
+
   def create
-  	new_songs = Song.new(songs_params)
-  	new_one_song =new_songs[0]
-  	new_one_song.save
-
-
+    song_params[:song].each do |song|
+      new_song = Song.new(song)
+      new_song.save
+    end
+    redirect_to new_admin_song_path
   end
 
   def new
-  	@to_register = Song.new
+    
     @new_song = Song.new
+    @songs = Song.all
   end
-
-
-  def to_register
-  	@create_form = Song.new(song_params)
-  	@to_register = Song.new(song_params)
-  	@new_song = Song.new
-  	render 'new'
-  end
-
-
 
   private
 
-    def song_params
-  	  params.require(:song).permit(:product_id, :song, :track_number, :disc_number)
+
+
+    def product_params
+      params.require(:product).permit(:id)
     end
 
-    def songs_params
-      params.require(:songs).map { |song| song.permit(:product_id, :song, :track_number, :disc_number) }
+    def song_params
+  	  params.permit(song: [:product_id, :song, :track_number,
+         :disc_number, :song])
     end
+
 
 end
+
+
+
+
