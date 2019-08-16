@@ -1,9 +1,7 @@
 class Admin::LabelsController < ApplicationController
 
-
 	def index
 		@new_label = Label.new
-		@edit_label = Label.new
 		@labels = Label.all
 	end
 
@@ -15,8 +13,7 @@ class Admin::LabelsController < ApplicationController
 	end
 
 	def create
-		new_label = Label.new(label_params)
-		new_label.save
+		new_label = Label.create(label_params)
 		redirect_to admin_labels_path
 	end
 

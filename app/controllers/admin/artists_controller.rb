@@ -2,7 +2,6 @@ class Admin::ArtistsController < ApplicationController
 
 	def index
 		@new_artist = Artist.new
-		@edit_artist = Artist.new
 		@artists = Artist.all
 	end
 
@@ -14,8 +13,7 @@ class Admin::ArtistsController < ApplicationController
 	end
 
 	def create
-		new_artist = Artist.new(artist_params)
-		new_artist.save
+		new_artist = Artist.create!(artist_params)
 		redirect_to admin_artists_path
 	end
 
