@@ -80,7 +80,7 @@ gem "refile-mini_magick"
 gem 'select2-rails'
 
 gem 'jp_prefecture'
-
+gem 'pry-rails'
 
 
 
