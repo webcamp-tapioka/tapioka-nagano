@@ -1,1 +1,46 @@
-<h2>pbulic-users-show</h2>
+<h3>プロフィール</h3>
+
+<table border="1">
+	<tr>
+		<th></th>
+	</tr>
+	<tr>
+		<td>お名前</td>
+		<td><%= current_user.first_name + current_user.last_name %></td>
+	</tr>
+	<tr>
+		<td>ご住所</td>
+		<td><% if current_user.addresses.any? %>
+			<%= @addresses.delivery_postal_code %>
+			<%= @addresses.delivery_address %>
+			 <% else %>
+			 未登録</td>
+			<%end%>
+		</td>
+	</tr>
+	<tr>
+		<td>住所2</td>
+		<td><% if current_user.addresses.any? %>
+			<%= @sub_addresses.delivery_postal_code %>
+			<%= @sub_addresses.delivery_address %>
+			 <% else %>
+			 未登録</td>
+			<%end%>
+		</td>
+		<tr>
+		<td>お電話番号</td>
+		<td><%= current_user.phone_number %></td>
+	</tr>
+	<tr>
+		<td>メールアドレス</td>
+		<td><%= current_user.email %></td>
+	</tr>
+	<tr>
+		<td>購入履歴</td>
+		<td><%= link_to '購入履歴へ', orders_path(current_user) %></td>
+	</tr>
+</table>
+
+<li class="">
+	<%= link_to 'プロフィール編集', edit_user_path,class: "col-xs-12 btn btn-default glyphicon glyphicon-wrench" %>
+</li>
