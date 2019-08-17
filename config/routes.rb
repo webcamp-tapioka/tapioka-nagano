@@ -22,7 +22,8 @@ Rails.application.routes.draw do
   end
  
  scope module:  :public do
- 	resources :address,only:  %i(new create destroy)
+  #%(addressになっていたので、addressesに変更
+ 	resources :addresses,only:  %i(new create destroy)
  	resources :cart_items,only:  %i(index create destroy update)
  	resources :order_products,only: %i(create)
  	resources :orders,only:  %i(new create index)
