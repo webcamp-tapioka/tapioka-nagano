@@ -1,4 +1,5 @@
 class Address < ApplicationRecord
+
 	belongs_to :user
 
 # default値は未設定。
