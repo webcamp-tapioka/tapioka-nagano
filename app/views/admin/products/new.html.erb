@@ -1,0 +1,26 @@
+<h1>商品情報入力フォーム</h1>
+<%= form_for(@products) do |f| %>
+<p>ジャケット写真</p>
+  <%= f.text_field :image_id %>
+  <%= f.submit "投稿" %>
+<p>タイトル</p>
+  <%= f.text_field :title %>
+<p>アーティスト</p>
+  <%= f.select  :artist_id, Artist.all %>
+<p>ジャンル</p>
+  
+<p>レーベル</p>
+  <%= f.text_area :label_id %>
+<p>CDシングル</p>
+  
+ <p>価格</p>
+  <%= f.text_area :price %>
+
+ <p>状況</p>
+  <%= f.text_area :product_status_id %>
+
+
+
+
+  
+<% end %>

@@ -1,7 +1,7 @@
-<h1>商品一覧</h1>
-<%= form_for(@product) do |f| %>
 
 
+<h1>商品詳細</h1>
+<%= form_for(@products) do |f| %>
 
 <p>シャケット写真</p>
   <%= f.text_field :picture %>
@@ -19,7 +19,6 @@
 
 <p><%= link_to "Show", products_path(@product) %> 
 | <%= link_to "Back", products_path %></p>
-
 
 
 <% end %>

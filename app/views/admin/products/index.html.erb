@@ -1,1 +1,61 @@
-<h2>products-index</h2>
+
+<div class="container">
+  <div class="row">
+  
+    </div>
+
+    <div class="col-lg-12">
+      
+      <h1>商品一覧(管理者)</h1>
+
+      <table class="table table-hover">
+        <thead>
+
+
+         <tr>
+            <th>タイトル</th>
+            <th>アーティスト</th>
+            <th>ジャンル</th>
+            <th>レーベル</th>
+            <th>CDシングル</th>
+            <th>価格</th>
+            <th>在庫</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @products.each do |product| %>
+            <tr>
+              <td>
+              <td>
+             <%= link_to product_path(products.id) do %>
+                <%= product.image_id %>
+                <%= product.title %>
+                <%= product.price %>
+                <%= product.amount %>
+                <%= product.product_status_id %>
+              <% end %>
+              </td>
+              <td></td>
+
+
+        <td><%= f.text_field :title "titles[][title]" %></td>
+        <td><%= f.select :season, Blossom.seasons, { include_hidden: false }, 
+        { class: 'sample_select2', multiple: true } %></td>
+      </tr>
+      <tr>
+        <td><%= f.text_field :hiragana, name: "blossoms[][hiragana]" %></td>
+        <td><%= f.text_field :kanji, name: "blossoms[][kanji]" %></td>
+        <td><%= f.text_field :english_name, name: "blossoms[][english_name]" %></td>
+        <td><%= f.select :season, Blossom.seasons, { include_hidden: false }, 
+        { class: 'sample_select2', multiple: true } %></td>
+
+
+
+              
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
