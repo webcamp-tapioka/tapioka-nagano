@@ -10,9 +10,9 @@ def show
   end
 
   def destroy
-  	redirect_to products_path
-  	@user.destroy
   	@user = User.find(params[:id])
+  	@user.destroy
+  	redirect_to products_path
   end
 
   def leave
@@ -20,13 +20,16 @@ def show
 
   def update
   	@user = User.find(params[:id])
-  end
+  	  if @user.update(user_params)
+  	  	 redirect_to user_path(current_user),notice: "succsess!"
+  	  else
+  	  	render :edit
+  	  end
 
+
+  end
 private
-  def correct_user
-    user = User.find(params[:id])
-    if current_user != user
-      redirect_to user_path(current_user)
-    end
+  def user_params
+  	params.require(:user).permit(:first_name, :last_name, :first_name_kana, :last_name_kana, :email, :phone_number)
   end
 end

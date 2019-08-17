@@ -2,7 +2,8 @@
 
 <table border="1">
 	<tr>
-		<th></th>
+		<td>オナマエ</td>
+		<td><%= current_user.first_name_kana + current_user.last_name_kana %></td>
 	</tr>
 	<tr>
 		<td>お名前</td>
@@ -10,7 +11,7 @@
 	</tr>
 	<tr>
 		<td>ご住所</td>
-		<td><% if current_user.addresses.any? %>
+		<td><% if @addresses != nil %>
 			<%= @addresses.delivery_postal_code %>
 			<%= @addresses.delivery_address %>
 			 <% else %>
@@ -19,12 +20,15 @@
 		</td>
 	</tr>
 	<tr>
-		<td>住所2</td>
-		<td><% if current_user.addresses.any? %>
-			<%= @sub_addresses.delivery_postal_code %>
-			<%= @sub_addresses.delivery_address %>
-			 <% else %>
-			 未登録</td>
+		<td>ご住所</td>
+		<td>
+			<% if @sub_addresses != nil %>
+			<% @sub_addresses.each do |f| %>
+			<%= f.delivery_postal_code %>
+			<%= f.delivery_address %>
+			<%end%>
+			<%else%>
+			未登録</td>
 			<%end%>
 		</td>
 		<tr>
