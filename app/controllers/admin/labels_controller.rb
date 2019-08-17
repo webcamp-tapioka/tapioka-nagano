@@ -13,19 +13,17 @@ class Admin::LabelsController < ApplicationController
 	end
 
 	def create
-		new_label = Label.create(label_params)
+		Label.create(label_params)
 		redirect_to admin_labels_path
 	end
 
 	def update
-		edit_label = Label.find(params[:id])
-		edit_label.update(label_params)
+		 Label.find(params[:id]).update(label_params)
 		redirect_to admin_labels_path
 	end
 
 	def destroy
-		label = Label.find(params[:id])
-		label.destroy
+		Label.find(params[:id]).destroy
 		redirect_to admin_labels_path
 	end
 

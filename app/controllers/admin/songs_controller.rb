@@ -1,11 +1,8 @@
 class Admin::SongsController < ApplicationController
   
-  
-
   def create
     songs_params[:song].each do |song|
-      new_song = Product.last.songs.new(song)
-      new_song.save
+      Product.last.songs.create(song)
     end
     redirect_to admin_songs_path
   end
@@ -38,8 +35,7 @@ class Admin::SongsController < ApplicationController
   end
 
   def destroy
-    song = Song.find(params[:id])
-    song.destroy
+    Song.find(params[:id]).destroy
     redirect_to admin_songs_path
   end
 

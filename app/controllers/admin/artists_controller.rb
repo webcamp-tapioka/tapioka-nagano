@@ -13,22 +13,20 @@ class Admin::ArtistsController < ApplicationController
 	end
 
 	def create
-		new_artist = Artist.create!(artist_params)
+		Artist.create!(artist_params)
 		redirect_to admin_artists_path
 	end
 
 	def update
-		edit_artist = Artist.find(params[:id])
-		edit_artist.update(artist_params)
+		Artist.find(params[:id]).update!(artist_params)
 		redirect_to admin_artists_path
 	end
 
 	def destroy
-		artist = Artist.find(params[:id])
-    artist.destroy
+		Artist.find(params[:id]).destroy
     redirect_to admin_artists_path
 	end
-
+	
 
 
 	private
