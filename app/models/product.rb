@@ -11,6 +11,9 @@ class Product < ApplicationRecord
   belongs_to :label
 
 # defaultは1で、"販売停止中"になる
-  enum product_status_flag: %i( 販売中　販売停止中 )
+  enum product_status_flag: %i( 販売中 販売停止中 )
+
+  # defaultは0で、"シングル"になる
+  enum single_album_flag: %i( シングル アルバム )
 
 end

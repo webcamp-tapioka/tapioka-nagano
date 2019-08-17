@@ -22,11 +22,19 @@ Rails.application.routes.draw do
   end
  
  scope module:  :public do
+<<<<<<< HEAD
   get'/users/leave' => 'users#leave'
   get'/users/thank_you' => 'users#thank_you'
  	resources :address,only:  %i(new create destroy)
  	resources :addresses,only:  %i(new create destroy)
 
+=======
+
+  #%(addressになっていたので、addressesに変更
+ 	resources :addresses,only:  %i(new create destroy)
+  get'/users/leave' => 'users#leave'
+  get'/users/thank_you' => 'users#thank_you'
+>>>>>>> df6690cb7482be38199cd034f5b099399552608a
  	resources :cart_items,only:  %i(index create destroy update)
  	resources :order_products,only: %i(create)
  	resources :orders,only:  %i(new create index)
