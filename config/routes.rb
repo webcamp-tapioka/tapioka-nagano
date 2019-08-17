@@ -22,15 +22,17 @@ Rails.application.routes.draw do
   end
  
  scope module:  :public do
+
   #%(addressになっていたので、addressesに変更
  	resources :addresses,only:  %i(new create destroy)
+  get'/users/leave' => 'users#leave'
+  get'/users/thank_you' => 'users#thank_you'
  	resources :cart_items,only:  %i(index create destroy update)
  	resources :order_products,only: %i(create)
  	resources :orders,only:  %i(new create index)
- 	resource :users,only:  %i(edit show update destroy)
+ 	resources :users,only:  %i(edit show update destroy)
 
- 	get'/users/leave' => 'users#leave'
- 	get'/users/thank_you' => 'users#thank_you'
+ 
  end
 
  	resources :products,only:  %i(index show)
