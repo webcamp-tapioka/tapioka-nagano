@@ -3,9 +3,9 @@
 <p>フォーム作成</p>
 <%= form_tag(new_admin_song_path,:method => 'get') do %>
   <%= label_tag :what_disc_number, "ディスク番号" %>
-  <%= text_field_tag :what_disc_number %>
+  <%= number_field_tag :what_disc_number %>
   <%= label_tag :what_track_number, "何曲作りますか？" %>
-  <%= text_field_tag :what_track_number %>
+  <%= number_field_tag :what_track_number %>
   <%= submit_tag 'フォーム作成', :name => nil %>
 <% end %>
 
@@ -29,7 +29,7 @@
           </tr>
     </tbody>
   </table>
-    <%= f.submit "追加" %>
+    <%= f.submit "編集" %>
   <% end %>
   <% end %>
 
@@ -50,6 +50,7 @@
       <tbody>
           <% 1.upto(@what_track_number) do |n| %>
             <% @new_song.track_number = n %>
+            <% next if @songs.find_by(disc_number: @new_song.disc_number, track_number: n) %>
             <tr>
               <td><%= f.number_field :disc_number, name: "song[][disc_number]"%></td>
               <td><%= f.number_field :track_number, name: "song[][track_number]" %></td>
