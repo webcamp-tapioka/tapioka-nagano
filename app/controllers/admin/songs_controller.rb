@@ -8,7 +8,7 @@ class Admin::SongsController < ApplicationController
   end
 
   def new
-      @what_track_number = params[:what_track_number]
+      @what_track_number = params[:what_track_number].to_i
       @new_song = Product.last.songs.new(disc_number: params[:what_disc_number].to_i)
       @songs = Product.last.songs.all.order(:disc_number).order(:track_number)
       render 'index'
