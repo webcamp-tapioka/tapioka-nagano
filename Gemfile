@@ -84,4 +84,3 @@ gem 'jp_prefecture'
 
 
 
-

@@ -8,7 +8,7 @@
 <% end %>
 
 <%# レーベル名をクリックした時のみ、編集フォームを表示する %>
-<% if @edit_label.id %>
+<% if @edit_label %>
   <%= form_for(@edit_label, url: admin_label_path(@edit_label)) do |f| %>
     <%= f.label :name, "編集" %>
     <%= f.text_field :name %>
