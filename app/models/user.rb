@@ -13,7 +13,5 @@ class User < ApplicationRecord
   has_many :products, through: :cart_items
   has_many :likes,dependent: :destroy
 
-  def liked_by?(current_user)
-    likes.where(user_id: current_user).exists?
-  end
+  
 end
