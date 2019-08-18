@@ -3,6 +3,7 @@ def top
 end
 
 	def index
+		@products = Product.all
 	end
 
 end

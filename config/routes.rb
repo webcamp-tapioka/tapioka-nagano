@@ -25,7 +25,8 @@ Rails.application.routes.draw do
   get'/users/leave' => 'users#leave'
   get'/users/thank_you' => 'users#thank_you'
  	resources :address,only:  %i(new create destroy)
- 	resources :cart_items,only:  %i(index create destroy update)
+ 	resources :cart_items,only:  %i(create destroy update)
+  resources :cart_items,only: %i(index)
  	resources :order_products,only: %i(create)
  	resources :orders,only:  %i(new create index)
  	resources :users,only:  %i(edit show update destroy)
