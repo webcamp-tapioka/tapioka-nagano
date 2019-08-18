@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_08_11_043833) do
+ActiveRecord::Schema.define(version: 2019_08_18_055001) do
 
   create_table "addresses", force: :cascade do |t|
     t.integer "user_id", null: false
@@ -20,6 +20,7 @@ ActiveRecord::Schema.define(version: 2019_08_11_043833) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "delivery_address_flag", null: false
+    t.string "delivery_name_kana"
     t.index ["user_id"], name: "index_addresses_on_user_id"
   end
 
@@ -99,12 +100,20 @@ ActiveRecord::Schema.define(version: 2019_08_11_043833) do
     t.text "delivery_address", null: false
     t.string "delivery_name", null: false
     t.integer "postage", null: false
-    t.integer "payment_method", default: 1, null: false
-    t.integer "order_status_id", default: 1, null: false
+    t.integer "payment_method", default: 1
+    t.integer "order_status_id", default: 1
     t.integer "total_price", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.decimal "consumption_tax", precision: 4, scale: 2
     t.index ["user_id"], name: "index_orders_on_user_id"
+  end
+
+  create_table "postage_and_consumptiontaxes", force: :cascade do |t|
+    t.integer "postage"
+    t.decimal "consumption_tax", precision: 4, scale: 2
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "products", force: :cascade do |t|
@@ -117,6 +126,7 @@ ActiveRecord::Schema.define(version: 2019_08_11_043833) do
     t.datetime "deleted_at"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "single_album_flag", default: 0
     t.index ["deleted_at"], name: "index_products_on_deleted_at"
   end
 

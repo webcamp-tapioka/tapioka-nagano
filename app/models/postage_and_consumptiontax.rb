@@ -1,0 +1,2 @@
+class PostageAndConsumptiontax < ApplicationRecord
+end
