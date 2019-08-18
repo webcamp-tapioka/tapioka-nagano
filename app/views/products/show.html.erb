@@ -1,25 +1,9 @@
-<h1>商品一覧</h1>
-<%= form_for(@product) do |f| %>
+<h1>商品詳細</h1>
 
-
-
-<p>シャケット写真</p>
-  <%= f.text_field :picture %>
-<p>写真</p>
-  <%= f.text_field :title %>
-<p>アーティスト名</p>
-  <%= f.text_area :artist %>
-<p>写真</p>
-  <%= f.text_area :price %>
-
-<p>在庫状況</p>
- 　<%= f.text_area :status %>
-
-
+<%=@products.title %>
 
 <p><%= link_to "Show", products_path(@product) %> 
 | <%= link_to "Back", products_path %></p>
 
 
-
-<% end %>
+  <%= link_to 'カートに入れる',cart_items_path,method: :post%>

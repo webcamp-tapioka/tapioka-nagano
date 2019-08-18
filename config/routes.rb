@@ -23,7 +23,9 @@ Rails.application.routes.draw do
  
  scope module:  :public do
  	resources :address,only:  %i(new create destroy)
- 	resources :cart_items,only:  %i(index create destroy update)
+ 	# resources :products,only: %i() do
+  resources :cart_items,only:  %i(index create destroy update)
+#end
  	resources :order_products,only: %i(create)
  	resources :orders,only:  %i(new create index)
  	resource :users,only:  %i(edit show update destroy)

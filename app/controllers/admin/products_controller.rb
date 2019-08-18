@@ -1,8 +1,7 @@
 class Admin::ProductsController < ApplicationController
-
-    def search
-    end
-
+	def show
+		@products = Product.find(params[:id])
+	end
 
 	def index
 		@products = Product.all
@@ -10,7 +9,7 @@ class Admin::ProductsController < ApplicationController
 	end
 
 	def edit
-		@products = Product.find(params[:id])
+		@product = Product.find(params[:id])
 	end
 
 	def new
@@ -18,18 +17,16 @@ class Admin::ProductsController < ApplicationController
 	end
 
 	def create
-		@products = Products.new(products_params)
-	    products.save
-	    redirect_to products_params
-
+		@product = Product.new(product_params)
+	    @product.save
 	end
 
 	def destroy
-		products = Products.find(params[:id])
+		products = Product.find(params[:id])
 	end
 
 	def update
-		  @products = Products.find(params[:id])
+		  @products = Product.find(params[:id])
 		if
 		  @products.update(products_params)
 		  redirect_to products_path(@products),notice: "Products was successfully updated"
@@ -42,7 +39,7 @@ class Admin::ProductsController < ApplicationController
  private
   
   def product_params
-    params.require(:products).permit(:image_id, :title, :artist, :stock, :price, :status )
+    params.require(:product).permit(:image, :title, :price, :products_status_id, :label_id, :amount )
   end
 
 

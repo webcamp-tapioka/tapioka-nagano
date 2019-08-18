@@ -13,26 +13,28 @@
 
 
          <tr>
+         　　　<th>ジャケット写真</th>
             <th>タイトル</th>
-            <th>アーティスト</th>
-            <th>ジャンル</th>
-            <th>レーベル</th>
-            <th>CDシングル</th>
-            <th>価格</th>
-            <th>在庫</th>
-          </tr>
+            <th>アーティスト名</th>
+            <th>在庫状況</th>
+            <th>値段(税別)</th>
+            <th>ステータス</th>
+           </tr>
         </thead>
         <tbody>
           <% @products.each do |product| %>
             <tr>
               <td>
               <td>
-              <%= link_to product_path(products.id) do %>
-                <%= product.image_id %>
-                <%= product.title %>
-                <%= product.price %>
-                <%= product.amount %>
-                <%= product.product_status_id %>
+              <%= link_to product_path(product.id) do %>
+
+                <td><%= product.image_id %></td>
+                <td><%= product.title %></td>
+                <td><%= product.price %></td>
+                <td><%= product.amount %></td>
+                <td><%= product.product_status_id %></td>
+               
+                            
               <% end %>
               </td>
               <td></td>
