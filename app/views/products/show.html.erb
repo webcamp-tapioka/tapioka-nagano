@@ -1,9 +1,24 @@
 <h1>商品詳細</h1>
 
-<%=@products.title %>
+<table class="table table-hover">
+        <thead>
 
-<p><%= link_to "Show", products_path(@product) %> 
-| <%= link_to "Back", products_path %></p>
+			　　　<tr>
+		            <th>タイトル</th>
+		            <th>アーティスト</th>
+		            <th>ジャンル</th>
+		            <th>レーベル</th>
+		            <th>CDシングル</th>
+		            <th>価格</th>
+		            <th>在庫</th>
+          　　　　　</tr>
+　　　　　　　</thead>
+ 　　　　　　　　　　　　　<% if  @products.image %>
+                <%= @product.image_id %>
+                <% end %>
+                <td><%= @products.title %></td>
+                <td><%= @products.price %></td>
+                <td><%= @products.amount %></td>
+                <td><%= @products.product_status_id %></td>
 
-
-  <%= link_to 'カートに入れる',cart_items_path,method: :post%>
+　　　　　　　 <td> <%= link_to 'カートに入れる',cart_items_path,method: :post%></td>
