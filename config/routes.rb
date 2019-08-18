@@ -22,6 +22,12 @@ Rails.application.routes.draw do
   end
  
  scope module:  :public do
+
+ 	resources :address,only:  %i(new create destroy)
+ 	# resources :products,only: %i() do
+  resources :cart_items,only:  %i(index create destroy update)
+#end
+
   get'/users/leave' => 'users#leave'
   get'/users/thank_you' => 'users#thank_you'
  	resources :addresses,except: %i(new show)
