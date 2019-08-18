@@ -10,6 +10,7 @@ class Product < ApplicationRecord
   has_many :orders, through: :order_products
   belongs_to :label
   has_many :likes,dependent: :destroy
+  has_many :reviews,dependent: :destroy
 
   attachment :image
 
