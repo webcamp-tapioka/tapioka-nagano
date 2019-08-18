@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_08_18_070324) do
+ActiveRecord::Schema.define(version: 2019_08_18_181613) do
 
   create_table "addresses", force: :cascade do |t|
     t.integer "user_id", null: false
@@ -83,6 +83,15 @@ ActiveRecord::Schema.define(version: 2019_08_18_070324) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "likes", force: :cascade do |t|
+    t.integer "user_id", null: false
+    t.integer "product_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["product_id"], name: "index_likes_on_product_id"
+    t.index ["user_id"], name: "index_likes_on_user_id"
+  end
+
   create_table "order_products", force: :cascade do |t|
     t.integer "order_id", null: false
     t.integer "product_id", null: false
@@ -100,8 +109,8 @@ ActiveRecord::Schema.define(version: 2019_08_18_070324) do
     t.text "delivery_address", null: false
     t.string "delivery_name", null: false
     t.integer "postage", null: false
-    t.integer "payment_method", default: 1
-    t.integer "order_status_id", default: 1
+    t.integer "payment_method", default: 1, null: false
+    t.integer "order_status_id", default: 1, null: false
     t.integer "total_price", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
