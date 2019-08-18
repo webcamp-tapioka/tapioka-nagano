@@ -23,4 +23,8 @@ class Product < ApplicationRecord
   # defaultは0で、"シングル"になる
   enum single_album_flag: %i( シングル アルバム )
 
+  def liked_by?(current_user)
+    likes.where(user_id: current_user).exists?
+  end
+
 end
