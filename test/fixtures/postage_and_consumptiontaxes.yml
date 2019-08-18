@@ -1,0 +1,9 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  postage: 1
+  consumption_tax: 9.99
+
+two:
+  postage: 1
+  consumption_tax: 9.99

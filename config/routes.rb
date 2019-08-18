@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  get 'likes/create'
+  get 'likes/destroy'
   devise_for :users
   devise_for :admins
 
@@ -13,7 +15,8 @@ Rails.application.routes.draw do
   resources :artists,only: %i(create edit update destroy index)
   resources :genres,only: %i(create edit update destroy index)
   resources :labels,only: %i(create edit update destroy index)
-  resources :songs,only: %i(new create update destroy)
+  # resources :songs,only: %i(new create update destroy)
+  resources :songs
   resources :orders,only: %i(index show update)
   resources :products
   resources :users
@@ -21,15 +24,25 @@ Rails.application.routes.draw do
   end
  
  scope module:  :public do
+
  	resources :address,only:  %i(new create destroy)
- 	resources :cart_items,only:  %i(index create destroy update)
+ 	# resources :products,only: %i() do
+  resources :cart_items,only:  %i(index create destroy update)
+#end
+
+  get'/users/leave' => 'users#leave'
+  get'/users/thank_you' => 'users#thank_you'
+ 	resources :addresses,except: %i(new show)
+  
+ 	resources :cart_items,only:  %i(index destroy update)
  	resources :order_products,only: %i(create)
  	resources :orders,only:  %i(new create index)
- 	resource :users,only:  %i(edit show update destroy)
-
- 	get'/users/leave' => 'users#leave'
- 	get'/users/thank_you' => 'users#thank_you'
- end
+ 	resources :users,only:  %i(edit show update destroy)
+  resources :products,only: %i() do
+  resources :cart_items,only:  %i(create)
+  resources :likes,only: %i(create destroy)
+end
+end
 
  	resources :products,only:  %i(index show)
  	get'/products/search' => 'products#search'

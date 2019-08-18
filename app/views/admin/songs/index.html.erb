@@ -3,19 +3,38 @@
 <p>フォーム作成</p>
 <%= form_tag(new_admin_song_path,:method => 'get') do %>
   <%= label_tag :what_disc_number, "ディスク番号" %>
-  <%= text_field_tag :what_disc_number %>
-  <!-- 全体で何曲かを取得 -->
-  <%= label_tag :what_track_number,"何曲ですか？"%>
-  <%= text_field_tag :what_track_number %>
-<!--   <%= label_tag :from_what_track_number, "何曲目から？" %>
-  <%= text_field_tag :from_what_track_number %> -->
+  <%= number_field_tag :what_disc_number %>
+  <%= label_tag :what_track_number, "何曲作りますか？" %>
+  <%= number_field_tag :what_track_number %>
   <%= submit_tag 'フォーム作成', :name => nil %>
 <% end %>
 
 
+<% if @edit_song %>
+<%= form_with(model: @edit_song, url: admin_song_path(@edit_song)) do |f| %>
+  <table>
+    <caption>収録曲入力フォーム</caption>
+    <thead>
+      <tr>
+        <th><%= f.label :disc_number, "ディスク番号" %></th>
+        <th><%= f.label :track_number, "曲数" %></th>
+        <th><%= f.label :song, "曲名" %></th>
+      </tr>
+    </thead>
+    <tbody>
+          <tr>
+            <td><%= f.number_field :disc_number %></td>
+            <td><%= f.number_field :track_number %></td>
+            <td><%= f.text_field :song %></td>
+          </tr>
+    </tbody>
+  </table>
+    <%= f.submit "編集" %>
+  <% end %>
+  <% end %>
 
 
-<% if @from_what_track_number %>
+<% if @what_track_number %>
 
   <p>10曲ずつ登録可能です</p>
   <%= form_with(model: @new_song, url: admin_songs_path) do |f| %>
@@ -29,15 +48,16 @@
         </tr>
       </thead>
       <tbody>
-        <!-- 全体の曲数分formを表示 -->
           <% 1.upto(@what_track_number) do |n| %>
             <% @new_song.track_number = n %>
+            <% next if @songs.find_by(disc_number: @new_song.disc_number, track_number: n) %>
             <tr>
-              <td><%= f.text_field :disc_number, name: "song[][disc_number]"%></td>
-              <td><%= f.text_field :track_number, name: "song[][track_number]" %></td>
+              <td><%= f.number_field :disc_number, name: "song[][disc_number]"%></td>
+              <td><%= f.number_field :track_number, name: "song[][track_number]" %></td>
               <td><%= f.text_field :song, name: "song[][song]" %></td>
             </tr>
-          <% end %>
+            <% end %>
+        
       </tbody>
     </table>
       <%= f.submit "追加" %>
@@ -62,7 +82,7 @@
     			　　<tr>
                 <td><%= song.disc_number %></td>
                 <td><%= song.track_number %></td>
-                <td><%= song.song %></td>
+                <td><%= link_to "#{song.song}", edit_admin_song_path(song) %></td>
                 <td>
                   <%= link_to "削除", admin_song_path(song), method: :delete, 
                   "data-confirm" => "削除してよろしいですか？" %>
@@ -71,5 +91,4 @@
     			<% end %>
     	</tbody>
     </table>
-
 

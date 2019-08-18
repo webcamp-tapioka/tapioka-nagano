@@ -8,7 +8,7 @@
 <% end %>
 
 <%# アーティスト名をクリックした時のみ、編集フォームを表示する %>
-<% if @edit_artist.id %>
+<% if @edit_artist %>
   <%= form_for(@edit_artist, url: admin_artist_path(@edit_artist)) do |f| %>
     <%= f.label :name, "編集" %>
     <%= f.text_field :name %>
@@ -17,6 +17,7 @@
   <%= link_to "削除", admin_artist_path(@edit_artist), method: :delete,
    "data-confirm" => "削除してよろしいですか？" %>
 <% end %>
+
 
 
 <%# ワイヤーフレーム通りに６人ずつ表示させてみた %>
