@@ -24,16 +24,9 @@ Rails.application.routes.draw do
  scope module:  :public do
   get'/users/leave' => 'users#leave'
   get'/users/thank_you' => 'users#thank_you'
-<<<<<<< HEAD
- 	resources :address,only:  %i(new create destroy)
- 	resources :cart_items,only:  %i(create destroy update)
-  resources :cart_items,only: %i(index)
-=======
+
  	resources :addresses,except: %i(new show)
-  get'/users/leave' => 'users#leave'
-  get'/users/thank_you' => 'users#thank_you'
  	resources :cart_items,only:  %i(index create destroy update)
->>>>>>> 0722ec14cd686d08bc81bff579104993bac7bb98
  	resources :order_products,only: %i(create)
  	resources :orders,only:  %i(new create index)
  	resources :users,only:  %i(edit show update destroy)
