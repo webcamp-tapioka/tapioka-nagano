@@ -31,6 +31,9 @@
   <%= f.label :payment_method, "お支払い方法" %>
   <%= f.select :payment_method, Order.payment_methods.keys %><br>
   <span>送料 </span><%= @new_order.postage %>
+  <%= f.label :total_price, "価格総計（税込）" %>
+  <%= f.number_field :total_price, readonly: true %><br>
+
   <%= f.fields_for :order_products do |ff| %>
     <%= ff.number_field :product_id, readonly: true %>
     <%= ff.number_field :order_amount, readonly: true %>
@@ -39,10 +42,6 @@
 
 
 <% end %>
-order_id...ordersテーブルから引っ張ってくる
-product_id...cart_itemから引っ張ってくる。cart_items.product_id
-order_amount...cart_itemから引っ張ってくる。cart_items.product_amount
-price...cart_itemから引っ張ってくる
 
 <%= f.submit %>
 
@@ -53,31 +52,3 @@ price...cart_itemから引っ張ってくる
 
 <% end %>
 </div>
-
-postage...
-...selectで選択
-order_status_flag...defaultで受付中、入力させない
-total_price...current_user.cart_itemsから引っ張ってきた情報で計算したものを出す
-created_at...自動作成
-updated_at...自動作成
-
-@orderをcreate後に作成。
-＠order_products
-id...自動作成
-order_id...ordersテーブルから引っ張ってくる
-product_id...cart_itemから引っ張ってくる。cart_items.product_id
-order_amount...cart_itemから引っ張ってくる。cart_items.product_amount
-price...cart_itemから引っ張ってくる
-created_at
-updated_at
-
-
-
-cart_items
-id
-user_id
-product_id
-product_amount
-created_at
-updated_at
-
