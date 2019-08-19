@@ -16,12 +16,6 @@
 //= require_tree .
 
 
-//= require rails-ujs
-//= require activestorage
-//= require turbolinks
-//= require_tree .
-
-
 $(document).ready(function() { 
   $( ".sample_select2" ).select2({
     width: 400,
