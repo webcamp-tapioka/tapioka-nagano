@@ -33,3 +33,22 @@
                     <%end%>
                 <%end%>
 　　　　　　　 <td> <%= link_to 'カートに入れる',cart_items_path,method: :post%></td>
+            <td>
+            </td>
+</table>
+<% @reviews.each do |f| %>
+<%= f.user.first_name + f.user.last_name %>
+<div>
+  <%= f.review %>
+</div>
+<% if f.user_id = current_user.id %>
+<%= link_to '×',product_review_path(@products,f.id),method: :delete %>
+<%end%>
+<% end %>
+<button class="review-button">レビュー投稿</button>
+              <div class="review-content" style="display:none">
+              	<%= form_for [@products,@review] do |f| %>
+				        <%= f.text_area :review %>
+				        <%= f.submit '投稿' %>
+		            <%end%>
+              </div>
