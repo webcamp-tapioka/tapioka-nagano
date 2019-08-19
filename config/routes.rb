@@ -23,6 +23,8 @@ Rails.application.routes.draw do
 
   end
  
+  get'/products/search' => 'products#search'
+ 
  scope module:  :public do
   get'/users/leave' => 'users#leave'
   get'/users/thank_you' => 'users#thank_you'
