@@ -21,6 +21,8 @@ Rails.application.routes.draw do
 
   end
  
+  get'/products/search' => 'products#search'
+ 
  scope module:  :public do
 
  	resources :address,only:  %i(new create destroy)

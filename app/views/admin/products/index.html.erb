@@ -8,6 +8,15 @@
       
       <h1>商品一覧(管理者)</h1>
 
+      <p>検索</p>
+       <%= form_tag(admin_products_search_path,:method => 'get') do %>
+       <%= text_field_tag :search %>
+       <%= submit_tag 'Search', :name => nil %>
+      <% end %>
+
+
+
+
       <table class="table table-hover">
         <thead>
 
@@ -26,11 +35,14 @@
             <tr>
               <td>
               <td>
-             <%= link_to admin_product_path(product.id) do %>
+                         
+               <td><% if  product.image %>
+                <%= attachment_image_tag product, :image, :fill, 30, 30, format: 'jpeg' %>
+              <% end %></td>
 
-               <%= product.image_id %>
+               <td><%= link_to admin_product_path(product.id) do %>
 
-               <%= product.title %>
+               <%= product.title %></td>
 
                <td> <%= product.price %></td>
 

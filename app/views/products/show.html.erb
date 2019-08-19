@@ -13,9 +13,9 @@
 		            <th>在庫</th>
           　　　　　</tr>
 　　　　　　　</thead>
- 　　　　　　　　　　　　　<% if  @products.image %>
-                <%= @product.image_id %>
-                <% end %>
+ 　　　　　　　　　　　　　<td><% if  @products.image %>
+                <%= attachment_image_tag @products, :image, :fill, 30, 30, format: 'jpeg' %>
+              <% end %></td>
                 <td><%= @products.title %></td>
                 <td><%= @products.price %></td>
                 <td><%= @products.amount %></td>
