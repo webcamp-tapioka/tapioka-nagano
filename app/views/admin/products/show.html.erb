@@ -25,7 +25,7 @@
               <td>
               <td>
                 <% if  @products.image %>
-                <%= @product.image_id %>
+                <%= attachment_image_tag @products, :image, :fill, 30, 30, format: 'jpeg' %>
                 <% end %>
                 <td><%= @products.title %></td>
                 <td><%= @products.price %></td>
