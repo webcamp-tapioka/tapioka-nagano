@@ -12,9 +12,6 @@ class Admin::ProductsController < ApplicationController
 		@product = Product.find(params[:id])
 	end
 
-	def new
-		@products = Product.new
-	end
 
 	def create
 		@product = Product.new(product_params)

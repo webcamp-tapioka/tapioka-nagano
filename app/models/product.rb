@@ -27,6 +27,7 @@ class Product < ApplicationRecord
 # defaultは1で、"販売停止中"になる
 
 
+
   # defaultは0で、"シングル"になる
   enum single_album_flag: %i( シングル アルバム )
 
