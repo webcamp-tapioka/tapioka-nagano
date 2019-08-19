@@ -11,4 +11,18 @@ class User < ApplicationRecord
   has_many :order_products, through: :orders
   has_many :cart_items
   has_many :products, through: :cart_items
+
+
+  def total_price
+    a = 0
+    cart_items.each do |f|
+      a += f.product_amount * f.product.price
+    end
+    a = (a * ((PostageAndConsumptiontax.find(1).consumption_tax) * 0.01r + 1)).floor
+    return a
+  end
+
+
+
+
 end

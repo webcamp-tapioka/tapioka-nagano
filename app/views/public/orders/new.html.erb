@@ -13,19 +13,36 @@
         <%= address.delivery_address %><br>
       </div>
     <% end %>
+
     <%= submit_tag "この住所を使う" %>
   <% end %>
 <% end %>
 
 <div>
 <%= form_with(model: @new_order) do |f| %>
-<%= f.text_field :delivery_name_kana %>
-<%= f.text_field :delivery_name %>
-<%= f.text_field :delivery_postal_code %>
-<%= f.text_field :delivery_address %>
-<%= f.select :payment_method, Order.payment_methods.keys %>
-<span>送料 </span><%= @new_order.postage %>
+  <%= f.label :delivery_name_kana, "フリガナ" %>
+  <%= f.text_field :delivery_name_kana %><br>
+  <%= f.label :delivery_name, "お名前" %>
+  <%= f.text_field :delivery_name %><br>
+  <%= f.label :delivery_postal_code, "郵便番号" %>
+  <%= f.text_field :delivery_postal_code %><br>
+  <%= f.label :delivery_address, "ご住所" %>
+  <%= f.text_field :delivery_address %><br>
+  <%= f.label :payment_method, "お支払い方法" %>
+  <%= f.select :payment_method, Order.payment_methods.keys %><br>
+  <span>送料 </span><%= @new_order.postage %>
+  <%= f.fields_for :order_products do |ff| %>
+    <%= ff.number_field :product_id, readonly: true %>
+    <%= ff.number_field :order_amount, readonly: true %>
+    <%= ff.number_field :price, readonly: true %>
 
+
+
+<% end %>
+order_id...ordersテーブルから引っ張ってくる
+product_id...cart_itemから引っ張ってくる。cart_items.product_id
+order_amount...cart_itemから引っ張ってくる。cart_items.product_amount
+price...cart_itemから引っ張ってくる
 
 <%= f.submit %>
 

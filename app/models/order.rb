@@ -1,6 +1,6 @@
 class Order < ApplicationRecord
   belongs_to :user
-  has_many :order_products, inverse_of: :order_product
+  has_many :order_products, inverse_of: :order
   accepts_nested_attributes_for :order_products
   
 
@@ -10,6 +10,7 @@ class Order < ApplicationRecord
   enum order_status_id: %i(準備中 受付中 送付済み)
 
 end
+
 
 
 
