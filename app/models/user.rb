@@ -11,4 +11,7 @@ class User < ApplicationRecord
   has_many :order_products, through: :orders
   has_many :cart_items
   has_many :products, through: :cart_items
+  has_many :likes,dependent: :destroy
+
+  
 end
