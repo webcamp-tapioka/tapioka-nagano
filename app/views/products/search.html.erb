@@ -1,1 +1,37 @@
-<h2>product-search</h2>
+<h1>商品検索結果一覧</h1>
+
+      <table class="table table-hover">
+        <thead>
+
+
+         <tr>
+            <th>タイトル</th>
+            <th>アーティスト</th>
+            <th>ジャンル</th>
+            <th>レーベル</th>
+            <th>CDシングル</th>
+            <th>価格</th>
+            <th>在庫</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @products.each do |product| %>
+            <tr>
+              <td>
+              <td>
+              <%= link_to product_path(products.id) do %>
+                <%= product.image_id %>
+                <%= product.title %>
+                <%= product.price %>
+                <%= product.amount %>
+                <%= product.product_status_id %>
+              <% end %>
+              </td>
+              <td></td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
