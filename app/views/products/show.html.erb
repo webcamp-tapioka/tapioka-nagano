@@ -1,3 +1,4 @@
+
 <h1>商品詳細</h1>
 
 <table class="table table-hover">
@@ -20,5 +21,35 @@
                 <td><%= @products.price %></td>
                 <td><%= @products.amount %></td>
                 <td><%= @products.product_status_id %></td>
-
+                <td>
+                	<% if @products.liked_by?(current_user) %>
+                    <%= link_to product_like_path(@products),method: :delete do %>
+                      <i class="fa fa-heart" aria-hidden="true" style="color: red;"></i>
+                      <%= @products.likes.count %> いいね
+                    <% end %>
+                  <% else %>
+                    <%= link_to product_likes_path(@products),method: :post do %>
+                      <i class="fas fa-heart" aria-hidden="true"></i>
+                      <%= @products.likes.count %> いいね
+                    <%end%>
+                <%end%>
 　　　　　　　 <td> <%= link_to 'カートに入れる',cart_items_path,method: :post%></td>
+            <td>
+            </td>
+</table>
+<% @reviews.each do |f| %>
+<%= f.user.first_name + f.user.last_name %>
+<div>
+  <%= f.review %>
+</div>
+<% if f.user_id = current_user.id %>
+<%= link_to '×',product_review_path(@products,f.id),method: :delete %>
+<%end%>
+<% end %>
+<button class="review-button">レビュー投稿</button>
+              <div class="review-content" style="display:none">
+              	<%= form_for [@products,@review] do |f| %>
+				        <%= f.text_area :review %>
+				        <%= f.submit '投稿' %>
+		            <%end%>
+              </div>

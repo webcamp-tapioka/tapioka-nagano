@@ -18,14 +18,14 @@ class Public::CartItemsController < ApplicationController
 	end
 
 	def create
-		cart_items = current_user.cart_items
-		cart_items = Cart_item.new(cart_items_params)
-		cart_items.save
+		cart_items = current_user.cart_items.create!(product_id: params[:product_id],product_amount: 1)
+		redirect_to cart_items_path
+		
 	end
 
 private
 	def cart_item_params
-		params.require(:cart_item).permit(:taile, :price, :product_amount, :product_status_id, :label_id)
+		params.require(:product).permit(:user_id, :product_id, :product_amount)
 	end
 
 end

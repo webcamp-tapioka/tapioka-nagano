@@ -9,6 +9,8 @@ class Product < ApplicationRecord
   has_many :order_products
   has_many :orders, through: :order_products
   belongs_to :label
+  has_many :likes,dependent: :destroy
+  has_many :reviews,dependent: :destroy
 
   attachment :image
 
@@ -20,18 +22,17 @@ class Product < ApplicationRecord
         Product.all
       end
   end
-
-# defaultは1で、"販売停止中"になる
-  # enum product_status_flag: %i( 販売中　販売停止中 )
+  
   enum product_status_id: %i(販売中 販売停止中)
-
 # defaultは1で、"販売停止中"になる
 
- # enum product_status_id: %i(販売中 販売停止中 )
 
- # enum product_status_flag: %i( 販売中 販売停止中 )
 
   # defaultは0で、"シングル"になる
   enum single_album_flag: %i( シングル アルバム )
+
+  def liked_by?(current_user)
+    likes.where(user_id: current_user).exists?
+  end
 
 end

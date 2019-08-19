@@ -2,11 +2,14 @@ class ProductsController < ApplicationController
 
   def show
    	  @products = Product.find(params[:id])
-  end
+      @review = Review.new
+      @reviews = Review.where(product_id: params[:id])
+   end
    
 	def index
 		@products = Product.all
   end
+
 
 	
 
