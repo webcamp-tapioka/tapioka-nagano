@@ -41,7 +41,8 @@ Rails.application.routes.draw do
   resources :products,only: %i() do
   resources :cart_items,only:  %i(create)
   resources :likes,only: %i(create destroy)
-  resource :reviews,only: %i(create destroy)
+  resource :reviews,only: %i(create)
+  resources :reviews,only: %i(destroy)
 end
 end
 
