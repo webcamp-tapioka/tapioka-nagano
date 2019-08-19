@@ -17,8 +17,6 @@
 
 
 
-
-
 $(document).ready(function() { 
   $( ".sample_select2" ).select2({
     width: 400,
