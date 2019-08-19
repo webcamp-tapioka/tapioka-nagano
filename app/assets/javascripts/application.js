@@ -16,10 +16,7 @@
 //= require_tree .
 
 
-//= require rails-ujs
-//= require activestorage
-//= require turbolinks
-//= require_tree .
+
 
 
 $(document).ready(function() { 
@@ -28,3 +25,12 @@ $(document).ready(function() {
     multiple: true
    });
 });
+
+
+window.onload = function(){
+	const reviewButton = document.querySelector('.review-button');
+	const reviewContent = document.querySelector('.review-content');
+	reviewButton.addEventListener('click',() => {
+	reviewContent.style.display = 'block';
+	});
+}

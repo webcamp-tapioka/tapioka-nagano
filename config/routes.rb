@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  get 'likes/create'
+  get 'likes/destroy'
   devise_for :users
   devise_for :admins
 
@@ -34,13 +36,17 @@ Rails.application.routes.draw do
   get'/users/thank_you' => 'users#thank_you'
  	resources :addresses,except: %i(new show)
   
- 	resources :cart_items,only:  %i(index create destroy update)
+ 	resources :cart_items,only:  %i(index destroy update)
  	resources :order_products,only: %i(create)
  	resources :orders,only:  %i(new create index)
  	resources :users,only:  %i(edit show update destroy)
-
- 
- end
+  resources :products,only: %i() do
+  resources :cart_items,only:  %i(create)
+  resources :likes,only: %i(create destroy)
+  resource :reviews,only: %i(create)
+  resources :reviews,only: %i(destroy)
+end
+end
 
  	resources :products,only:  %i(index show)
  	get'/products/search' => 'products#search'
