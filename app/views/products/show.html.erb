@@ -33,7 +33,16 @@
                       <%= @products.likes.count %> いいね
                     <%end%>
                 <%end%>
-          　 <td> <%= link_to 'カートに入れる',product_cart_items_path(@products),method: :post%></td>
+                <td>
+                <% if @products.product_status_id == 0 %>
+                  <%= form_with(model: @new_cart_item, url: product_cart_items_path(@products)) do |f| %>
+                    <% f.hidden_field :product_id, value: @new_cart_item.product_id %>
+                    <%= f.select :product_amount, 1..@products.amount %>
+                    <%= f.submit "カートに入れる" %>
+                  <% end %>
+                  <% end %>
+                </td>
+          </td>
             <td>
             </td>
 </table>
