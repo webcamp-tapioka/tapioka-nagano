@@ -1,35 +1,32 @@
 <h1>商品追加(管理者)</h1>
 
 <div>
-<%= form_with(model: @product) do |f| %>
+<%= form_for([:admin,@product]) do |f| %>
 
 	<table>
 	 
 	  <thead>
 	  <%= f.attachment_field :image %>
 
-	 <%= f.submit "ジャケット写真登録" %>
-
+	
 	<p>タイトル</p>
 	  <%= f.text_field :title %>
 	<p>アーティスト名</p>
-	  <%= f.text_area :artist , name: "products[][artist]"%>
+	
 	<p>ジャンル</p>
-	  <%= f.text_field :genre_id %>
+	  
 	 <p>レーベル</p>
-	  <%= f.text_field :labels , name: "products[][labels]"%>
-
+	 
 	<p>価格</p>
 	  <%= f.text_area :price %>
 	<p>在庫</p>
 	 　<%= f.text_area :amount , name: "products[][amount]"%>
 	 	<p>販売状況</p>
-   <%= f.select  :product_status_id, Product.product_status_ids %>
+   <%= f.select  :product_status_id, Product.product_status_ids.keys %>
 	    
 	  </thead>
 	  <tbody>
 
-			
 	</table>
 
 	<%= f.submit "追加する" %>

@@ -1,9 +1,11 @@
 <h1>商品情報入力フォーム(管理者)</h1>
-<%= form_for([:admin,@products]) do |f| %>
+
+<%= form_for([:admin,@product]) do |f| %>
 <p>ジャケット写真</p>
 	<%= f.attachment_field :image %>
 
 	<%= f.submit "ジャケット写真登録" %>
+
 <p>タイトル</p>
   <%= f.text_field :title %>
 <p>アーティスト</p>
