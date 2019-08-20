@@ -1,9 +1,10 @@
+
 <h1>商品詳細</h1>
 
 <table class="table table-hover">
         <thead>
 
-			　　　<tr>
+			  　<tr>
 		            <th>タイトル</th>
 		            <th>アーティスト</th>
 		            <th>ジャンル</th>
@@ -11,14 +12,44 @@
 		            <th>CDシングル</th>
 		            <th>価格</th>
 		            <th>在庫</th>
-          　　　　　</tr>
-　　　　　　　</thead>
- 　　　　　　　　　　　　　<% if  @products.image %>
-                <%= @product.image_id %>
-                <% end %>
+          　   </tr>
+      　</thead>
+ 　             <td><% if  @products.image %>
+                <%= attachment_image_tag @products, :image, :fill, 30, 30, format: 'jpeg' %>
+              <% end %></td>
                 <td><%= @products.title %></td>
                 <td><%= @products.price %></td>
                 <td><%= @products.amount %></td>
                 <td><%= @products.product_status_id %></td>
-
-　　　　　　　 <td> <%= link_to 'カートに入れる',product_cart_items_path(@products),method: :post%></td>
+                <td>
+                	<% if @products.liked_by?(current_user) %>
+                    <%= link_to product_like_path(@products),method: :delete do %>
+                      <i class="fa fa-heart" aria-hidden="true" style="color: red;"></i>
+                      <%= @products.likes.count %> いいね
+                    <% end %>
+                  <% else %>
+                    <%= link_to product_likes_path(@products),method: :post do %>
+                      <i class="fas fa-heart" aria-hidden="true"></i>
+                      <%= @products.likes.count %> いいね
+                    <%end%>
+                <%end%>
+          　 <td> <%= link_to 'カートに入れる',product_cart_items_path(@products),method: :post%></td>
+            <td>
+            </td>
+</table>
+<% @reviews.each do |f| %>
+<%= f.user.first_name + f.user.last_name %>
+<div>
+  <%= f.review %>
+</div>
+<% if f.user_id = current_user.id %>
+<%= link_to '×',product_review_path(@products,f.id),method: :delete %>
+<%end%>
+<% end %>
+<button class="review-button">レビュー投稿</button>
+              <div class="review-content" style="display:none">
+              	<%= form_for [@products,@review] do |f| %>
+				        <%= f.text_area :review %>
+				        <%= f.submit '投稿' %>
+		            <%end%>
+              </div>

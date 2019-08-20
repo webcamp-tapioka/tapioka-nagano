@@ -1,1 +1,17 @@
-<h2>admin-show</h2>
+<h2>未対応商品一覧</h2> 
+
+
+ <% order.order_products.each do |order_product| %>
+          <tr>
+            <td><%= order_product.product.title %> </td>
+            <%end%>
+
+
+
+
+<% @orders.each do |f| %>
+<%= f.delivery_name %>
+<%= f.delivery_postal_code %>
+<%= f.delivery_address %>
+<%= f.delivery_address_flag %>
+<%end%>

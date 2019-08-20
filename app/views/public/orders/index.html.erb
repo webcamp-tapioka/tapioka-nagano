@@ -1,1 +1,40 @@
-<h2>public-orders-index</h2>
+<h1>購入履歴</h1>
+
+
+
+	<% current_user.orders.each do |order| %>
+
+    <%= "購入日 #{order.created_at}" %><br>
+
+    <table>
+      <thead>
+        <tr>
+          <th>タイトル</th>
+          <th>価格（税別）</th>
+          <th>購入枚数</th>
+          <th>合計（税別）</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% order.order_products.each do |order_product| %>
+          <tr>
+            <td><%= order_product.product.title %> </td>
+            <td><%= order_product.price %></td>
+            <td><%= order_product.order_amount %></td>
+            <td><%= order_product.price * order_product.order_amount %>円</td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  <%= "ステータス #{order.order_status_id}" %><br>
+  <p>お届け先ご住所</p>
+  <%= "〒 #{order.delivery_postal_code}" %>
+  <%= order.delivery_address %><br>
+  <%= order.delivery_name_kana %><br>
+  <%= "#{order.delivery_name}様" %><br>
+
+  <% end %>
+
+
+
+
