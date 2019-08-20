@@ -19,12 +19,12 @@
 
 
 
-$(document).ready(function() { 
-  $( ".sample_select2" ).select2({
-    width: 400,
-    multiple: true
-   });
-});
+// $(document).ready(function() { 
+//   $( ".sample_select2" ).select2({
+//     width: 400,
+//     multiple: true
+//    });
+// });
 
 
 window.onload = function(){
@@ -32,5 +32,23 @@ window.onload = function(){
 	const reviewContent = document.querySelector('.review-content');
 	reviewButton.addEventListener('click',() => {
 	reviewContent.style.display = 'block';
+	});
+// }
+
+// window.onload = function(){
+	const totalReview = document.querySelector('.total-review');
+	const totalReviewButton = document.querySelector('.total-review-button');
+	const firstReview = document.querySelector('.first-review');
+
+	totalReviewButton.addEventListener('click',(event) => {
+		if (totalReview.style.display === 'none'){
+			totalReview.style.display = 'block';
+			firstReview.style.display = 'none';
+			totalReviewButton.innerHTML = 'しまう';
+		}else{
+			totalReview.style.display = 'none';
+			firstReview.style.display = 'block';
+			totalReviewButton.innerHTML = 'もっと見る';
+		}
 	});
 }

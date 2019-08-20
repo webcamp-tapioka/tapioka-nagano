@@ -36,6 +36,26 @@
             <td>
             </td>
 </table>
+<div class="first-review">
+  <div class="first-review-name">
+    <% if @reviews.any? %>
+      <%= @reviews.last.user.first_name + @reviews.last.user.last_name %>
+  </div>
+    <% if @reviews.any? && current_user.id == @reviews.last.user_id %>
+      <span><%= link_to '×',product_review_path(@products,@reviews.last.user_id),method: :delete %>
+    <%end%>
+      </span>
+  <div class="first-review-review">
+    <%= @reviews.last.review %>
+  </div>
+</div>
+<%end%>
+</div>
+</div>
+<div>
+<button class="total-review-button">もっと見る</button>
+</div>
+<div class="total-review" style="display:none">
 <% @reviews.each do |f| %>
 <%= f.user.first_name + f.user.last_name %>
 <div>
@@ -45,6 +65,7 @@
 <%= link_to '×',product_review_path(@products,f.id),method: :delete %>
 <%end%>
 <% end %>
+</div>
 <button class="review-button">レビュー投稿</button>
               <div class="review-content" style="display:none">
               	<%= form_for [@products,@review] do |f| %>
