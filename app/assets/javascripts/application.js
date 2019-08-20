@@ -10,6 +10,7 @@
 // Read Sprockets README (https://github.com/rails/sprockets#sprockets-directives) for details
 // about supported directives.
 //= require jquery
+
 //= require rails-ujs
 //= require activestorage
 //= require turbolinks
@@ -53,13 +54,15 @@ window.onload = function(){
 }
 
 
-$(window).ready( function() {
+// 郵便番号を入力すると都道府県以下が自動で入力される //
+$(window).ready(function() {
   $('delivery_postal_code_and_address').jpostal({
     postcode : [
       '#delivery_postal_code'
     ],
     address : {
-      '#delivery_address'  : '%3%4%5'
+      '#delivery_address' : '%3%4%5'
     }
   });
 });
+
