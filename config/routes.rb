@@ -20,6 +20,7 @@ Rails.application.routes.draw do
   resources :orders,only: %i(index show update)
   resources :products
   resources :users
+  resource :postage_and_consumptiontaxs,only: %i(edit update)
 
   end
  
