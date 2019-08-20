@@ -12,9 +12,6 @@ class Admin::ProductsController < ApplicationController
 		@product = Product.find(params[:id])
 	end
 
-	def new
-		@products = Product.new
-	end
 
 	def create
 		@product = Product.new(product_params)
@@ -33,7 +30,11 @@ class Admin::ProductsController < ApplicationController
       end
     end
     
-
+    def search
+    #Viewのformで取得したパラメータをモデルに渡す
+    @products = Product.search(params[:search])
+    end
+    
 
 	def update
 		  @product = Product.find(params[:id])
@@ -48,7 +49,9 @@ class Admin::ProductsController < ApplicationController
 	
     private
   
+
     def product_params                
       params.require(:product).permit(:image, :title, :price, :products_status_id, :label_id, :amount, :artist )
     end
  end
+

@@ -26,17 +26,14 @@ Rails.application.routes.draw do
   get'/products/search' => 'products#search'
  
  scope module:  :public do
-
- 	resources :address,only:  %i(new create destroy)
- 	# resources :products,only: %i() do
-  resources :cart_items,only:  %i(index create destroy update)
-#end
-
   get'/users/leave' => 'users#leave'
   get'/users/thank_you' => 'users#thank_you'
+ 	resources :address,only:  %i(new create destroy)
+  resources :products,only: %i() do
+ 	resources :cart_items,only:  %i(create)
+ end
+  resources :cart_items,only: %i(index  destroy update)
  	resources :addresses,except: %i(new show)
-  
- 	resources :cart_items,only:  %i(index destroy update)
  	resources :order_products,only: %i(create)
  	resources :orders,only:  %i(new create index)
  	resources :users,only:  %i(edit show update destroy)
