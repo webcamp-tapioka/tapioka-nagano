@@ -1,17 +1,28 @@
 <h2>未対応商品一覧</h2> 
 
-
- <% order.order_products.each do |order_product| %>
-          <tr>
-            <td><%= order_product.product.title %> </td>
-            <%end%>
-
-
-
-
-<% @orders.each do |f| %>
-<%= f.delivery_name %>
-<%= f.delivery_postal_code %>
-<%= f.delivery_address %>
-<%= f.delivery_address_flag %>
-<%end%>
+<tr> <% @orders.each do |order| %>
+    <% order.order_products.each do |order_product| %>
+    <table>
+    <thead>
+      <tr>
+        <th>タイトル</th>
+        <th>送付先名前</th>
+        <th>郵便番号</th>
+        <th>住所</th>
+        <th>ステータス</th>
+      </tr>
+    </thead>
+    <tbody>
+    	<tr>
+      <td><%= order_product.product.title %> </td>
+      <td> <%= order.delivery_name %> </td>
+      <td> <%= order.delivery_postal_code %> </td>
+      <td> <%= order.delivery_address %></td>
+      <td> <%= form_for(order.order_status_id) do |f| %>
+      	     <%= f.select :order_status_id, [["準備中","0"],["受付中","1"],["送付済み","2"]] %>
+      	     <%end%>
+      </td>
+   <%end%>
+   <%end%>
+</tr>
+</tbody>

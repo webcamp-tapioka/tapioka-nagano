@@ -32,7 +32,11 @@ class Admin::ProductsController < ApplicationController
       end
     end
     
-
+    def search
+    #Viewのformで取得したパラメータをモデルに渡す
+    @products = Product.search(params[:search])
+    end
+    
 
 	def update
 		  @product = Product.find(params[:id])

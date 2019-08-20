@@ -8,4 +8,5 @@ class Order < ApplicationRecord
 #  defaultは1、"受付中"になる
   enum order_status_id: %i(準備中 受付中 送付済み)
 
+  
 end

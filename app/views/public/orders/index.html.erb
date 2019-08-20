@@ -4,7 +4,7 @@
 
 	<% current_user.orders.each do |order| %>
 
-    <%= "購入日 #{order.created_at}" %><br>
+    <%= "購入日 #{order.created_at.strftime("%Y-%m-%d")}" %><br>
 
     <table>
       <thead>
@@ -25,13 +25,13 @@
           </tr>
         <% end %>
       </tbody>
+      <%= "ステータス #{order.order_status_id}" %><br>
+      <p>お届け先ご住所</p>
+      <%= "〒 #{order.delivery_postal_code}" %>
+      <%= order.delivery_address %><br>
+      <%= order.delivery_name_kana %><br>
+      <%= "#{order.delivery_name}様" %><br>
     </table>
-  <%= "ステータス #{order.order_status_id}" %><br>
-  <p>お届け先ご住所</p>
-  <%= "〒 #{order.delivery_postal_code}" %>
-  <%= order.delivery_address %><br>
-  <%= order.delivery_name_kana %><br>
-  <%= "#{order.delivery_name}様" %><br>
 
   <% end %>
 

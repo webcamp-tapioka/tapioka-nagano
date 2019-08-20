@@ -3,7 +3,8 @@ class Public::OrdersController < ApplicationController
 
   
   def new
-    @new_order = current_user.orders.new
+    @new_order = current_user.orders.new(postage: PostageAndConsumptiontax.find(1).postage, 
+    total_price: current_user.total_price, consumption_tax: PostageAndConsumptiontax.find(1).consumption_tax)
     @addresses = current_user.addresses.all
     @cart_items = current_user.cart_items.all
     if params[:to_create_order]
@@ -17,12 +18,7 @@ class Public::OrdersController < ApplicationController
 
 
   def create
-    if new_order = current_user.orders.new(order_params)
-      new_order.postage = PostageAndConsumptiontax.find(1).postage
-      new_order.total_price = current_user.total_price
-      new_order.consumption_tax = PostageAndConsumptiontax.find(1).consumption_tax
-      new_order.save
-
+    if new_order = current_user.orders.create(order_params)
       current_user.cart_items.all.each do |cart_item|
         new_order_product = new_order.order_products.build
         new_order_product.product_id = cart_item.product_id
@@ -48,7 +44,7 @@ class Public::OrdersController < ApplicationController
 
     def order_params
       params.require(:order).permit(:delivery_postal_code, :delivery_address, :delivery_name, :delivery_name_kana, 
-      :payment_method)
+      :payment_method, :postage, :total_price, :consumption_tax)
     end
     
 end

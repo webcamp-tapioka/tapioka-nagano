@@ -1,9 +1,13 @@
 
 <h1>購入確認ページ</h1>
 
+
+
+<%= "#{current_user.first_name} #{current_user.last_name}様" %>
+
 <% if current_user.addresses %>
 <%# チェックボックスは最終的にJQueryでどれか一つをチェックすると、先につけたチェックを外すようにする予定です %>
-  <p>ご登録済みの住所を使いますか？</p>
+  <p>送付先のご住所を選択してください</p>
   <%= form_tag(new_order_path, method: 'get') do %>
   　<% @addresses.each do |address| %>
       <div class="check_box_tag">
@@ -13,14 +17,14 @@
         <%= address.delivery_address %><br>
       </div>
     <% end %>
-
     <%= submit_tag "この住所を使う" %>
   <% end %>
 <% end %>
+<%= link_to("住所登録画面へ", addresses_path) %>
+
 <table>
   <thead>
 	  <tr>
-		  <th>ジャケ写</th>
 		  <th>タイトル</th>
 		  <th>アーティスト</th>
 		  <th>値段</th>
@@ -30,7 +34,6 @@
   <tbody>
 		<% @cart_items.each do |item| %>
 		  <tr>
-			  <td><%= attachment_image_tag item.product, :image, format: 'jpg', fallback: 'no_image.jpg', size: '30x30' %></td>
 			  <td><%= item.product.title %></td>
 			  <td></td>
 			  <td><%= item.product.price.to_i %>円</td>
@@ -40,15 +43,29 @@
   </tbody>
 </table>
 
+
+<% if @new_order.delivery_postal_code %>
+  <p>送付先住所</p>
+  <%= "#{@new_order.delivery_postal_code}" %><br>
+  <%= @new_order.delivery_address %><br>
+  <%= "フリガナ #{@new_order.delivery_name_kana}" %><br>
+  <%= "送付先宛名 #{@new_order.delivery_name}" %><br>
+<% end %>
+<%= "送料 ¥#{@new_order.postage}" %><br>
+<%= "価格総計（税込） ¥#{@new_order.total_price}" %><br>
+<%= "消費税 #{@new_order.consumption_tax}%" %><br>
+
+<% if @new_order.delivery_postal_code %>
 <%= form_with(model: @new_order) do |f| %>
-  <%= f.text_field :delivery_postal_code, readonly: true %><br>
-  <%= f.text_field :delivery_address, readonly: true  %><br>
-  <%= f.text_field :delivery_name_kana, readonly: true  %><br>
-  <%= f.text_field :delivery_name, readonly: true  %><br>
-  <%= @new_order.postage %><br>
-  <%= @new_order.total_price %><br>
-  <%= @new_order.consumption_tax %><br>
+  <%= f.hidden_field :delivery_postal_code %>
+  <%= f.hidden_field :delivery_address %>
+  <%= f.hidden_field :delivery_name_kana %>
+  <%= f.hidden_field :delivery_name %>
+  <%= f.hidden_field :postage %>
+  <%= f.hidden_field :total_price %>
+  <%= f.hidden_field :consumption_tax %><br>
   <%= f.label :payment_method, "支払い方法" %>
   <%= f.select :payment_method, Order.payment_methods.keys %><br>
   <%= f.submit "購入を確定する" %>
+<% end %>
 <% end %>
