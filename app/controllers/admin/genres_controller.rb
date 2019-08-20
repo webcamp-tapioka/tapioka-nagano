@@ -23,7 +23,7 @@ def index
 
 	def destroy
 		Genre.find(params[:id]).destroy
-    redirect_to admin_genres_path
+        redirect_to admin_genres_path
 	end
 	
 
