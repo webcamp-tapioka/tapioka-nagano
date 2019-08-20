@@ -16,9 +16,19 @@
 //= require_tree .
 
 
+
 $(document).ready(function() { 
   $( ".sample_select2" ).select2({
     width: 400,
     multiple: true
    });
 });
+
+
+window.onload = function(){
+	const reviewButton = document.querySelector('.review-button');
+	const reviewContent = document.querySelector('.review-content');
+	reviewButton.addEventListener('click',() => {
+	reviewContent.style.display = 'block';
+	});
+}

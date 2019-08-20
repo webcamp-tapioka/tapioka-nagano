@@ -26,7 +26,7 @@
 
         <% if user_signed_in? %>
               <li>
-                <%= link_to "商一覧品", products_path(current_user.id),class:"glyphicon glyphicon-home" %>
+                <%= link_to "商品一覧", products_path(current_user.id),class:"glyphicon glyphicon-home" %>
               </li>
               <li>
               <%= link_to "カート", cart_items_path, class:"glyphicon glyphicon-user" %>
@@ -115,5 +115,6 @@
     現在ログインしているユーザーのid: <%= session[:user_id] %>
    </li>
     <% end %> -->
+
   </body>
 </html>

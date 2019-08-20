@@ -12,9 +12,6 @@ class Admin::ProductsController < ApplicationController
 		@product = Product.find(params[:id])
 	end
 
-	def new
-		@products = Product.new
-	end
 
 	def create
 		@product = Product.new(product_params)
@@ -25,6 +22,16 @@ class Admin::ProductsController < ApplicationController
 		products = Product.find(params[:id])
 	end
 
+	def self.search(search)
+      if search
+        Product.where(['title LIKE ?', "%#{search}%"])
+      else
+        Product.all
+      end
+    end
+    
+
+
 	def update
 		  @product = Product.find(params[:id])
 		if
@@ -33,14 +40,14 @@ class Admin::ProductsController < ApplicationController
         else
           flash[:notice] = "error"
           render :edit
-        end
-	end
-
- private
+    	end
+    end
+	
+    private
   
-  def product_params
-    params.require(:product).permit(:image, :title, :price, :product_status_id, :label_id, :amount )
-  end
 
+    def product_params                
+      params.require(:product).permit(:image, :title, :price, :products_status_id, :label_id, :amount, :artist )
+    end
+ end
 
-end
