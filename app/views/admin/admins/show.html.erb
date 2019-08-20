@@ -18,11 +18,13 @@
       <td> <%= order.delivery_name %> </td>
       <td> <%= order.delivery_postal_code %> </td>
       <td> <%= order.delivery_address %></td>
-      <td> <%= form_for(order.order_status_id) do |f| %>
-      	     <%= f.select :order_status_id, [["準備中","0"],["受付中","1"],["送付済み","2"]] %>
-      	     <%end%>
       </td>
+   <%end%>
+   <td><%= form_for(order, url: admin_order_path(order), method: "patch") do |f| %>
+      	     <%= f.select :order_status_id, Order.order_status_ids.keys %>
+      	     <%= f.submit "更新" %></td>
    <%end%>
    <%end%>
 </tr>
 </tbody>
+<%=link_to "送料、消費税変更", edit_admin_admins_path %>

@@ -20,6 +20,7 @@ Rails.application.routes.draw do
   resources :orders,only: %i(index show update)
   resources :products
   resources :users
+  resource :postage_and_consumptiontaxs,only: %i(edit update)
 
   end
  
@@ -35,7 +36,7 @@ Rails.application.routes.draw do
  	resources :users,only: %i(edit show update destroy)
   resources :products,only: %i() do
   resources :cart_items,only: %i(create)
-  resources :likes,only: %i(create destroy)
+  resource :likes,only: %i(create destroy)
   resource :reviews,only: %i(create)
   resources :reviews,only: %i(destroy)
 end
