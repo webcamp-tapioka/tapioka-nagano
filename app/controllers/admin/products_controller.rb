@@ -3,6 +3,7 @@ class Admin::ProductsController < ApplicationController
 		@products = Product.find(params[:id])
 	end
 
+
 	def index
 		@products = Product.all
 	end
@@ -14,10 +15,15 @@ class Admin::ProductsController < ApplicationController
 		@product = Product.find(params[:id])
 	end
 
+	def new
+    	@product = Product.new
+    	@product.artist_products.build
+    end
 
 	def create
 		@product = Product.new(product_params)
 	    @product.save
+	    redirect_to admin_products_path,notice: "succsess!"
 	end
 
 	def destroy
@@ -39,21 +45,16 @@ class Admin::ProductsController < ApplicationController
     
 
 	def update
-		  @product = Product.find(params[:id])
-		if
-		  @products.update(products_params)
-		  redirect_to products_path(@products),notice: "Products was successfully updated"
-        else
-          flash[:notice] = "error"
-          render :edit
-    	end
-    end
+	@products = Product.find(params[:id])
+	@products.update(product_params)
+	redirect_to admin_products_path,notice: "succsess!"
+	end
 	
     private
   
 
     def product_params                
-      params.require(:product).permit(:image, :title, :price, :products_status_id, :label_id, :amount, :artist )
+      params.require(:product).permit(:image, :title, :price, :product_status_id, :label_id, :amount, artist_products_attributes: [:artist_id])
     end
  end
 
