@@ -21,7 +21,7 @@
                 <td><%= @products.price %></td>
                 <td><%= @products.amount %></td>
                 <td><%= @products.product_status_id %></td>
-                <% if @products.product_status_id == 0 %>
+                <% if @products.product_status_id.to_i == 0 %>
                   <%= form_with(model: @new_cart_item, url: product_cart_items_path(@products)) do |f| %>
                     <% f.hidden_field :product_id, value: @new_cart_item.product_id %>
                     <%= f.select :product_amount, 1..@products.amount %>
@@ -75,7 +75,6 @@
 
 
 <script>
-  window.onload = function(){
   const reviewButton = document.querySelector('.review-button');
   const reviewContent = document.querySelector('.review-content');
   reviewButton.addEventListener('click',() => {
@@ -100,5 +99,4 @@
       totalReviewButton.innerHTML = 'もっと見る';
     }
   });
-}
 </script>

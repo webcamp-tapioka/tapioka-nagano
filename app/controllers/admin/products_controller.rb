@@ -8,6 +8,7 @@ class Admin::ProductsController < ApplicationController
 	end
 
 	def new
+		@products = Product.new
 	end
 
 	def edit

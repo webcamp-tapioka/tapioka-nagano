@@ -2,7 +2,9 @@ class Public::AddressesController < ApplicationController
 
 def create
   current_user.addresses.create(address_params)
-  redirect_to addresses_path
+  #redirect_back(fallback_location: root_path)
+  redirect_to(session[:referrer])
+  session.delete(:referrer)
 end
 
 
@@ -20,6 +22,10 @@ end
 
 
 def index
+  #繊維元のURLをsession[:referrer]に格納
+  session[:referrer] = request.referrer
+  #redirect_back(fallback_location: root_path)
+  #binding.pry
   @address = current_user.addresses.new
   @addresses = current_user.addresses.all
 end
