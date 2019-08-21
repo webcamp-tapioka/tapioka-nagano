@@ -1,1 +1,30 @@
-<h2>products-edit</h2>
+<h1>商品追加(管理者)</h1>
+
+<div>
+<%= form_for([:admin,@product]) do |f| %>
+
+	
+	  <%= f.attachment_field :image %>
+
+	<p>タイトル</p>
+	  <%= f.text_field :title %>
+	<p>アーティスト名</p>
+
+
+	<p>ジャンル</p>
+	  
+
+	 <p>レーベル</p>
+	  <%= f.select :label_id, Label.all.ids %>
+
+	<p>価格</p>
+	  <%= f.number_field :price %>
+	<p>在庫</p>
+	 　<%= f.number_field :amount %>
+	 	<p>販売状況</p>
+   <%= f.select  :product_status_id, Product.product_status_ids.keys %>
+	    
+	 			
+	
+	<%= f.submit "追加する" %>
+<% end %>
