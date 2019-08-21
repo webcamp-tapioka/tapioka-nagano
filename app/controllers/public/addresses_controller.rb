@@ -32,7 +32,7 @@ end
 
 
 
-private
+  private
   def address_params
     params.require(:address).permit(:delivery_postal_code,
      :delivery_address, :delivery_address_flag, :delivery_name, :delivery_name_kana)
@@ -40,3 +40,6 @@ private
 
   
 end
+
+
+

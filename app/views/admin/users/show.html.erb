@@ -42,3 +42,43 @@
 		<td>メールアドレス</td>
 		<td><%= @user.email %></td>
 	</tr>
+</table>
+
+
+
+<section> 受注履歴一覧 </section>
+<% @orders.each do |order| %>
+
+  <table>
+    <thead>
+      <tr>
+        <th>ジャケ写</th>
+        <th>タイトル</th>
+        <th>アーティスト名</th>
+        <th>価格（税別）</th>
+        <th>購入枚数</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% order.order_products.each do |order_product| %>
+        <tr>
+          <td><%= attachment_image_tag order_product.product, 
+              :image, format: 'jpg', fallback: 'no_image.jpg', size: '30x30'  %>
+          </td>
+          <td><%= order_product.product.title %></td>
+          <td><%= order_product.product.id %></td>
+          <td><%= order_product.price %></td>
+          <td><%= order_product.order_amount %></td>
+      <% end %>
+    </tbody>
+    <%= "ステータス #{order.order_status_id}" %><br>
+    <%= "購入枚数 #{order.order_products.sum(:order_amount)}" %><br>
+    <%= "合計金額: ¥#{order.total_price_except_tax}" %>
+    <th><%= link_to("受注履歴詳細", admin_order_path(order)) %></th>
+  </table>
+<% end %>
+
+
+
+
+
