@@ -9,23 +9,30 @@
 <p>タイトル</p>
   <%= f.text_field :title %>
 <p>アーティスト</p>
- 	<%= f.text_area :price %>
+   <%= fields_for :artist_products do |ff| %>
+   <% ff.select :artist_id, Artist.all.ids.to_a %>
+<% end %>
+
+
 <p>ジャンル</p>
-  	
+<div class="field">
+  <%= f.label :genre %>
+</div>
+
 <p>レーベル</p>
-  <%= f.number_field :label_id %>
+  <%= f.label :label_id %>
 <p>CDシングル</p>
-  
- <p>価格</p>
+
+<p>価格</p>
   <%= f.text_area :price %>
 
 
-  <p>在庫</p>
+<p>在庫</p>
    <%= f.number_field  :amount %> 
 
 
-   <p>販売状況</p>
-   <%= f.select  :product_status_id, Product.product_status_ids %> 
+<p>販売状況</p>
+   <%= f.select  :product_status_id, Product.product_status_ids.keys %> 
 
 <%= f.submit "登録" %>
   

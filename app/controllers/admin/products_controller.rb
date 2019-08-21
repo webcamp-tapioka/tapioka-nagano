@@ -3,6 +3,7 @@ class Admin::ProductsController < ApplicationController
 		@products = Product.find(params[:id])
 	end
 
+
 	def index
 		@products = Product.all
 
@@ -14,6 +15,7 @@ class Admin::ProductsController < ApplicationController
 
 	def new
     	@product = Product.new
+    	@product.artist_products.build
     end
 
 	def create
@@ -50,7 +52,7 @@ class Admin::ProductsController < ApplicationController
   
 
     def product_params                
-      params.require(:product).permit(:image, :title, :price, :products_status_id, :label_id, :amount )
+      params.require(:product).permit(:image, :title, :price, :product_status_id, :label_id, :amount, artist_products_attributes: [:artist_id])
     end
  end
 

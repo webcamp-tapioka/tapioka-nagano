@@ -1,12 +1,11 @@
-<h1>商品追加(管理者)</h1>
-
+<h1>商品編集(管理者)</h1>
+	<% if  @product.image %>
+			<%= attachment_image_tag @product, :image, :fill, 30, 30, format: 'jpeg' %>
+	<% end %>
 <div>
-<%= form_for([:admin,@product]) do |f| %>
+<%= form_for(@product, url:admin_product_path, html:{method: 'patch'}) do |f| %>
 
-	<table>
-	 
-	  <thead>
-	  <%= f.attachment_field :image %>
+	  	<%= f.attachment_field :image %>
 
 	
 	<p>タイトル</p>
@@ -23,11 +22,8 @@
 	 　<%= f.text_area :amount , name: "products[][amount]"%>
 	 	<p>販売状況</p>
    <%= f.select  :product_status_id, Product.product_status_ids.keys %>
-	    
-	  </thead>
-	  <tbody>
 
-	</table>
 
 	<%= f.submit "追加する" %>
 <% end %>
+
