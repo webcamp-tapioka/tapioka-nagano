@@ -7,8 +7,7 @@
       
       <h1>商品詳細(管理者)</h1>
 
-      <table class="table table-hover">
-        <thead>
+      
 
          <tr>
             <th>タイトル</th>
@@ -24,9 +23,9 @@
             <tr>
               <td>
               <td>
-                <% if  @products.image %>
-                <%= attachment_image_tag @products, :image, :fill, 30, 30, format: 'jpeg' %>
-                <% end %>
+                <% if  product.image %>
+                <%= attachment_image_tag product, :image, :fill, 30, 30, format: 'jpeg' %>
+              <% end %>
                 <td><%= @products.title %></td>
                 <td><%= @products.price %></td>
                 <td><%= @products.amount %></td>
@@ -37,7 +36,7 @@
               </td>                
             </tr>
         </tbody>
-      </table>
+      
         <%= link_to '編集',edit_admin_product_path(@products.id) %>
     </div>
 

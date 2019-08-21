@@ -1,7 +1,6 @@
 <h1>商品詳細</h1>
 
-<table class="table table-hover">
-        <thead>
+
 
 			  　<tr>
 		            <th>タイトル</th>
@@ -12,11 +11,9 @@
 		            <th>価格</th>
 		            <th>在庫</th>
           　   </tr>
-      　</thead>
-          　   </tr>
- 　             <td><% if  @products.image %>
-                <%= attachment_image_tag @products, :image, :fill, 30, 30, format: 'jpeg' %>
-              <% end %></td>
+   
+
+ 　           
                 <td><%= @products.title %></td>
                 <td><%= @products.price %></td>
                 <td><%= @products.amount %></td>
@@ -32,7 +29,7 @@
           </td>
             <td>
             </td>
-</table>
+
 <div id="likes_partial_<%= @products.id %>"><%= render partial: 'public/likes/like',locals: {products: @products} %>
 </div>
 <div class="first-review">
