@@ -21,32 +21,7 @@
                 <td><%= @products.price %></td>
                 <td><%= @products.amount %></td>
                 <td><%= @products.product_status_id %></td>
-<<<<<<< HEAD
-                <td>
-                	<% if @products.liked_by?(current_user) %>
-                    <%= link_to product_like_path(@products),method: :delete do %>
-                      <i class="fa fa-heart" aria-hidden="true" style="color: red;"></i>
-                      <%= @products.likes.count %> いいね
-                    <% end %>
-                  <% else %>
-                    <%= link_to product_likes_path(@products),method: :post do %>
-                      <i class="fas fa-heart" aria-hidden="true"></i>
-                      <%= @products.likes.count %> いいね
-                    <%end%>
-                <%end%>
-                <td>
-                <% if @products.product_status_id == 0 %>
-                  <%= form_with(model: @new_cart_item, url: product_cart_items_path(@products)) do |f| %>
-                    <% f.hidden_field :product_id, value: @new_cart_item.product_id %>
-                    <%= f.select :product_amount, 1..@products.amount %>
-                    <%= f.submit "カートに入れる" %>
-                  <% end %>
-                  <% end %>
-                </td>
-          </td>
-=======
           　 <td> <%= link_to 'カートに入れる',product_cart_items_path(@products),method: :post%></td>
->>>>>>> 5137f70b2c309d50051a2f169802c26d33cd1103
             <td>
             </td>
 </table>
