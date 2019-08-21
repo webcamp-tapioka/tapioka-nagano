@@ -21,7 +21,6 @@
                 <td><%= @products.price %></td>
                 <td><%= @products.amount %></td>
                 <td><%= @products.product_status_id %></td>
-<<<<<<< HEAD
                 <td>
                 	<% if @products.liked_by?(current_user) %>
                     <%= link_to product_like_path(@products),method: :delete do %>
@@ -44,9 +43,6 @@
                   <% end %>
                 </td>
           </td>
-=======
-          　 <td> <%= link_to 'カートに入れる',product_cart_items_path(@products),method: :post%></td>
->>>>>>> 5137f70b2c309d50051a2f169802c26d33cd1103
             <td>
             </td>
 </table>
