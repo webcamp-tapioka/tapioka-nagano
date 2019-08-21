@@ -20,7 +20,7 @@
 			<td> <%= item.product.price.to_i %>円</td>
 			<td> <%= item.product.product_status_id %></td>
 			 <td><%= form_for(item) do |f|   %>
-				<%= f.number_field :product_amount, :value => item.product_amount %>
+				<%= f.select :product_amount, 1..item.product_amount %>
 				<%= f.submit "変更" %>
 				<%end%>
 			</td> 

@@ -1,4 +1,3 @@
-
 <h1>住所登録・編集画面</h1>
 
 <section>
@@ -9,21 +8,21 @@
       <% else %>
       <p>住所編集フォーム</p>
     <% end %>
-
+  
     <p>お届け先氏名</p>
     <p>ふりがな</p>
     <%= f.text_field :delivery_name_kana %><br>
     <p>氏名</p>
     <%= f.text_field :delivery_name %><br>
     <p>郵便番号</p>
-    <%= f.text_field :delivery_postal_code %><br>
+    <%= f.text_field :delivery_postal_code, class: "delivery_postal_code_and_address", id: "delivery_postal_code" %><br>
     <p>住所</p>
-    <%= f.text_field :delivery_address %><br>
+    <%= f.text_field :delivery_address, class: "delivery_postal_code_and_address", id: "delivery_address" %><br>
     <p>こちらのご住所にお住まいですか？</p>
     <%= f.select :delivery_address_flag, Address.delivery_address_flags.keys %> 
     <%= f.submit "登録" %>
   <% end %>
-</section>
+</div>
 
 <% if current_user.addresses.where(id: true) %>
 
@@ -56,10 +55,6 @@
 </table>
 
 <% end %>
-
-
-
-
 
 
 

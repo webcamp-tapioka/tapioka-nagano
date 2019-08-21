@@ -20,6 +20,7 @@ Rails.application.routes.draw do
   resources :orders,only: %i(index show update)
   resources :products
   resources :users
+  resource :postage_and_consumptiontaxs,only: %i(edit update)
 
   end
  
@@ -28,7 +29,6 @@ Rails.application.routes.draw do
  scope module:  :public do
   get'/users/leave' => 'users#leave'
   get'/users/thank_you' => 'users#thank_you'
- 	resources :address,only: %i(new create destroy)
   resources :cart_items,only: %i(index  destroy update)
  	resources :addresses,except: %i(new show)
  	resources :order_products,only: %i(create)

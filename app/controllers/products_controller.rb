@@ -4,6 +4,8 @@ class ProductsController < ApplicationController
    	  @products = Product.find(params[:id])
       @review = Review.new
       @reviews = Review.where(product_id: params[:id])
+      @new_cart_item = current_user.cart_items.new
+      @new_cart_item.product_id = @products.id
    end
    
 	def index
