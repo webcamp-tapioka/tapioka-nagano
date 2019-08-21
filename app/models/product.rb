@@ -15,10 +15,6 @@ class Product < ApplicationRecord
 
   attachment :image
 
-
-
-
-
   def self.search(search)
       if search
         Product.where(['title LIKE ?', "%#{search}%"])
@@ -28,8 +24,7 @@ class Product < ApplicationRecord
   end
   
   enum product_status_id: %i( 販売中 販売停止中 )
-# defaultは1で、"販売停止中"になる
-
+  # defaultは1で、"販売停止中"になる
 
   # defaultは0で、"シングル"になる
   enum single_album_flag: %i( シングル アルバム )

@@ -1,4 +1,6 @@
 <h1>商品編集(管理者)</h1>
+	
+
 	<% if  @product.image %>
 			<%= attachment_image_tag @product, :image, :fill, 30, 30, format: 'jpeg' %>
 	<% end %>
@@ -14,16 +16,21 @@
 	
 	<p>ジャンル</p>
 	  
-	 <p>レーベル</p>
-	 
+	<p>レーベル</p>
+
+	<p>CDシングル</p>
+      <%= f.select  :single_album_flag, Product.single_album_flags.keys %>
+ 
 	<p>価格</p>
 	  <%= f.text_area :price %>
+
 	<p>在庫</p>
 	 　<%= f.text_area :amount , name: "products[][amount]"%>
-	 	<p>販売状況</p>
+
+	<p>販売状況</p>
    <%= f.select  :product_status_id, Product.product_status_ids.keys %>
 
 
-	<%= f.submit "追加する" %>
+	<%= f.submit "編集する" %>
 <% end %>
 
