@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!DOCTYPE html> 
 <html>
   <head>
     <title>TapiokaNagano</title>
@@ -22,17 +22,16 @@
 
     <nav>
       <ul class="nav navbar-nav navbar-right">
-      
 
         <% if user_signed_in? %>
               <li>
-                <%= link_to "商一覧品", products_path(current_user.id),class:"glyphicon glyphicon-home" %>
+                <%= link_to "商品一覧", products_path(current_user.id),class:"glyphicon glyphicon-list-alt" %>
               </li>
               <li>
-              <%= link_to "カート", cart_items_path, class:"glyphicon glyphicon-user" %>
+              <%= link_to "カート", cart_items_path, class:"glyphicon glyphicon-shopping-cart" %>
               </li>
               <li>
-                <%= link_to "マイページ", user_path(current_user), class:"glyphicon glyphicon-book" %>
+                <%= link_to "マイページ", user_path(current_user), class:"glyphicon glyphicon-user" %>
               </li>
               <li>
                 <%= link_to "ログアウト", destroy_user_session_path, method: :delete, class:"glyphicon glyphicon-log-out" %>
@@ -44,28 +43,28 @@
 
 
         　<li>
-        　　　　<%= link_to "レーベル", admin_labels_path,class:"　　　glyphicon glyphicon-home" %>
+        　　　　<%= link_to "レーベル", admin_labels_path,class:"　　　glyphicon glyphicon-tags" %>
           </li>
 
 
           <li>
-        　　　　<%= link_to "アーティスト", admin_artists_path,class:"　　　glyphicon glyphicon-home" %>
+        　　　　<%= link_to "アーティスト", admin_artists_path,class:"　　　glyphicon glyphicon-font" %>
           </li>
 
           <li>
-        　　　　<%= link_to "ジャンル", admin_genres_path,class:"　　　glyphicon glyphicon-home" %>
+        　　　　<%= link_to "ジャンル", admin_genres_path,class:"　　　glyphicon glyphicon-record" %>
           </li>
 
           <li>
-        　　　　<%= link_to "商一覧品", admin_products_path,class:"　　　glyphicon glyphicon-home" %>
+        　　　　<%= link_to "商一覧品", admin_products_path,class:"　　　glyphicon glyphicon-list-alt" %>
           </li>
 
           <li>
-        　　　　<%= link_to "ユーザ一覧", admin_users_path,class:"　　　glyphicon glyphicon-home" %>
+        　　　　<%= link_to "ユーザ一覧", admin_users_path,class:"　　　glyphicon glyphicon-user" %>
           </li>
 
           <li>
-        　　　　<%= link_to "受注履歴一覧", admin_orders_path,class:"　　　glyphicon glyphicon-home" %>
+        　　　　<%= link_to "受注履歴一覧", admin_orders_path,class:"　　　glyphicon glyphicon-book" %>
           </li>
 
           <li>
@@ -73,7 +72,7 @@
           </li>
 
           <li>
-        　　　　<%= link_to "ログアウト", destroy_admin_session_path, method: :delete ,class:"　　　glyphicon glyphicon-home" %>
+        　　　　<%= link_to "ログアウト", destroy_admin_session_path, method: :delete ,class:"　　　glyphicon glyphicon-log-out" %>
           </li>
 
 
@@ -84,7 +83,7 @@
 
 
               <li>
-                <%= link_to "商一覧品", products_path,class:"glyphicon glyphicon-home" %>
+                <%= link_to "商一覧品", products_path,class:"glyphicon glyphicon-list-alt" %>
               </li>
              
               <li>
@@ -110,10 +109,11 @@
 
 
     <%= yield %>
-    <!--     <% if session[:user_id] %>
+        <% if session[:user_id] %>
     <li>
     現在ログインしているユーザーのid: <%= session[:user_id] %>
    </li>
-    <% end %> -->
+    <% end %>
+
   </body>
 </html>

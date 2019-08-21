@@ -1,3 +1,4 @@
+
 <div class="container">
   <div class="row">
   
@@ -35,9 +36,11 @@
               <td>
               <td>
                          
-               <td><% if  product.image %>
+               <td>
+               <% if  product.image %>
                 <%= attachment_image_tag product, :image, :fill, 30, 30, format: 'jpeg' %>
-              <% end %></td>
+              <% end %>
+              </td>
 
                <td><%= link_to admin_product_path(product.id) do %>
 
@@ -49,14 +52,15 @@
 
                <td> <%= product.product_status_id %></td>
               <% end %>
-              </td>
-              <td></td>
-
-                  
+              </td>                
             </tr>
           <% end %>
         </tbody>
       </table>
     </div>
   </div>
+
 </div>
+=======
+</div>
+>>>>>>> 1fbd0a3c3b7a5a8cd5d5c518ad924305687ebad9

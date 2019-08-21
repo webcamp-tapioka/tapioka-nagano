@@ -9,8 +9,35 @@
 //
 // Read Sprockets README (https://github.com/rails/sprockets#sprockets-directives) for details
 // about supported directives.
-//
+
 //= require rails-ujs
+//= require jquery
 //= require activestorage
 //= require turbolinks
+//= require jquery
+//= require bootstrap-sprockets
 //= require_tree .
+
+
+
+
+// $(document).ready(function() { 
+//   $( ".sample_select2" ).select2({
+//     width: 400,
+//     multiple: true
+//    });
+// });
+
+// 郵便番号を入力すると都道府県以下が自動で入力される //
+$(window).ready(function() {
+  $('delivery_postal_code_and_address').jpostal({
+    postcode : [
+      '#delivery_postal_code'
+    ],
+    address : {
+      '#delivery_address' : '%3%4%5'
+    }
+  });
+});
+
+

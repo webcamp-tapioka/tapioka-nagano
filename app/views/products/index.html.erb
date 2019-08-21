@@ -1,3 +1,4 @@
+
 <div class="container">
   <div class="row">
   
@@ -17,10 +18,7 @@
 
       <h1>商品一覧(一般)</h1>
 
-      <table class="table table-hover">
-        <thead>
-
-
+   
           <tr>
          　　　<th>ジャケット写真</th>
             <th>タイトル</th>
@@ -29,10 +27,11 @@
             <th>値段(税別)</th>
             <th>ステータス</th>
           </tr>
-        </thead>
+       
         <tbody>
           <% @products.each do |product| %>
-            <tr>
+
+          <tr>
               <td></td>
               <td></td>
               
@@ -51,12 +50,20 @@
                 <td><%= product.product_status_id %></td>
                
                <td><%= link_to '商品詳細',product_path(product)%></td>
+
             
+
+               <td><div id="likes_partial_<%= product.id %>"><%= render partial: 'public/likes/like',locals: {products: product} %>
+              </div></td>
+
               <td></td>
             </tr>
           <% end %>
         </tbody>
-      </table>
+    
     </div>
   </div>
+
+</div>
+
 </div>

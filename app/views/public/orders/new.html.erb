@@ -1,38 +1,71 @@
 
-<h1>購入ページ</h1>
+<h1>購入確認ページ</h1>
 
 
 
-// @order
-// orders
-// user_id...current_user.id
-// delivery_postal_code...current_user.addresses.delivery_postal_code
-// delivery_address...currenr_user.addresses.address
-// delivery_name...current_user.addresses.delivery_name
-// delivery_name_kana...current_user.addresses.delivery_name_kana
-// postage...postage_and_consumption_taxes.postage
-// payment_method_flag...selectで選択
-// order_status_flag...defaultで受付中、入力させない
-// total_price...current_user.cart_itemsから引っ張ってきた情報で計算したものを出す
-// created_at...自動作成
-// updated_at...自動作成
+<%= "#{current_user.first_name} #{current_user.last_name}様" %>
 
-// @orderをcreate後に作成。
-// ＠order_products
-// id...自動作成
-// order_id...ordersテーブルから引っ張ってくる
-// product_id...cart_itemから引っ張ってくる。cart_items.product_id
-// order_amount...cart_itemから引っ張ってくる。cart_items.product_amount
-// price...cart_itemから引っ張ってくる
-// created_at
-// updated_at
+<% if current_user.addresses %>
+<%# チェックボックスは最終的にJQueryでどれか一つをチェックすると、先につけたチェックを外すようにする予定です %>
+  <p>送付先のご住所を選択してください</p>
+  <%= form_tag(new_order_path, method: 'get') do %>
+  　<% @addresses.each do |address| %>
+      <div class="check_box_tag">
+        <%= radio_button_tag :to_create_order, address.id %>
+        <%= address.delivery_name %><br>
+        <%= address.delivery_postal_code %><br>
+        <%= address.delivery_address %><br>
+      </div>
+    <% end %>
+    <%= submit_tag "この住所を使う" %>
+  <% end %>
+<% end %>
+<%= link_to("住所登録画面へ", addresses_path) %>
+
+<table>
+  <thead>
+	  <tr>
+		  <th>タイトル</th>
+		  <th>アーティスト</th>
+		  <th>値段</th>
+		  <th>個数</th>
+	  </tr>
+  </thead>
+  <tbody>
+		<% @cart_items.each do |item| %>
+		  <tr>
+			  <td><%= item.product.title %></td>
+			  <td></td>
+			  <td><%= item.product.price.to_i %>円</td>
+			  <td><%= item.product_amount %></td> 
+		  </tr>
+    <% end %>
+  </tbody>
+</table>
 
 
+<% if @new_order.delivery_postal_code %>
+  <p>送付先住所</p>
+  <%= "#{@new_order.delivery_postal_code}" %><br>
+  <%= @new_order.delivery_address %><br>
+  <%= "フリガナ #{@new_order.delivery_name_kana}" %><br>
+  <%= "送付先宛名 #{@new_order.delivery_name}" %><br>
+<% end %>
+<%= "送料 ¥#{@new_order.postage}" %><br>
+<%= "価格総計（税込） ¥#{@new_order.total_price}" %><br>
+<%= "消費税 #{@new_order.consumption_tax}%" %><br>
 
-// cart_items
-// id
-// user_id
-// product_id
-// product_amount
-// created_at
-// updated_at
+<% if @new_order.delivery_postal_code %>
+<%= form_with(model: @new_order) do |f| %>
+  <%= f.hidden_field :delivery_postal_code %>
+  <%= f.hidden_field :delivery_address %>
+  <%= f.hidden_field :delivery_name_kana %>
+  <%= f.hidden_field :delivery_name %>
+  <%= f.hidden_field :postage %>
+  <%= f.hidden_field :total_price %>
+  <%= f.hidden_field :consumption_tax %><br>
+  <%= f.label :payment_method, "支払い方法" %>
+  <%= f.select :payment_method, Order.payment_methods.keys %><br>
+  <%= f.submit "購入を確定する" %>
+<% end %>
+<% end %>

@@ -1,1 +1,81 @@
-<h2>users-show</h2>
+<h2>ユーザー詳細(管理者)</h2>
+
+<table border="1"> 
+	<tr>
+		<td>オナマエ</td>
+		<td><%= @user.first_name_kana + @user.last_name_kana %></td>
+	</tr>
+	<tr>
+		<td>お名前</td>
+		<td><%= @user.first_name + @user.last_name %></td>
+	</tr>
+	<tr>
+		<td>ご住所</td>
+		<td><% if @addresses != nil %>
+			<%= @addresses.delivery_postal_code %>
+			<%= @addresses.delivery_address %>
+			 <% else %>
+			 未登録</td>
+			<%end%>
+		</td>
+	</tr>
+	<tr>
+		<td>ご住所</td>
+		<td>
+			<% if @sub_addresses != nil %>
+			<% @sub_addresses.each do |f| %>
+			<%= f.delivery_postal_code %>
+			<%= f.delivery_address %>
+			<%end%>
+			<%else%>
+			未登録</td>
+			<%end%>
+		</td>
+		<tr>
+		<td>お電話番号</td>
+		<td><%= @user.phone_number %></td>
+	</tr>
+	<tr>
+		<td>メールアドレス</td>
+		<td><%= @user.email %></td>
+	</tr>
+</table>
+
+
+
+<section> 受注履歴一覧 </section>
+<% @orders.each do |order| %>
+
+  <table>
+    <thead>
+      <tr>
+        <th>ジャケ写</th>
+        <th>タイトル</th>
+        <th>アーティスト名</th>
+        <th>価格（税別）</th>
+        <th>購入枚数</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% order.order_products.each do |order_product| %>
+        <tr>
+          <td><%= attachment_image_tag order_product.product, 
+              :image, format: 'jpg', fallback: 'no_image.jpg', size: '30x30'  %>
+          </td>
+          <td><%= order_product.product.title %></td>
+          <td><%= order_product.product.id %></td>
+          <td><%= order_product.price %></td>
+          <td><%= order_product.order_amount %></td>
+      <% end %>
+    </tbody>
+    <%= "ステータス #{order.order_status_id}" %><br>
+    <%= "購入枚数 #{order.order_products.sum(:order_amount)}" %><br>
+    <%= "合計金額: ¥#{order.total_price_except_tax}" %>
+    <th><%= link_to("受注履歴詳細", admin_order_path(order)) %></th>
+  </table>
+<% end %>
+
+
+
+
+

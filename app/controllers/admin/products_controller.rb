@@ -1,5 +1,7 @@
 class Admin::ProductsController < ApplicationController
-def show
+
+
+	def show
 		@products = Product.find(params[:id])
 	end
 
@@ -8,8 +10,10 @@ def show
 	end
 
 	def new
+
 		@product = Product.new
 		@product.artist_products.build
+
 	end
 
 	def edit
@@ -20,7 +24,6 @@ def show
 	def create
 		@product = Product.new(product_params)
 	    @product.save
-
 
 	end
 
@@ -45,8 +48,13 @@ def show
 	def update
 		  @product = Product.find(params[:id])
 		if
+
 		  @product.update(product_params)
 		  redirect_to products_path,notice: "Products was successfully updated"
+
+		  @products.update(products_params)
+		  redirect_to products_path(@products),notice: "Products was successfully updated"
+
         else
           flash[:notice] = "error"
           render :edit
@@ -57,7 +65,12 @@ def show
   
 
     def product_params                
+
       params.require(:product).permit(:image, :title, :price, :products_status_id, :label_id, :amount, :artist, artist_products_attributes: [:artist_id ] )
-    end
+   
  
-end
+
+      end
+ end
+
+
