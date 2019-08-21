@@ -1,7 +1,7 @@
 <h1>商品追加(管理者)</h1>
 
 <div>
-<%= form_with(model: @product) do |f| %>
+<%= form_for([:admin,@product]) do |f| %>
 
 	<table>
 	 
@@ -34,3 +34,4 @@
 
 	<%= f.submit "追加する" %>
 <% end %>
+
