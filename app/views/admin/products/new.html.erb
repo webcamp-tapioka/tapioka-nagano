@@ -16,8 +16,8 @@
 
 
 <p>レーベル</p>
-<%= f.select :label_id, Label.all.ids %>
- 
+<%= f.collection_select :label_id, Label.all, :id, :name %>
+
 
 <p>CDシングル</p>
   <%= f.select  :single_album_flag, Product.single_album_flags.keys %>
