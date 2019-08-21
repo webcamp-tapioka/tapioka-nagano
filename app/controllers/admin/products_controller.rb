@@ -17,14 +17,14 @@ class Admin::ProductsController < ApplicationController
 	end
 
 	def new
-    	@product = Product.new
-    	@product.artist_products.build
-    end
+    @product = Product.new
+    @product.artist_products.build
+  end
 
 	def create
 		@product = Product.new(product_params)
-	  @product.save
-	  redirect_to admin_products_path,notice: "succsess!"
+		@product.save
+	  redirect_to admin_products_path, notice: "succsess!"
 	end
 
 	def destroy
@@ -58,7 +58,7 @@ class Admin::ProductsController < ApplicationController
 	
     def product_params                
 			params.require(:product).permit(:image, :title, :price, :product_status_id, :label_id, 
-			:amount, :single_album_flag, artist_products_attributes: [:artist_id])
+			:amount, :single_album_flag, artist_products_attributes: [:id, :artist_id])
     end
  
 end

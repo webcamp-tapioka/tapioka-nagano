@@ -7,9 +7,9 @@
 <p>タイトル</p>
   <%= f.text_field :title %>
 <p>アーティスト</p>
-   <%= fields_for :artist_products do |ff| %>
-   <% ff.select :artist_id, Artist.all.ids.to_a %>
-<% end %>
+   <%= f.fields_for :artist_products do |ff| %>
+    <% ff.select :artist_id, Artist.all.ids %>
+  <% end %>
 
 
 <p>ジャンル</p>
