@@ -9,7 +9,7 @@ class ProductsController < ApplicationController
    end
    
 	def index
-		@products = Product.all
+		@products_all = Product.all
   end
 
 

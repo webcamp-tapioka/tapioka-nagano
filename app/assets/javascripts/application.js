@@ -26,34 +26,6 @@
 //    });
 // });
 
-
-window.onload = function(){
-	const reviewButton = document.querySelector('.review-button');
-	const reviewContent = document.querySelector('.review-content');
-	reviewButton.addEventListener('click',() => {
-	reviewContent.style.display = 'block';
-	});
-// }
-
-// window.onload = function(){
-	const totalReview = document.querySelector('.total-review');
-	const totalReviewButton = document.querySelector('.total-review-button');
-	const firstReview = document.querySelector('.first-review');
-
-	totalReviewButton.addEventListener('click',(event) => {
-		if (totalReview.style.display === 'none'){
-			totalReview.style.display = 'block';
-			firstReview.style.display = 'none';
-			totalReviewButton.innerHTML = 'しまう';
-		}else{
-			totalReview.style.display = 'none';
-			firstReview.style.display = 'block';
-			totalReviewButton.innerHTML = 'もっと見る';
-		}
-	});
-}
-
-
 // 郵便番号を入力すると都道府県以下が自動で入力される //
 $(window).ready(function() {
   $('delivery_postal_code_and_address').jpostal({
@@ -65,4 +37,5 @@ $(window).ready(function() {
     }
   });
 });
+
 
