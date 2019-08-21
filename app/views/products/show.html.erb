@@ -4,25 +4,11 @@
 <table class="table table-hover">
         <thead>
 
-<<<<<<< HEAD
-			  　<tr>
-=======
 			　　　<tr>
                 <th>ジャケ写</th>
->>>>>>> ea0cff79610b4660b9c1e62aae8ef66d76692a36
 		            <th>タイトル</th>
 		            <th>アーティスト</th>
 		            <th>レーベル</th>
-<<<<<<< HEAD
-		            <th>CDシングル</th>
-		            <th>価格</th>
-		            <th>在庫</th>
-          　   </tr>
-      　</thead>
- 　             <td><% if  @products.image %>
-                <%= attachment_image_tag @products, :image, :fill, 30, 30, format: 'jpeg' %>
-              <% end %></td>
-=======
                 <th>ジャンル</th>
 		            <th>在庫数</th>
                 <th>ステータス</th>
@@ -35,7 +21,6 @@
                   <% end %>
                 
                 </td>
->>>>>>> ea0cff79610b4660b9c1e62aae8ef66d76692a36
                 <td><%= @products.title %></td>
                 <td><%= @products.artists.all.name %></td>
                 <td><%= @products.label %></td>
