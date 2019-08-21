@@ -11,7 +11,7 @@
   <%= form_tag(new_order_path, method: 'get') do %>
   　<% @addresses.each do |address| %>
       <div class="check_box_tag">
-        <%= check_box_tag :to_create_order, address.id %>
+        <%= radio_button_tag :to_create_order, address.id %>
         <%= address.delivery_name %><br>
         <%= address.delivery_postal_code %><br>
         <%= address.delivery_address %><br>

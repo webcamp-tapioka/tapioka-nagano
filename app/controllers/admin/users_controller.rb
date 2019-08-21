@@ -8,7 +8,10 @@ end
 def show
     @user = User.find(params[:id])
     @addresses = current_user.addresses.find_by(delivery_address_flag: 0)
-    @sub_addresses = current_user.addresses.where(delivery_address_flag: 1)
+		@sub_addresses = current_user.addresses.where(delivery_address_flag: 1)
+		@orders = User.find(params[:id]).orders.all
+		
+
 end
 
 def update
