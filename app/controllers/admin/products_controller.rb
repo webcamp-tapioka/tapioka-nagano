@@ -10,6 +10,7 @@ class Admin::ProductsController < ApplicationController
 
 	
 	def new
+		@products = Product.new
 	end
 
 	def edit

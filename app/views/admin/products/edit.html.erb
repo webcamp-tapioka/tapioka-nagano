@@ -5,7 +5,7 @@
 			<%= attachment_image_tag @product, :image, :fill, 30, 30, format: 'jpeg' %>
 	<% end %>
 <div>
-<%= form_for(@product, url:admin_product_path, html:{method: 'patch'}) do |f| %>
+<%= form_for([:admin,@product]) do |f| %>
 
 	  	<%= f.attachment_field :image %>
 
