@@ -19,6 +19,8 @@ class Admin::ProductsController < ApplicationController
 
 	def edit
 		@product = Product.find(params[:id])
+		@product.artist_products.build
+		@product.genre_products.build
 	end
 
 

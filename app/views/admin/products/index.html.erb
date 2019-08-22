@@ -8,35 +8,24 @@
       
       <h1>商品一覧(管理者)</h1>
 
-      <p>検索</p>
-       <%= form_tag(products_search_path,:method => 'get') do %>
-       <%= text_field_tag :search %>
-       <%= submit_tag 'Search', :name => nil %>
-      <% end %>
-
-
-
-
-      <table class="table table-hover">
+        <table class="table table-hover">
         <thead>
 
          <tr>
-            <th>タイトル</th>
-            <th>アーティスト</th>
-            <th>ジャンル</th>
-            <th>レーベル</th>
-            <th>CDシングル</th>
-            <th>価格</th>
-            <th>在庫</th>
+            <td>ジャケ写</td>
+            <td>タイトル</td>
+            <td>アーティスト</td>
+            <td>ジャンル</td>
+            <td>レーベル</td>
+            <td>CDシングル</td>
+            <td>価格</td>
+            <td>在庫</td>
           </tr>
         </thead>
         <tbody>
           <% @products.each do |product| %>
             <tr>
               <td>
-              <td>
-                         
-               <td>
                <% if  product.image %>
                 <%= attachment_image_tag product, :image, :fill, 30, 30, format: 'jpeg' %>
               <% end %>
@@ -45,6 +34,17 @@
                <td><%= link_to admin_product_path(product.id) do %>
 
                <%= product.title %></td>
+
+               <td><%= product.single_album_flag %></td>
+                <% product.artists.each do |f| %>
+                <td><%= f.name  %></td>
+                <% end %>
+
+               <td><%= product.label.name %></td>
+                <% product.genres.each do |f| %>
+                <td><%= f.name  %></td>
+               <% end %>
+               <td> <%= product.price %></td>
 
                <td> <%= product.price %></td>
 

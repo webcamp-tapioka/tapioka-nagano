@@ -32,4 +32,12 @@ class Product < ApplicationRecord
     likes.where(user_id: current_user.id).exists?
   end
 
+  def self.search(search)
+      if search
+        Product.where(['title LIKE ?', "%#{search}%"])
+      else
+        Product.all
+      end
+    end
+
 end

@@ -5,26 +5,35 @@
 
 
 			  　<tr>
-		            <th>タイトル</th>
-		            <th>アーティスト</th>
-		            <th>ジャンル</th>
-		            <th>レーベル</th>
-		            <th>CDシングル</th>
-		            <th>価格</th>
-		            <th>在庫</th>
-          　   </tr>
-
-   
-
+            <td>ジャケ写</td>
+            <td>CDシングル</td>
+            <td>アーティスト</td>
+            <td>タイトル</td>
+            <td>レーベル</td>
+            <td>ジャンル</td>
+            <td>在庫</td>
+            <td>ステータス</td>
+            <td>価格</td>
+          </tr>
 
       　</thead>
+
  　             <td><% if  @products.image %>
                 <%= attachment_image_tag @products, :image, :fill, 30, 30, format: 'jpeg' %>
               <% end %></td>
-               <td><%= @products.title %></td>
-                <td><%= @products.price %></td>
+                <td><%= @products.single_album_flag %></td>
+                <% @products.artists.each do |f| %>
+                <td><%= f.name  %></td>
+                <% end %>
+                <td><%= @products.title %></td>
+
+                <td><%= @products.label.name %></td>
+                <% @products.genres.each do |f| %>
+                <td><%= f.name  %></td>
+                <% end %>
                 <td><%= @products.amount %></td>
                 <td><%= @products.product_status_id %></td>
+                <td><%= @products.price %></td>
                 <% if @products.product_status_id.to_i == 0 %>
                   <%= form_with(model: @new_cart_item, url: product_cart_items_path(@products)) do |f| %>
                     <% f.hidden_field :product_id, value: @new_cart_item.product_id %>
@@ -32,11 +41,7 @@
                     <%= f.submit "カートに入れる" %>
                   <% end %>
                   <% end %>
-                </td>
-          </td>
-            <td>
-            </td>
-
+              
 </table>
 
 <div id="likes_partial_<%= @products.id %>"><%= render partial: 'public/likes/like',locals: {products: @products} %>
