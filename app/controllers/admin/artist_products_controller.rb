@@ -15,7 +15,7 @@ class Admin::ArtistProductsController < ApplicationController
   private
 
   def artist_product_params
-    params.require(:artist_product).permit(:artist_id, :product_id)
+    params.require(:artist_product).permit(:id, :artist_id, :product_id)
   end
 
 end
