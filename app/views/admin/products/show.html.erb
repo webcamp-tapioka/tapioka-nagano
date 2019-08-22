@@ -29,7 +29,12 @@
                 <% end %>
                 </td>
                 <td><%= @products.title %></td>
-                <td><%= @products.artists.all.name %></td>
+               <td><%= @products.single_album_flag %></td>
+                    <% @products.artists.each do |f| %>
+                    <td><%= f.name  %></td>
+                    <% end %>
+
+
                 <td><%= @products.amount %></td>
                 <td><%= @products.price %></td>
                 <td><%= @products.product_status_id %></td>
@@ -39,7 +44,7 @@
 
       </table>
 
-        <%= link_to '編集',edit_admin_product_path(@products.id) %>
+        <%= link_to "編集", edit_admin_product_path(@products.id) %>
         <%= link_to("削除", admin_product_path(@products.id), method: "delete") %>
     </div>
 
