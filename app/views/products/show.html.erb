@@ -34,11 +34,9 @@
             <td>
             </td>
 </table>
-<<<<<<< .merge_file_ywmDob
+
     <table class="table table-hover">
 
-
-=======
 <% if @products.product_status_id_before_type_cast == 0 %>
                   <%= form_with(model: @new_cart_item, url: product_cart_items_path(@products)) do |f| %>
                     <% f.hidden_field :product_id, value: @new_cart_item.product_id %>
@@ -48,7 +46,7 @@
                   <% end %>
 <div id="likes_partial_<%= @products.id %>"><%= render partial: 'public/likes/like',locals: {products: @products} %>
 </div>
->>>>>>> .merge_file_YPOTvf
+
 <div class="first-review">
   <div class="first-review-name">
     <% if @reviews.any? %>
@@ -91,14 +89,12 @@ _______________________
 				        <%= f.submit '投稿' %>
 		            <%end%>
               </div>
-<<<<<<< .merge_file_ywmDob
+
             </tr>
           </th>
         </tr>
       </thead>
     </table>
-              
-=======
 
 
 <script>
@@ -126,5 +122,5 @@ _______________________
       totalReviewButton.innerHTML = 'もっと見る';
     }
   });
+
 </script>
->>>>>>> .merge_file_YPOTvf
