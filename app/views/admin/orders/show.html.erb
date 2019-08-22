@@ -1,7 +1,10 @@
+<div class="container">
+  <div class="row">
+    <div class="col-lg-12">
 <h1>受注履歴詳細</h1>
 
 
-<table>
+<table class="table table-hover">
   <tr>
     <td>購入者</td>
     <td><%= link_to("#{@order.user.first_name} #{@order.user.last_name}", admin_user_path(@order.user_id)) %></td>

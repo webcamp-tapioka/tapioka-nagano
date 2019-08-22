@@ -1,4 +1,6 @@
-
+<div class="container">
+    <div class="row">
+　　　　　　<div class="col-lg-1">
 <h1>商品詳細</h1>
 
 <table class="table table-hover">
@@ -23,22 +25,22 @@
                 </td>
                 <td><%= @products.title %></td>
                 <td><%= @products.artists.all.name %></td>
-                <td><%= @products.label %></td>
+                <td><%= @products.label.name %></td>
                 <td><%= @products.genres.all.name %></td>
                 <td><%= @products.amount %></td>
                 <td><%= @products.product_status_id %></td>
-                <% if @products.product_status_id.to_i == 0 %>
+                </td>
+          </td>
+            <td>
+            </td>
+</table>
+<% if @products.product_status_id_before_type_cast == 0 %>
                   <%= form_with(model: @new_cart_item, url: product_cart_items_path(@products)) do |f| %>
                     <% f.hidden_field :product_id, value: @new_cart_item.product_id %>
                     <%= f.select :product_amount, 1..@products.amount %>
                     <%= f.submit "カートに入れる" %>
                   <% end %>
                   <% end %>
-                </td>
-          </td>
-            <td>
-            </td>
-</table>
 <div id="likes_partial_<%= @products.id %>"><%= render partial: 'public/likes/like',locals: {products: @products} %>
 </div>
 <div class="first-review">
