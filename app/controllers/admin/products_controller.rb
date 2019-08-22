@@ -3,26 +3,35 @@ class Admin::ProductsController < ApplicationController
 		@products = Product.find(params[:id])
 	end
 
+
 	def index
 		@products = Product.all
 	end
 
+	
 	def new
 		@products = Product.new
 	end
 
 	def edit
 		@product = Product.find(params[:id])
+		@artist_product = @product.artist_products.new
+		@genre_product = @product.genre_products.new
 	end
 
+	def new
+    @product = Product.new
+    @product.artist_products.build
+  end
 
 	def create
 		@product = Product.new(product_params)
-	    @product.save
+		@product.save
+	  redirect_to admin_products_path, notice: "succsess!"
 	end
 
 	def destroy
-		products = Product.find(params[:id])
+		Product.find(params[:id]).destroy
 	end
 
 	def self.search(search)
@@ -31,7 +40,8 @@ class Admin::ProductsController < ApplicationController
       else
         Product.all
       end
-    end
+	end
+	
     
     def search
     #Viewのformで取得したパラメータをモデルに渡す
@@ -40,21 +50,19 @@ class Admin::ProductsController < ApplicationController
     
 
 	def update
-		  @product = Product.find(params[:id])
-		if
-		  @products.update(products_params)
-		  redirect_to products_path(@products),notice: "Products was successfully updated"
-        else
-          flash[:notice] = "error"
-          render :edit
-    	end
-    end
+	  @product = Product.find(params[:id])
+		@product.update(product_params)
+	  redirect_to admin_products_path,notice: "succsess!"
+	end
 	
-    private
-  
 
+
+	private
+	
     def product_params                
-      params.require(:product).permit(:image, :title, :price, :products_status_id, :label_id, :amount, :artist )
+			params.require(:product).permit(:image, :title, :price, :product_status_id, :label_id, 
+			:amount, :single_album_flag, artist_products_attributes: [:id, :artist_id])
     end
- end
+ 
+end
 
