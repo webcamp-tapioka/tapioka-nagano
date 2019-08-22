@@ -1,5 +1,8 @@
 class ProductsController < ApplicationController
 
+  def top
+  end
+
   def show
    	  @products = Product.find(params[:id])
       @review = Review.new
@@ -23,7 +26,7 @@ class ProductsController < ApplicationController
  private
   
   def product_params
-    params.require(:products).permit(:image_id, :title, :artist, :stock, :price, :product_status_id)
+    params.require(:products).permit(:image, :title, :artist, :stock, :price, :product_status_id)
   end
 
 end

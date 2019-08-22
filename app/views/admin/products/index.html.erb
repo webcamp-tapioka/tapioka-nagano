@@ -5,19 +5,12 @@
       
       <h1>商品一覧(管理者)</h1>
 
-      <p>検索</p>
-       <%= form_tag(products_search_path,:method => 'get') do %>
-       <%= text_field_tag :search %>
-       <%= submit_tag 'Search', :name => nil %>
-      <% end %>
+        <%= link_to("追加", new_admin_product_path) %>
 
-
-
-
-      <table class="table table-hover">
+        <table class="table table-hover">
         <thead>
 
-         <tr>
+          <tr>
             <th>ジャケ写</th>
             <th>タイトル</th>
             <th>アーティスト</th>
@@ -26,43 +19,53 @@
             <th>ステータス</th>
           </tr>
         </thead>
+
         <tbody>
           <% @products.each do |product| %>
           
             <tr>
-              <td>
-              <td>         
-               <td><% if  product.image %>
-                <%= attachment_image_tag product, :image, :fill, 30, 30, format: 'jpeg' %>
-              <% end %>
-              </td>
+                  <td>
+                   <% if  product.image %>
+                    <%= attachment_image_tag product, :image, :fill, 30, 30, format: 'jpeg' %>
+                  <% end %>
+                  </td>
 
-               <td><%= link_to admin_product_path(product.id) do %>
+                   <td><%= link_to admin_product_path(product.id) do %>
 
-               <%= product.title %></td>
+                   <%= product.title %></td>
 
-               <td><%= product.artists.all.name %></td>
-
-               <td></td>
-
-               <td> <%= product.amount %></td>
+                   <td><%= product.single_album_flag %></td>
+                    <% product.artists.each do |f| %>
+                    <td><%= f.name  %></td>
+                    <% end %>
 
 
-               <td> <%= product.price %></td>
+                  <td><%= product.label.name %></td>
+                    <% product.genres.each do |f| %>
+                  <td><%= f.name  %></td>
+                    <% end %>
+                   <td> <%= product.price %></td>
 
-               <td> <%= product.product_status_id %></td>
+                   
+             
 
-               <td><%= link_to '商品詳細',admin_product_path(product)%></td>
+                   <td> <%= product.amount %></td>
 
-              <% end %>
-              </td>
-              <td></td>
 
-                  
-            </tr>
+                   <td> <%= product.price %></td>
+
+                   <td> <%= product.product_status_id %></td>
+
+                   <td><%= link_to '商品詳細',admin_product_path(product)%></td>
+
+                  <% end %>
+                            
+              </tr>
           <% end %>
         </tbody>
       </table>
     </div>
   </div>
+
+</div>
 </div>
