@@ -79,7 +79,7 @@
     </thead>
     <tbody>
         <% @songs.each do |song| %>
-        　　<tr>
+          <tr>
               <td><%= song.disc_number %></td>
               <td><%= song.track_number %></td>
               <td><%= link_to "#{song.song}", edit_admin_product_song_path(product_id: params[:product_id], id: song.id) %></td>
@@ -87,7 +87,7 @@
                 <%= link_to "削除", admin_product_song_path(product_id: params[:product_id], id: song.id), method: :delete, 
                 "data-confirm" => "削除してよろしいですか？" %>
               </td>
-        　　</tr>
+          </tr>
         <% end %>
     </tbody>
   </table>
