@@ -2,7 +2,8 @@ class Public::AddressesController < ApplicationController
 
 def create
   current_user.addresses.create(address_params)
-  redirect_to addresses_path
+  redirect_to(session[:referrer])
+  session.delete(:referrer)
 end
 
 
@@ -20,6 +21,7 @@ end
 
 
 def index
+  session[:referrer] = request.referrer
   @address = current_user.addresses.new
   @addresses = current_user.addresses.all
 end
@@ -32,7 +34,7 @@ end
 
 
 
-private
+  private
   def address_params
     params.require(:address).permit(:delivery_postal_code,
      :delivery_address, :delivery_address_flag, :delivery_name, :delivery_name_kana)
@@ -40,3 +42,6 @@ private
 
   
 end
+
+
+

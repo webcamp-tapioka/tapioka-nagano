@@ -13,12 +13,14 @@ Rails.application.routes.draw do
 
   resource :admins,only: %i(edit update)
   resources :artists,only: %i(create edit update destroy index)
+  resources :artist_products, only: %i(create destroy)
   resources :genres,only: %i(create edit update destroy index)
+  resources :genre_products, only: %i(create destroy)
   resources :labels,only: %i(create edit update destroy index)
-  # resources :songs,only: %i(new create update destroy)
-  resources :songs
   resources :orders,only: %i(index show update)
-  resources :products
+  resources :products do 
+    resources :songs
+  end
   resources :users
   resource :postage_and_consumptiontaxs,only: %i(edit update)
 
@@ -29,7 +31,6 @@ Rails.application.routes.draw do
  scope module:  :public do
   get'/users/leave' => 'users#leave'
   get'/users/thank_you' => 'users#thank_you'
- 	resources :address,only: %i(new create destroy)
   resources :cart_items,only: %i(index  destroy update)
  	resources :addresses,except: %i(new show)
  	resources :order_products,only: %i(create)
@@ -37,7 +38,7 @@ Rails.application.routes.draw do
  	resources :users,only: %i(edit show update destroy)
   resources :products,only: %i() do
   resources :cart_items,only: %i(create)
-  resources :likes,only: %i(create destroy)
+  resource :likes,only: %i(create destroy)
   resource :reviews,only: %i(create)
   resources :reviews,only: %i(destroy)
 end

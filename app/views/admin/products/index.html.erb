@@ -18,34 +18,42 @@
         <thead>
 
          <tr>
+            <th>ジャケ写</th>
             <th>タイトル</th>
             <th>アーティスト</th>
-            <th>ジャンル</th>
-            <th>レーベル</th>
-            <th>CDシングル</th>
-            <th>価格</th>
-            <th>在庫</th>
+            <th>在庫状況</th>
+            <th>値段(税抜)</th>
+            <th>ステータス</th>
           </tr>
         </thead>
         <tbody>
           <% @products.each do |product| %>
+          
             <tr>
               <td>
-              <td>
-                         
+              <td>         
                <td><% if  product.image %>
                 <%= attachment_image_tag product, :image, :fill, 30, 30, format: 'jpeg' %>
-              <% end %></td>
+              <% end %>
+              </td>
 
                <td><%= link_to admin_product_path(product.id) do %>
 
                <%= product.title %></td>
 
-               <td> <%= product.price %></td>
+               <td><%= product.artists.all.name %></td>
+
+               <td></td>
 
                <td> <%= product.amount %></td>
 
+
+               <td> <%= product.price %></td>
+
                <td> <%= product.product_status_id %></td>
+
+               <td><%= link_to '商品詳細',admin_product_path(product)%></td>
+
               <% end %>
               </td>
               <td></td>

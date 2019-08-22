@@ -32,7 +32,7 @@
     </tbody>
     <%= "ステータス #{order.order_status_id}" %><br>
     <%= "購入枚数 #{order.order_products.sum(:order_amount)}" %><br>
-    <%= "合計金額: ¥#{order.total_price}" %>
+    <%= "合計金額: ¥#{order.total_price_except_tax}" %>
     <th><%= link_to("受注履歴詳細", admin_order_path(order)) %></th>
   </table>
 <% end %>

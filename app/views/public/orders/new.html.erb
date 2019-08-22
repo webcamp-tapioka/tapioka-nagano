@@ -3,8 +3,6 @@
 　　　　　　<div class="col-lg-1">
 <h1>購入確認ページ</h1>
 
-
-
 <%= "#{current_user.first_name} #{current_user.last_name}様" %>
 
 <% if current_user.addresses %>
@@ -13,7 +11,7 @@
   <%= form_tag(new_order_path, method: 'get') do %>
   　<% @addresses.each do |address| %>
       <div class="check_box_tag">
-        <%= check_box_tag :to_create_order, address.id %>
+        <%= radio_button_tag :to_create_order, address.id %>
         <%= address.delivery_name %><br>
         <%= address.delivery_postal_code %><br>
         <%= address.delivery_address %><br>
@@ -68,6 +66,6 @@
   <%= f.hidden_field :consumption_tax %><br>
   <%= f.label :payment_method, "支払い方法" %>
   <%= f.select :payment_method, Order.payment_methods.keys %><br>
-  <%= f.submit "購入を確定する" %>
+  <%= f.submit "購入を確定する",data: {confirm: "ほんとに買うよん"}%>
 <% end %>
 <% end %>
