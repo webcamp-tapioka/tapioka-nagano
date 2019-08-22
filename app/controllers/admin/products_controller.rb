@@ -28,25 +28,26 @@ class Admin::ProductsController < ApplicationController
 	end
 
 	def new
-    @product = Product.new
-    @product.artist_products.build
-  end
+	    @product = Product.new
+	    @product.artist_products.build
+  	end
 
 	def create
 		@product = Product.new(product_params)
 		@product.save
-	  redirect_to admin_products_path, notice: "succsess!"
+	  	redirect_to admin_products_path, notice: "succsess!"
 	end
 
 	def destroy
 		Product.find(params[:id]).destroy
+		redirect_to admin_products_path, notice: "succsess!"
 	end
 
 	def self.search(search)
       if search
-        Product.where(['title LIKE ?', "%#{search}%"])
+         Product.where(['title LIKE ?', "%#{search}%"])
       else
-        Product.all
+         Product.all
       end
 	end
 	
@@ -58,10 +59,9 @@ class Admin::ProductsController < ApplicationController
     
 
 	def update
-
-	  @product = Product.find(params[:id])
+		@product = Product.find(params[:id])
 		@product.update(product_params)
-	  redirect_to admin_products_path,notice: "succsess!"
+		redirect_to admin_products_path,notice: "succsess!"
 	end
 
 	

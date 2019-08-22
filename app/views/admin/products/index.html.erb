@@ -5,63 +5,61 @@
       
       <h1>商品一覧(管理者)</h1>
 
+        <%= link_to("追加", new_admin_product_path) %>
+
         <table class="table table-hover">
         <thead>
 
-         <tr>
-
-
+          <tr>
             <th>ジャケ写</th>
             <th>タイトル</th>
             <th>アーティスト</th>
             <th>在庫状況</th>
             <th>値段(税抜)</th>
             <th>ステータス</th>
-
           </tr>
         </thead>
+
         <tbody>
           <% @products.each do |product| %>
           
             <tr>
-              <td>
+                  <td>
+                   <% if  product.image %>
+                    <%= attachment_image_tag product, :image, :fill, 30, 30, format: 'jpeg' %>
+                  <% end %>
+                  </td>
 
-               <% if  product.image %>
+                   <td><%= link_to admin_product_path(product.id) do %>
 
-                <%= attachment_image_tag product, :image, :fill, 30, 30, format: 'jpeg' %>
-              <% end %>
-              </td>
+                   <%= product.title %></td>
 
-               <td><%= link_to admin_product_path(product.id) do %>
+                   <td><%= product.single_album_flag %></td>
+                    <% product.artists.each do |f| %>
+                    <td><%= f.name  %></td>
+                    <% end %>
 
-               <%= product.title %></td>
+                  <td><%= product.label.name %></td>
+                    <% product.genres.each do |f| %>
+                  <td><%= f.name  %></td>
+                    <% end %>
+                   <td> <%= product.price %></td>
 
-               <td><%= product.single_album_flag %></td>
-                <% product.artists.each do |f| %>
-                <td><%= f.name  %></td>
-                <% end %>
-
-               <td><%= product.label.name %></td>
-                <% product.genres.each do |f| %>
-                <td><%= f.name  %></td>
-               <% end %>
-               <td> <%= product.price %></td>
-
-               <td> <%= product.price %></td>
+                   <td> <%= product.price %></td>
 
 
-               <td> <%= product.amount %></td>
+                   <td> <%= product.amount %></td>
 
 
-               <td> <%= product.price %></td>
+                   <td> <%= product.price %></td>
 
-               <td> <%= product.product_status_id %></td>
+                   <td> <%= product.product_status_id %></td>
 
-               <td><%= link_to '商品詳細',admin_product_path(product)%></td>
+                   <td><%= link_to '商品詳細',admin_product_path(product)%></td>
 
-              <% end %>
-              </td>                
-            </tr>
+                  <% end %>
+                            
+              </tr>
           <% end %>
         </tbody>
       </table>
