@@ -39,18 +39,24 @@
             <td>
             </td>
 </table>
+    <table class="table table-hover">
+
+
 <div class="first-review">
   <div class="first-review-name">
     <% if @reviews.any? %>
+      <span class="glyphicon glyphicon-user"></span>
       <%= @reviews.last.user.first_name + @reviews.last.user.last_name %>
   </div>
-    <% if @reviews.any? && current_user.id == @reviews.last.user_id %>
-      <span><%= link_to '×',product_review_path(@products,@reviews.last.user_id),method: :delete %>
-    <%end%>
-      </span>
   <div class="first-review-review">
     <%= @reviews.last.review %>
   </div>
+    <% if @reviews.any? && current_user.id == @reviews.last.user_id %>
+      <span class="review">
+        <%= link_to 'レビューを削除',product_review_path(@products,@reviews.last.id),method: :delete %></span>
+    <%end%>
+      </span>
+  
 </div>
 <%end%>
 </div>
@@ -60,19 +66,27 @@
 </div>
 <div class="total-review" style="display:none">
 <% @reviews.each do |f| %>
-<%= f.user.first_name + f.user.last_name %>
+<p><span class="glyphicon glyphicon-user"></span>
+<%= f.user.first_name + f.user.last_name %></p>
 <div>
   <%= f.review %>
 </div>
 <% if f.user_id = current_user.id %>
-<%= link_to '×',product_review_path(@products,f.id),method: :delete %>
+<p> <%= link_to 'レビューを削除',product_review_path(@products,f.id),method: :delete %></p>
+_______________________
 <%end%>
-<% end %>
+<%end%>
 </div>
 <button class="review-button">レビュー投稿</button>
               <div class="review-content" style="display:none">
               	<%= form_for [@products,@review] do |f| %>
-				        <%= f.text_area :review %>
+				        <%= f.text_area :review, :size=>"80x10" %>
 				        <%= f.submit '投稿' %>
 		            <%end%>
               </div>
+            </tr>
+          </th>
+        </tr>
+      </thead>
+    </table>
+              

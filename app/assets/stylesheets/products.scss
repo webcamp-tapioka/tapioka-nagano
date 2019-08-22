@@ -2,4 +2,49 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
 
+.clearfix::after {
+  content: "";
+  display: block;
+  clear: both;
+}
+.notice{
+	color: green;
+	text-align: right;
+	padding-left: 150px;
+}
+body {
+	padding-top: 50px;
+}
+.container {
+  padding-right: 15px;
+  padding-left: 15px;
+  margin-right: auto;
+  margin-left: auto;
+}
+
+.first-review-name {
+    line-height: 2;
+}
+
+.review {
+	line-height: 4;
+	
+}
+
+.first-review-review {
+	line-height: 4;
+}
+
+.total-review {
+	line-height: 4;
+}
+
+.review-button {
+	coler: #660099;
+}
