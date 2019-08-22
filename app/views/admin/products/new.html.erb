@@ -3,6 +3,7 @@
     <div class="col-lg-12">
 <h1>商品情報入力フォーム(管理者)</h1>
 
+
 <%= form_for([:admin,@product]) do |f| %>
 <p>ジャケット写真</p>
 	<%= f.attachment_field :image %>
@@ -10,20 +11,26 @@
 <p>タイトル</p>
   <%= f.text_field :title %>
 <p>アーティスト</p>
-   <%= f.fields_for :artist_products do |ff| %>
-    <% ff.select :artist_id, Artist.all.ids %>
+
+  <%= f.fields_for :artist_products do |ff| %>
+  <%= ff.collection_select :artist_id, Artist.all, :id, :name %>
   <% end %>
 
 
+
+
 <p>ジャンル</p>
+  <%= f.fields_for :genre_products do |ff| %>
+  <%= ff.collection_select :genre_id, Genre.all, :id, :name %>
+  <% end %>
 
 
 <p>レーベル</p>
-<%= f.collection_select :label_id, Label.all, :id, :name %>
-
-
+ <%= f.collection_select :label_id, Label.all, :id, :name %>
 <p>CDシングル</p>
   <%= f.select  :single_album_flag, Product.single_album_flags.keys %>
+
+
 
 <p>価格</p>
   <%= f.text_area :price %>
