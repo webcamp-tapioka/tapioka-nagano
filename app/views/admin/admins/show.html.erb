@@ -1,33 +1,51 @@
 <div class="container">
   <div class="row">
     <div class="col-lg-12">
-<h2>未対応商品一覧</h2> 
 
-<tr> <% @orders.each do |order| %>
-    <% order.order_products.each do |order_product| %>
-    <table class="table table-hover">
-    <thead>
-      <tr>
-        <th>タイトル</th>
-        <th>送付先名前</th>
-        <th>郵便番号</th>
-        <th>住所</th>
-        <th>ステータス</th>
-      </tr>
-    </thead>
-    <tbody>
-    	<tr>
-      <td><%= order_product.product.title %> </td>
-      <td> <%= order.delivery_name %> </td>
-      <td> <%= order.delivery_postal_code %> </td>
-      <td> <%= order.delivery_address %></td>
-      </td>
-   <%end%>
-   <td><%= form_for(order, url: admin_order_path(order), method: "patch") do |f| %>
-      	     <%= f.select :order_status_id, Order.order_status_ids.keys %>
-      	     <%= f.submit "更新" %></td>
-   <%end%>
-   <%end%>
-</tr>
-</tbody>
-<%=link_to "送料、消費税変更", edit_admin_admins_path %>
+      <h1>未対応商品一覧</h1>
+
+      
+      <%=link_to "送料、消費税変更", edit_admin_admins_path %><br>
+
+
+      <% @orders.each do |order| %>
+    
+        <table class="table table-hover">
+          <thead>
+            <tr>
+              <th>タイトル</th>
+            </tr>
+          </thead>
+          <tbody>
+
+            <% order.order_products.each do |order_product| %>
+              <tr>
+                <td><%= order_product.product.title %> </td>
+              </tr>
+            <% end %>
+
+          </tbody>
+        </table>
+        
+          <%= form_for(order, url: admin_order_path(order), method: "patch") do |f| %>
+            <%= f.select :order_status_id, Order.order_status_ids.keys %>
+            <%= f.submit "更新" %>
+          <% end %>
+      
+        <p> 送付先名前 </p>
+        <%= order.delivery_name %><br>
+        <p> 郵便番号 </p>
+        <%= order.delivery_postal_code %><br>
+        <p> 住所 </p>
+        <%= order.delivery_address %><br>
+
+      <% end %>
+
+    </div>
+  </div>
+</div>
+    
+
+
+
+
