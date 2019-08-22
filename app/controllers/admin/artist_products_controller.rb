@@ -11,7 +11,7 @@ class Admin::ArtistProductsController < ApplicationController
   end
 
 
-
+  
   private
 
   def artist_product_params

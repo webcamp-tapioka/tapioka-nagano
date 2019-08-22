@@ -15,7 +15,7 @@ class Product < ApplicationRecord
   has_many :reviews,dependent: :destroy
 
   attachment :image
-
+  acts_as_paranoid without_default_scope: false
 
   def self.search(search)
       if search
