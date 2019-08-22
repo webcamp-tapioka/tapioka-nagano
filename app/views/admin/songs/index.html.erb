@@ -40,7 +40,7 @@
 
 <% if @what_track_number %>
 
-  <p>10曲ずつ登録可能です</p>
+
   <%= form_with(model: @new_song, url: admin_product_songs_path(product_id: params[:product_id])) do |f| %>
     <table>
       <caption>収録曲入力フォーム</caption>

@@ -29,7 +29,7 @@
 		<% @product.artist_products.all.each do |artist_product| %>
 			<tr>
 				<td><%= artist_product.artist.name %></td>
-				<td><%= link_to "削除", url: admin_product_path(artist_product.id), method: :delete %></td>
+				<td><%= link_to("削除", admin_artist_product_path(artist_product.id), method: "delete")%></td>
 			</tr>
 		<% end %>
   </table>
@@ -38,7 +38,7 @@
 	  <p>アーティストを追加</p>
 		<%= form_with(model: @artist_product, url: admin_artist_products_path, method: 'post') do |f2| %>
 			<%= f2.hidden_field :product_id, :value => @product.id %>
-			<%= f2.collection_select :artist_id, Artist.all, :id, :name %>
+			<%= f2.collection_select :artist_id, Artist.all, :id, :name, class: "select2" %>
 			<%= f2.submit "アーティストを追加する" %>
 		<% end %>
   </div>
@@ -64,3 +64,17 @@
 		<% end %>
   </div>
 </div>
+
+
+
+<script>
+
+//= require select2
+	$(document).ready(function() {
+		
+			$('.select2').select2();
+	});
+
+
+
+</script>
