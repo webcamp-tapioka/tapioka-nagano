@@ -1,29 +1,37 @@
 <h1>商品情報入力フォーム(管理者)</h1>
-<%= form_for([:admin,@products]) do |f| %>
+
+<%= form_for([:admin,@product]) do |f| %>
 <p>ジャケット写真</p>
 	<%= f.attachment_field :image %>
 
-	<%= f.submit "ジャケット写真登録" %>
 <p>タイトル</p>
   <%= f.text_field :title %>
 <p>アーティスト</p>
- 	<%= f.text_area :price %>
+   <%= f.fields_for :artist_products do |ff| %>
+    <% ff.select :artist_id, Artist.all.ids %>
+  <% end %>
+
+
 <p>ジャンル</p>
-  	
+
+
 <p>レーベル</p>
-  <%= f.number_field :label_id %>
+<%= f.collection_select :label_id, Label.all, :id, :name %>
+
+
 <p>CDシングル</p>
-  
- <p>価格</p>
+  <%= f.select  :single_album_flag, Product.single_album_flags.keys %>
+
+<p>価格</p>
   <%= f.text_area :price %>
 
 
-  <p>在庫</p>
+<p>在庫</p>
    <%= f.number_field  :amount %> 
 
 
-   <p>販売状況</p>
-   <%= f.select  :product_status_id, Product.product_status_ids %> 
+<p>販売状況</p>
+   <%= f.select  :product_status_id, Product.product_status_ids.keys %> 
 
 <%= f.submit "登録" %>
   
