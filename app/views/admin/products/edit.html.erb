@@ -20,6 +20,7 @@
 	<p>販売状況</p>
   <%= f.select :product_status_id, Product.product_status_ids.keys %><br>
 	<%= f.submit "編集する" %>
+	
 <% end %>
 
 <div class="artist_product">
@@ -28,7 +29,7 @@
 		<% @product.artist_products.all.each do |artist_product| %>
 			<tr>
 				<td><%= artist_product.artist.name %></td>
-				<td><%= link_to("削除", admin_artist_product_path(artist_product.id), method: "delete") %></td>
+				<td><%= link_to "削除", url: admin_product_path(product.id), method: :delete %></td>
 			</tr>
 		<% end %>
   </table>

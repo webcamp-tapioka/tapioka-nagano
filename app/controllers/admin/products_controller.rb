@@ -21,18 +21,19 @@ class Admin::ProductsController < ApplicationController
 	end
 
 	def new
-    @product = Product.new
-    @product.artist_products.build
-  end
+	    @product = Product.new
+	    @product.artist_products.build
+  	end
 
 	def create
 		@product = Product.new(product_params)
 		@product.save
-	  redirect_to admin_products_path, notice: "succsess!"
+	  	redirect_to admin_products_path, notice: "succsess!"
 	end
 
 	def destroy
 		Product.find(params[:id]).destroy
+		redirect_to admin_products_path, notice: "succsess!"
 	end
  
 	def search
