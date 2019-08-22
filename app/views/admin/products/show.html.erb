@@ -27,10 +27,6 @@
               <td>
               <td>
 
-                <% if  product.image %>
-                <%= attachment_image_tag product, :image, :fill, 30, 30, format: 'jpeg' %>
-              <% end %>
-
                 <% if  @products.image %>
                 <%= attachment_image_tag @products, :image, :fill, 30, 30, format: 'jpeg' %>
                 <% end %>

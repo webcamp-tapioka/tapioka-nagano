@@ -13,6 +13,7 @@ class Admin::ProductsController < ApplicationController
 
 		@product = Product.new
 		@product.artist_products.build
+		@product.genre_products.build
 
 	end
 
@@ -24,7 +25,6 @@ class Admin::ProductsController < ApplicationController
 	def create
 		@product = Product.new(product_params)
 	    @product.save
-
 	end
 
 	def destroy
@@ -40,8 +40,8 @@ class Admin::ProductsController < ApplicationController
     end
     
     def search
-    #Viewのformで取得したパラメータをモデルに渡す
-    @products = Product.search(params[:search])
+	    #Viewのformで取得したパラメータをモデルに渡す
+	    @products = Product.search(params[:search])
     end
     
 
@@ -52,9 +52,7 @@ class Admin::ProductsController < ApplicationController
 		  @product.update(product_params)
 		  redirect_to products_path,notice: "Products was successfully updated"
 
-		  @products.update(products_params)
-		  redirect_to products_path(@products),notice: "Products was successfully updated"
-
+		
         else
           flash[:notice] = "error"
           render :edit
@@ -66,7 +64,10 @@ class Admin::ProductsController < ApplicationController
 
     def product_params                
 
-      params.require(:product).permit(:image, :title, :price, :products_status_id, :label_id, :amount, :artist, artist_products_attributes: [:artist_id ] )
+      params.require(:product).permit(:image, :title,
+       :price, :products_status_id, :label_id, :amount,
+        :artist, artist_products_attributes: [:artist_id ], 
+         genre_products_attributes: [:genre_id ])
    
  
 

@@ -36,7 +36,12 @@
               <li>
                 <%= link_to "ログアウト", destroy_user_session_path, method: :delete, class:"glyphicon glyphicon-log-out" %>
               </li>
-        
+
+              　　<%= form_tag(products_search_path,:method => 'get') do %>
+                <%= text_field_tag :search %>
+                <%= submit_tag 'Search', :name => nil %>
+            　　<% end %>
+
 
         <% elsif admin_signed_in?  %>
              
@@ -75,7 +80,10 @@
         　　　　<%= link_to "ログアウト", destroy_admin_session_path, method: :delete ,class:"　　　glyphicon glyphicon-log-out" %>
           </li>
 
-
+              　　<%= form_tag(products_search_path,:method => 'get') do %>
+                <%= text_field_tag :search %>
+                <%= submit_tag 'Search', :name => nil %>
+          <% end %>
 
 
 
@@ -83,7 +91,7 @@
 
 
               <li>
-                <%= link_to "商一覧品", products_path,class:"glyphicon glyphicon-list-alt" %>
+                <%= link_to "商品一覧", products_path,class:"glyphicon glyphicon-list-alt" %>
               </li>
              
               <li>
@@ -93,6 +101,12 @@
               <li>
                 <%= link_to "新規登録", new_user_registration_path, class:"glyphicon glyphicon-log-in" %>
               </li>
+
+              　　<%= form_tag(products_search_path,:method => 'get') do %>
+                <%= text_field_tag :search %>
+                <%= submit_tag 'Search', :name => nil %>
+            　　<% end %>
+
 
 
         <% end %>

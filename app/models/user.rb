@@ -11,7 +11,8 @@ class User < ApplicationRecord
   has_many :order_products, through: :orders
   has_many :cart_items
   has_many :products, through: :cart_items
-
+  has_many :likes,dependent: :destroy
+  has_many :reviews,dependent: :destroy
 
   def total_price
     a = 0
@@ -25,8 +26,7 @@ class User < ApplicationRecord
 
 
 
-  has_many :likes,dependent: :destroy
-  has_many :reviews,dependent: :destroy
+ 
 
   
 end

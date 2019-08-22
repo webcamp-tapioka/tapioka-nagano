@@ -22,7 +22,7 @@ class Product < ApplicationRecord
 
   accepts_nested_attributes_for :artist_products 
 
-
+  accepts_nested_attributes_for :genre_products 
 
   # defaultは0で、"シングル"になる
   enum single_album_flag: %i( シングル アルバム )

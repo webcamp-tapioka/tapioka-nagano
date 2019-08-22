@@ -28,15 +28,14 @@
             <th>ステータス</th>
           </tr>
        
-        <tbody>
-          <% @products.each do |product| %>
+        <
 
           <tr>
               <td></td>
               <td></td>
               
 
-
+              <% @products.each do |product| %>
                <td><% if  product.image %>
                 <%= attachment_image_tag product, :image, :fill, 30, 30, format: 'jpeg' %>
               <% end %></td>
@@ -64,6 +63,3 @@
     </div>
   </div>
 
-</div>
-
-</div>
