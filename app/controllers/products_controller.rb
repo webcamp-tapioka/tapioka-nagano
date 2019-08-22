@@ -1,5 +1,8 @@
 class ProductsController < ApplicationController
 
+  def top
+  end
+
   def show
    	  @products = Product.find(params[:id])
       @review = Review.new
