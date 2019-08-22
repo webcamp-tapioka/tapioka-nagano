@@ -13,12 +13,14 @@ Rails.application.routes.draw do
 
   resource :admins,only: %i(edit update)
   resources :artists,only: %i(create edit update destroy index)
+  resources :artist_products, only: %i(create destroy)
   resources :genres,only: %i(create edit update destroy index)
+  resources :genre_products, only: %i(create destroy)
   resources :labels,only: %i(create edit update destroy index)
-  # resources :songs,only: %i(new create update destroy)
-  resources :songs
   resources :orders,only: %i(index show update)
-  resources :products
+  resources :products do 
+    resources :songs
+  end
   resources :users
   resource :postage_and_consumptiontaxs,only: %i(edit update)
 
