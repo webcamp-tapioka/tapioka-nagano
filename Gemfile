@@ -82,6 +82,8 @@ gem 'select2-rails'
 gem 'jp_prefecture'
 gem 'font-awesome-sass', '~> 5.4.1'
 
+gem 'kaminari'
+
 
 
 

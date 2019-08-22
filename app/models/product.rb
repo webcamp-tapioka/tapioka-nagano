@@ -25,8 +25,18 @@ class Product < ApplicationRecord
       end
   end
 
-   # defaultは1で、"販売停止中"になる
+  
   enum product_status_id: %i( 販売中 販売停止中 )
+  # defaultは1で、"販売停止中"になる
+
+  acts_as_paranoid without_default_scope: false
+
+
+  accepts_nested_attributes_for :artist_products 
+
+  accepts_nested_attributes_for :genre_products 
+
+   
  
   # defaultは0で、"シングル"になる
   enum single_album_flag: %i( シングル アルバム )
