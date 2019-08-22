@@ -15,6 +15,8 @@ class Admin::ProductsController < ApplicationController
 
 	def edit
 		@product = Product.find(params[:id])
+		@artist_product = @product.artist_products.new
+		@genre_product = @product.genre_products.new
 	end
 
 	def new
@@ -29,7 +31,7 @@ class Admin::ProductsController < ApplicationController
 	end
 
 	def destroy
-		products = Product.find(params[:id])
+		Product.find(params[:id]).destroy
 	end
 
 	def self.search(search)
@@ -38,7 +40,8 @@ class Admin::ProductsController < ApplicationController
       else
         Product.all
       end
-    end
+	end
+	
     
     def search
     #Viewのformで取得したパラメータをモデルに渡す
@@ -47,12 +50,11 @@ class Admin::ProductsController < ApplicationController
     
 
 	def update
-	@products = Product.find(params[:id])
-	@products.update(product_params)
-	redirect_to admin_products_path,notice: "succsess!"
+	  @product = Product.find(params[:id])
+		@product.update(product_params)
+	  redirect_to admin_products_path,notice: "succsess!"
 	end
 	
-
 
 
 	private
