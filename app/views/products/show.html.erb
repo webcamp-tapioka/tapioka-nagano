@@ -1,3 +1,8 @@
+
+<div class="container">
+    <div class="row">
+　　　　　　<div class="col-lg-1">
+
 <h1>商品詳細</h1>
 
 <table class="table table-hover">
@@ -35,12 +40,14 @@
                 <td><%= @products.product_status_id %></td>
                 <td><%= @products.price %></td>
                 <% if @products.product_status_id.to_i == 0 %>
+
                   <%= form_with(model: @new_cart_item, url: product_cart_items_path(@products)) do |f| %>
                     <% f.hidden_field :product_id, value: @new_cart_item.product_id %>
                     <%= f.select :product_amount, 1..@products.amount %>
                     <%= f.submit "カートに入れる" %>
                   <% end %>
                   <% end %>
+
               
 </table>
 

@@ -1,3 +1,7 @@
+
+<div class="container">
+    <div class="row">
+　　　　　　<div class="col-lg-1">
 <h1>住所登録・編集画面</h1>
 
 <section>
@@ -26,7 +30,7 @@
 
 <% if current_user.addresses.where(id: true) %>
 
-<table>
+<table class="table table-hover">
   <thead>
     <tr>
       <th>氏名</th>
@@ -55,6 +59,25 @@
 </table>
 
 <% end %>
+
+
+
+
+<script>
+
+$(window).ready(function() {
+  $('delivery_postal_code_and_address').jpostal({
+    postcode : [
+      '#delivery_postal_code'
+    ],
+    address : {
+      '#delivery_address' : '%3%4%5'
+    }
+  });
+});
+
+</script>
+
 
 
 

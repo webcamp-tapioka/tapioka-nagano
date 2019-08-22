@@ -14,24 +14,25 @@
 	</tr>
 	<tr>
 		<td>ご住所</td>
-		<td><% if @addresses != nil %>
+		<td><% if @addresses.delivery_address != nil && @addresses.delivery_address != '' %>
 			<%= @addresses.delivery_postal_code %>
 			<%= @addresses.delivery_address %>
 			 <% else %>
-			 未登録</td>
+			 未登録
 			<%end%>
 		</td>
 	</tr>
 	<tr>
+
 		<td>ご住所</td>
 		<td>
-			<% if @sub_addresses != nil %>
+			<% if @sub_addresses.first != nil %>
 			<% @sub_addresses.each do |f| %>
-			<%= f.delivery_postal_code %>
-			<%= f.delivery_address %>
+			　　<%= f.delivery_postal_code %>
+			　　<%= f.delivery_address %>
 			<%end%>
 			<%else%>
-			未登録</td>
+			未登録
 			<%end%>
 		</td>
 		<tr>
@@ -51,6 +52,7 @@
 <li class="">
 	<%= link_to 'プロフィール編集', edit_user_path,class: "col-xs-12 btn btn-default glyphicon glyphicon-wrench" %>
 </li>
+<%= link_to '住所登録 / 変更',addresses_path %>
 </div>
 </div>
 </div>

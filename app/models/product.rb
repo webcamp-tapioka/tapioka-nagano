@@ -3,6 +3,7 @@ class Product < ApplicationRecord
   has_many :users, through: :cart_items
   has_many :songs
   has_many :artist_products
+  accepts_nested_attributes_for :artist_products
   has_many :artists, through: :artist_products
   has_many :genre_products
   has_many :genres, through: :genre_products
@@ -15,10 +16,17 @@ class Product < ApplicationRecord
   attachment :image
 
 
+  def self.search(search)
+      if search
+        Product.where(['title LIKE ?', "%#{search}%"])
+      else
+        Product.all
+      end
+  end
+  
+  enum product_status_id: %i( 販売中 販売停止中 )
+  # defaultは1で、"販売停止中"になる
 
-# defaultは1で、"販売停止中"になる
-
-  enum product_status_id: %i(販売中 販売停止中 )
 
   accepts_nested_attributes_for :artist_products 
 
@@ -32,12 +40,5 @@ class Product < ApplicationRecord
     likes.where(user_id: current_user.id).exists?
   end
 
-  def self.search(search)
-      if search
-        Product.where(['title LIKE ?', "%#{search}%"])
-      else
-        Product.all
-      end
-    end
 
 end

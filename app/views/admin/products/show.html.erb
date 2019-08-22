@@ -13,13 +13,12 @@
 
 
          <tr>
+           <th>ジャケ写</th>
             <th>タイトル</th>
             <th>アーティスト</th>
-            <th>ジャンル</th>
-            <th>レーベル</th>
-            <th>CDシングル</th>
-            <th>価格</th>
-            <th>在庫</th>
+            <th>在庫状況</th>
+            <th>値段(税抜)</th>
+            <th>ステータス</th>
           </tr>
         </thead>
         <tbody>
@@ -32,13 +31,14 @@
                 <% end %>
 
                 <td><%= @products.title %></td>
+                <td><%= @products.artists.all.name %></td>
                 <td><%= @products.price %></td>
                 <td><%= @products.amount %></td>
                 <td><%= @products.product_status_id %></td>
               </td>
               <td>
                 
-              </td>                
+              </td>
             </tr>
         </tbody>
 

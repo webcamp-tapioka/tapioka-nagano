@@ -5,10 +5,12 @@ class Admin::ProductsController < ApplicationController
 		@products = Product.find(params[:id])
 	end
 
+
 	def index
 		@products = Product.all
 	end
 
+	
 	def new
 
 		@product = Product.new
@@ -19,18 +21,28 @@ class Admin::ProductsController < ApplicationController
 
 	def edit
 		@product = Product.find(params[:id])
+<<<<<<< HEAD
 		@product.artist_products.build
 		@product.genre_products.build
+=======
+		@artist_product = @product.artist_products.new
+		@genre_product = @product.genre_products.new
+>>>>>>> 5e1077ac7436f18c760414acc58340afe3fd75ee
 	end
 
+	def new
+    @product = Product.new
+    @product.artist_products.build
+  end
 
 	def create
 		@product = Product.new(product_params)
-	    @product.save
+		@product.save
+	  redirect_to admin_products_path, notice: "succsess!"
 	end
 
 	def destroy
-		products = Product.find(params[:id])
+		Product.find(params[:id]).destroy
 	end
 
 	def self.search(search)
@@ -39,7 +51,8 @@ class Admin::ProductsController < ApplicationController
       else
         Product.all
       end
-    end
+	end
+	
     
     def search
 	    #Viewのformで取得したパラメータをモデルに渡す
@@ -48,22 +61,17 @@ class Admin::ProductsController < ApplicationController
     
 
 	def update
-		  @product = Product.find(params[:id])
-		if
 
-		  @product.update(product_params)
-		  redirect_to products_path,notice: "Products was successfully updated"
+	  @product = Product.find(params[:id])
+		@product.update(product_params)
+	  redirect_to admin_products_path,notice: "succsess!"
+	end
 
-		
-        else
-          flash[:notice] = "error"
-          render :edit
-    	end
-    end
 	
-    private
-  
 
+
+	private
+	
     def product_params                
 
       params.require(:product).permit(:image, :title,
