@@ -21,13 +21,10 @@ class Admin::ProductsController < ApplicationController
 
 	def edit
 		@product = Product.find(params[:id])
-<<<<<<< HEAD
+
 		@product.artist_products.build
 		@product.genre_products.build
-=======
-		@artist_product = @product.artist_products.new
-		@genre_product = @product.genre_products.new
->>>>>>> 5e1077ac7436f18c760414acc58340afe3fd75ee
+
 	end
 
 	def new
