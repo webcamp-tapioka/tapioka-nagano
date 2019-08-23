@@ -38,7 +38,7 @@
 	  <p>アーティストを追加</p>
 		<%= form_with(model: @artist_product, url: admin_artist_products_path, method: 'post') do |f2| %>
 			<%= f2.hidden_field :product_id, :value => @product.id %>
-			<%= f2.collection_select :artist_id, Artist.all, :id, :name, class: "select2" %>
+			<%= f2.collection_select :artist_id, Artist.all, :id, :name %>
 			<%= f2.submit "アーティストを追加する" %>
 		<% end %>
   </div>
@@ -66,15 +66,3 @@
 </div>
 
 
-
-<script>
-
-//= require select2
-	$(document).ready(function() {
-		
-			$('.select2').select2();
-	});
-
-
-
-</script>
