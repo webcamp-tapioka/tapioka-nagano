@@ -33,15 +33,12 @@ class Public::OrdersController < ApplicationController
 				product.update(amount: n)
 			elsif n === 0
 				product.update(amount: n, product_status_id: 1)
-<<<<<<< HEAD
-      end
-    end
-=======
+
 
 			end
 		end
 
->>>>>>> da10a54c56a99a62cdeb241cc1a22634f23493e3
+
     current_user.cart_items.destroy_all
     redirect_to users_thank_you_path
 
@@ -51,10 +48,7 @@ class Public::OrdersController < ApplicationController
 
   private
 
-<<<<<<< HEAD
-=======
 
->>>>>>> da10a54c56a99a62cdeb241cc1a22634f23493e3
   def require_cart_items
     unless current_user.cart_items.last
       redirect_to products_path
@@ -66,10 +60,7 @@ class Public::OrdersController < ApplicationController
       if Product.find(cart_item.product_id).amount < cart_item.product_amount or Product.find(cart_item.product_id).product_status_id_before_type_cast == 1
         redirect_to cart_items_path notice: "在庫が足りないか、商品が販売停止中です" and return
       end
-<<<<<<< HEAD
-=======
 
->>>>>>> da10a54c56a99a62cdeb241cc1a22634f23493e3
     end
   end
 
