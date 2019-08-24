@@ -10,18 +10,17 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_08_20_042150) do
+ActiveRecord::Schema.define(version: 2019_08_24_123942) do
 
   create_table "addresses", force: :cascade do |t|
     t.integer "user_id", null: false
-    t.integer "delivery_postal_code", null: false
+    t.string "delivery_postal_code", null: false
     t.text "delivery_address", null: false
     t.string "delivery_name", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "delivery_address_flag", null: false
     t.string "delivery_name_kana"
-    t.integer "prefecture_code"
     t.index ["user_id"], name: "index_addresses_on_user_id"
   end
 
