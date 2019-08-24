@@ -43,13 +43,6 @@ class Admin::ProductsController < ApplicationController
 		redirect_to admin_products_path, notice: "succsess!"
 	end
 
-	def self.search(search)
-      if search
-         Product.where(['title LIKE ?', "%#{search}%"])
-      else
-         Product.all
-      end
-	end
 	
     
     def search
