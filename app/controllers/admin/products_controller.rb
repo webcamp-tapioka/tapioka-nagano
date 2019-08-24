@@ -35,10 +35,14 @@ class Admin::ProductsController < ApplicationController
 		Product.find(params[:id]).destroy
 		redirect_to admin_products_path, notice: "succsess!"
 	end
- 
-	def search
-		@products = Product.search(params[:search])
-	end
+
+	
+    
+    def search
+	    #Viewのformで取得したパラメータをモデルに渡す
+	    @products = Product.search(params[:search])
+    end
+
     
 	def update
 	  @product = Product.find(params[:id])

@@ -13,9 +13,12 @@
 
 
          <tr>
-           <th>ジャケ写</th>
+           　<th>ジャケ写</th>
             <th>タイトル</th>
             <th>アーティスト</th>
+            <th>シングル</th>
+            <th>レーベル名</th>
+            <th>ジャンル</th>
             <th>在庫状況</th>
             <th>値段(税抜)</th>
             <th>ステータス</th>
@@ -29,10 +32,28 @@
                 <% end %>
                 </td>
                 <td><%= @products.title %></td>
-               <td><%= @products.single_album_flag %></td>
+
+
+                <td><%= @products.artist_products.name %></td>
+                <% @products.artist_products.each do |f| %>
+                <td><%= f.name  %></td>
+                <% end %>
+
+
+                <td><%= @products.single_album_flag %></td>
                     <% @products.artists.each do |f| %>
                     <td><%= f.name  %></td>
-                    <% end %>
+                <% end %>
+
+                <td><%= @products.label.name %></td>
+                <% @products.genres.each do |f| %>
+                <td><%= f.name  %></td>
+                <% end %>
+
+                <td><%= @products.genre_products.name %></td>
+                <% @products.genre_products.each do |f| %>
+                <td><%= f.name  %></td>
+                <% end %>
 
 
                 <td><%= @products.amount %></td>
@@ -44,7 +65,8 @@
 
       </table>
 
-        <%= link_to "編集", edit_admin_product_path(@products.id) %>
+        <%= link_to "編集", edit_admin_product_path
+       %>
         <%= link_to("削除", admin_product_path(@products.id), method: "delete") %>
     </div>
 
