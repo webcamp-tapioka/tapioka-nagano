@@ -40,10 +40,7 @@
                 <%= link_to "ログアウト", destroy_user_session_path, method: :delete, class:"glyphicon glyphicon-log-out" %>
               </li>
 
-              　　<%= form_tag(products_search_path,:method => 'get') do %>
-                <%= text_field_tag :search %>
-                <%= submit_tag 'Search', :name => nil %>
-            　　<% end %>
+              　　
 
 
         <% elsif admin_signed_in?  %>

@@ -10,33 +10,51 @@
 
 
 			  　<tr>
-            <td>ジャケ写</td>
-            <td>CDシングル</td>
-            <td>アーティスト</td>
-            <td>タイトル</td>
-            <td>レーベル</td>
-            <td>ジャンル</td>
-            <td>在庫</td>
-            <td>ステータス</td>
-            <td>価格</td>
+            <th>ジャケ写</th>
+            <th>CDシングル</th>
+            <th>アーティスト</th>
+            <th>タイトル</th>
+            <th>レーベル</th>
+            <th>ジャンル</th>
+            <th>在庫</th>
+            <th>ステータス</th>
+            <th>価格</th>
           </tr>
+          <th></th>
 
-      　</thead>
+      　</thead> 
 
- 　             <td><% if  @products.image %>
-                <%= attachment_image_tag @products, :image, :fill, 30, 30, format: 'jpeg' %>
-              <% end %></td>
+
+ 　            <td>
+                <% if  @products.image %>
+                  <%= attachment_image_tag @products, :image, :fill, 30, 30, format: 'jpeg' %>
+                <% end %>
+              </td>
+
                 <td><%= @products.single_album_flag %></td>
                 <% @products.artists.each do |f| %>
                 <td><%= f.name  %></td>
                 <% end %>
+
+                <td><%= @products.artist_products.name %></td>
+                <% @products.artist_products.each do |f| %>
+                <td><%= f.name  %></td>
+                <% end %>                
+
                 <td><%= @products.title %></td>
 
                 <td><%= @products.label.name %></td>
                 <% @products.genres.each do |f| %>
                 <td><%= f.name  %></td>
                 <% end %>
+
+                <td><%= @products.genre_products.name %></td>
+                <% @products.genre_products.each do |f| %>
+                <td><%= f.name  %></td>
+                <% end %>                                
+
                 <td><%= @products.amount %></td>
+
                 <td><%= @products.product_status_id %></td>
 
                 <td><%= @products.price %></td>

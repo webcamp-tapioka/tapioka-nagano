@@ -1,10 +1,10 @@
 <div class="container">
     <div class="row">
 　　　　　　<div class="col-lg-1">
-<h1>商品検索結果一覧</h1>
+<h1>商品検索結果一覧(一般)</h1>
 
       <table class="table table-hover">
-        <thead>
+       
 
 
             <p>検索</p>
@@ -13,19 +13,18 @@
               <%= submit_tag 'Search', :name => nil %>
             <% end %>
 
-            
-
+        <tbody>   
+        <thead>
          <tr>
+            <th>ジャケ写真</th>
             <th>タイトル</th>
             <th>アーティスト</th>
-            <th>ジャンル</th>
-            <th>レーベル</th>
-            <th>CDシングル</th>
             <th>価格</th>
             <th>在庫</th>
+            <th>ステータス</th>
           </tr>
         </thead>
-        <tbody>
+        
          
           <tr>
             <td>
@@ -43,6 +42,11 @@
 
                 <td><%= link_to  product_path(product.id) do %>
                 <%= product.title %></td>
+
+                <td><%=product.artist_products.name %></td>
+                <% product.artist_products.each do |f| %>
+                <td><%= f.name  %></td>
+                <% end %>                 
                 
                 <td><%= product.price %></td>
                 <td><%= product.amount %></td>
