@@ -34,11 +34,7 @@
                 <td><%= @products.title %></td>
 
 
-                <td><%= @products.artist_products.name %></td>
-                <% @products.artist_products.each do |f| %>
-                <td><%= f.name  %></td>
-                <% end %>
-
+               
 
                 <td><%= @products.single_album_flag %></td>
                     <% @products.artists.each do |f| %>

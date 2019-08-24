@@ -1,9 +1,8 @@
 class Public::CartItemsController < ApplicationController
 
 	def create
-		if new_cart_item = current_user.cart_items.create(product_id: params[:product_id], 
-			product_amount: cart_item_params[:product_amount])
-		end
+		new_cart_item = current_user.cart_items.create(product_id: params[:product_id], 
+		product_amount: cart_item_params[:product_amount])
 		redirect_to cart_items_path
 	end
 
@@ -15,10 +14,14 @@ class Public::CartItemsController < ApplicationController
 		cart_item = current_user.cart_items.find(params[:id])
 		if cart_item.product_amount > Product.find(cart_item.product_id).amount
 			redirect_to cart_items_path notice: "在庫が足りないため、更新できません"
+			return
 		else Product.find(cart_item.product_id).product_status_id == 1
 			redirect_to cart_items_path notice: "この商品は販売停止中です"
+			return
 		end
+		cart_item.update(cart_item_params)
 		redirect_to cart_items_path
+		return
 	end
 
 	def destroy

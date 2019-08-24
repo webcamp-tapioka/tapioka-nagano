@@ -22,7 +22,8 @@ class Admin::ProductsController < ApplicationController
 
 	def new
 	    @product = Product.new
-	    @product.artist_products.build
+			@product.artist_products.build
+			@product.genre_products.build
   	end
 
 	def create
