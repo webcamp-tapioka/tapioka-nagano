@@ -1,6 +1,6 @@
 class Public::OrdersController < ApplicationController
   before_action :require_cart_items, except: :index
-
+  before_action :require_product, only: :create
   
   def new
     @new_order = current_user.orders.new(postage: PostageAndConsumptiontax.find(1).postage, 
@@ -26,6 +26,16 @@ class Public::OrdersController < ApplicationController
         new_order_product.price = Product.find(cart_item.product_id).price
         new_order_product.save
       end
+    end
+    current_user.cart_items.all.each do |cart_item|
+      product = Product.find(cart_item.product_id)
+			n = product.amount - cart_item.product_amount
+			if n > 0
+				product.update(amount: n)
+			elsif n === 0
+				product.update(amount: n, product_status_id: 1)
+			end
+		end
     current_user.cart_items.destroy_all
     redirect_to users_thank_you_path
     end
@@ -35,16 +45,24 @@ class Public::OrdersController < ApplicationController
 
   private
 
-    def require_cart_items
-      unless current_user.cart_items.last
-        redirect_to products_path
+  def require_product
+    current_user.cart_items.all.each do |cart_item|
+      unless Product.find(cart_item.product_id).amount > cart_item.product_amount
+        redirect_to cart_items_path notice: "商品の在庫がない、あるいは足りない商品があります"
+      else Product.find(cart_item.product_id).product_status_id == 1
+        redirect_to cart_items_path notice: "販売停止中の商品があります"
       end
-    end
+  end
 
-
-    def order_params
-      params.require(:order).permit(:delivery_postal_code, :delivery_address, :delivery_name, :delivery_name_kana, 
-      :payment_method, :postage, :total_price, :consumption_tax)
+  def require_cart_items
+    unless current_user.cart_items.last
+      redirect_to products_path
     end
+  end
+
+  def order_params
+    params.require(:order).permit(:delivery_postal_code, :delivery_address, :delivery_name, :delivery_name_kana, 
+    :payment_method, :postage, :total_price, :consumption_tax)
+  end
     
 end

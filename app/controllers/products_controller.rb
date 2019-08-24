@@ -3,7 +3,8 @@ class ProductsController < ApplicationController
   def top
   end
 
-  def show
+  def show 
+    p params[:id]
    	  @products = Product.find(params[:id])
       @review = Review.new
       @reviews = Review.where(product_id: params[:id])
@@ -14,6 +15,7 @@ class ProductsController < ApplicationController
 	def index
 		@products_all = Product.page(params[:page]).per(6)
   end
+
 
 
 	
