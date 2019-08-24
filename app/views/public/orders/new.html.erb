@@ -56,7 +56,7 @@
 <%= "消費税 #{@new_order.consumption_tax}%" %><br>
 
 <% if @new_order.delivery_postal_code %>
-<%= form_with(model: @new_order) do |f| %>
+<%= form_for(@new_order) do |f| %>
   <%= f.hidden_field :delivery_postal_code %>
   <%= f.hidden_field :delivery_address %>
   <%= f.hidden_field :delivery_name_kana %>

@@ -3,17 +3,21 @@ class ProductsController < ApplicationController
   def top
   end
 
-  def show
+  def show 
+    p params[:id]
    	  @products = Product.find(params[:id])
       @review = Review.new
       @reviews = Review.where(product_id: params[:id])
+      if current_user.present?
       @new_cart_item = current_user.cart_items.new
       @new_cart_item.product_id = @products.id
+      end
    end
    
 	def index
 		@products_all = Product.page(params[:page]).per(6)
   end
+
 
 
 	
