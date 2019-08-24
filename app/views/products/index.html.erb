@@ -41,10 +41,9 @@
 
                 <td><div data-turbolinks="false"><%= link_to  product_path(product.id) do %>
                 
-                <%= product.title %></td>
-                <%end%>
+                <%= product.title %>                <%end%></div></td>
 
-                <td><%= product.single_album_flag %>
+                <td><%= product.single_album_flag %></td>
                 <% product.artists.each do |f| %>
                 <%= f.name  %></td>
                 <% end %>
