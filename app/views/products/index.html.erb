@@ -30,5 +30,16 @@
             </div>
           <% end %>
     </div>
+
+            
+             <td><div id="likes_partial_<%= product.id %>"><%= render partial: 'public/likes/like',locals: {products: product} %>
+              </div></td>
+
+              </tr>
+          <% end %>
+
+        </tbody>
+      </table>
+      <%= paginate @products_all %>
   </div>
 </div>
