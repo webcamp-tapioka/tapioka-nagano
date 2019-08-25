@@ -25,14 +25,14 @@
           </td>
           <td><%= order_product.product.title %></td>
           <td><%= order_product.product.id %></td>
-          <td><%= order_product.price %></td>
+          <td><%= number_to_currency(order_product.price, unit: "¥", precision: 0) %></td>
           <td><%= order_product.order_amount %></td> 
         </tr>
       <% end %>
     </tbody>
     <%= "ステータス #{order.order_status_id}" %><br>
     <%= "購入枚数 #{order.order_products.sum(:order_amount)}" %><br>
-    <%= "合計金額: ¥#{order.total_price_except_tax}" %>
+    <%= "合計金額: #{number_to_currency(order.total_price_except_tax, unit: "¥", precision: 0)}" %>
     <th><%= link_to("受注履歴詳細", admin_order_path(order)) %></th>
   </table>
 <% end %>

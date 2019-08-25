@@ -33,10 +33,9 @@ class Public::OrdersController < ApplicationController
 				product.update(amount: n)
 			elsif n === 0
 				product.update(amount: n, product_status_id: 1)
-
 			end
-		end
-
+    end
+    
     current_user.cart_items.destroy_all
     redirect_to users_thank_you_path
 
@@ -55,7 +54,7 @@ class Public::OrdersController < ApplicationController
   def require_product
     current_user.cart_items.all.each do |cart_item|
       if Product.find(cart_item.product_id).amount < cart_item.product_amount or Product.find(cart_item.product_id).product_status_id_before_type_cast == 1
-        redirect_to cart_items_path notice: "在庫が足りないか、商品が販売停止中です" and return
+        redirect_to cart_items_path, notice: "在庫が足りないか、商品が販売停止中です" and return
       end
     end
   end
