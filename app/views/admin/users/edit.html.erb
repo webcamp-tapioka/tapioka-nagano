@@ -1,0 +1,35 @@
+<div class="container">
+  <div class="row">
+    <div class="col-lg-12">
+<h2>ユーザー編集(管理者）</h2>
+
+<%= form_for(@user, url: admin_user_path(@user), method: "patch") do |f| %>
+<p>
+	<%= f.label(:first_name_kana, "セイ") %>
+	<%= f.text_field :first_name_kana %>
+</p>
+<p>
+	<%= f.label(:last_name_kana, "メイ") %>
+	<%= f.text_field :last_name_kana %>
+</p>
+<p>
+	<%= f.label(:first_name, "姓") %>
+	<%= f.text_field :first_name %>
+</p>
+<p>
+	<%= f.label(:last_name,"名") %>
+	<%= f.text_field :last_name %>
+</p>
+<p>
+  <%= f.label :phone_number, "電話番号" %>
+  <%= f.text_field :phone_number %>
+</p>
+<p>
+  <%= f.label :email, "メールアドレス" %>
+  <%= f.text_field :email %>
+</p>
+  <%= f.submit "編集する" %>
+ <%end%>
+ <%= link_to "詳細に戻る", admin_user_path(@user) %>
+
+ <%= link_to "退会させる", user_path(@user), method: :delete, data: {confirm: "本当に削除しますか？"} %>

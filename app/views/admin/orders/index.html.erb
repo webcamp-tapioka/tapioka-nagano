@@ -1,0 +1,40 @@
+<div class="container">
+  <div class="row">
+    <div class="col-lg-12">
+<h1>受注履歴一覧</h1>
+
+<% @orders.each do |order| %>
+
+  <%= "お客様氏名 #{order.user.first_name} #{order.user.last_name}　様" %><br>
+
+　　<table class="table table-hover">
+    <thead>
+      <tr>
+        <th>ジャケ写</th>
+        <th>タイトル</th>
+        <th>アーティスト名</th>
+        <th>価格（税別）</th>
+        <th>購入枚数</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% order.order_products.each do |order_product| %>
+        <tr>
+          <td><%= attachment_image_tag order_product.product, 
+              :image, format: 'jpg', fallback: 'no_image.jpg', size: '30x30'  %>
+          </td>
+          <td><%= order_product.product.title %></td>
+          <td><%= order_product.product.id %></td>
+          <td><%= order_product.price %></td>
+          <td><%= order_product.order_amount %></td> 
+        </tr>
+      <% end %>
+    </tbody>
+    <%= "ステータス #{order.order_status_id}" %><br>
+    <%= "購入枚数 #{order.order_products.sum(:order_amount)}" %><br>
+    <%= "合計金額: ¥#{order.total_price_except_tax}" %>
+    <th><%= link_to("受注履歴詳細", admin_order_path(order)) %></th>
+  </table>
+<% end %>
+
+

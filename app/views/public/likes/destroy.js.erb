@@ -1,0 +1,7 @@
+
+likeDestroyIndex();
+
+function likeDestroyIndex(){
+	const likesPartialIndex = document.getElementById('likes_partial_<%= @products.id %>');
+	likesPartialIndex.innerHTML = "<%= j(render partial: 'public/likes/like',locals: {products: @products}) %>";
+}

@@ -1,0 +1,84 @@
+
+<div class="container">
+    <div class="row">
+　　　　　　<div class="col-lg-1">
+<h1>住所登録・編集画面</h1>
+
+<section>
+  <%= form_with(model: @address) do |f| %>
+
+    <% unless @address.id %>
+      <p>新規住所登録フォーム</p>
+      <% else %>
+      <p>住所編集フォーム</p>
+    <% end %>
+  
+    <p>お届け先氏名</p>
+    <p>ふりがな</p>
+    <%= f.text_field :delivery_name_kana %><br>
+    <p>氏名</p>
+    <%= f.text_field :delivery_name %><br>
+    <p>郵便番号</p>
+    <%= f.text_field :delivery_postal_code, class: "delivery_postal_code_and_address", id: "delivery_postal_code" %><br>
+    <p>住所</p>
+    <%= f.text_field :delivery_address, class: "delivery_postal_code_and_address", id: "delivery_address" %><br>
+    <p>こちらのご住所にお住まいですか？</p>
+    <%= f.select :delivery_address_flag, Address.delivery_address_flags.keys %> 
+    <%= f.submit "登録" %>
+  <% end %>
+</div>
+
+<% if current_user.addresses.where(id: true) %>
+
+<table class="table table-hover">
+  <thead>
+    <tr>
+      <th>氏名</th>
+      <th>ふりがな</th>
+      <th>郵便番号</th>
+      <th>ご住所</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @addresses.each do |address| %>
+      <tr>
+        <td><%= address.delivery_name %></td>
+        <td><%= address.delivery_name_kana %></td>
+        <td><%= address.delivery_postal_code %></td>
+        <td><%= address.delivery_address %></td>
+        <td><%= address.delivery_address_flag %></td>
+        <td><%= link_to "編集", edit_address_path(address) %></td>
+
+        <td><%= link_to"削除", address_path(address), method: "delete" %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<% end %>
+
+
+
+
+<script>
+
+$(window).ready(function() {
+  $('delivery_postal_code_and_address').jpostal({
+    postcode : [
+      '#delivery_postal_code'
+    ],
+    address : {
+      '#delivery_address' : '%3%4%5'
+    }
+  });
+});
+
+</script>
+
+
+
+
+

@@ -1,0 +1,69 @@
+<div class="container">
+  <div class="row">
+    <div class="col-lg-12">
+<h1>アーティストリスト編集画面</h1>
+
+
+<%= form_for(@new_artist, url: admin_artists_path) do |f| %>
+<%= f.label :name, "新規追加" %>
+<%= f.text_field :name %>
+<%= f.submit "追加" %>
+<% end %>
+
+<%# アーティスト名をクリックした時のみ、編集フォームを表示する %>
+<% if @edit_artist %>
+  <%= form_for(@edit_artist, url: admin_artist_path(@edit_artist)) do |f| %>
+    <%= f.label :name, "編集" %>
+    <%= f.text_field :name %>
+    <%= f.submit "編集", "data-confirm" => "この内容でよろしいですか？" %>
+  <% end %>
+  <%= link_to "削除", admin_artist_path(@edit_artist), method: :delete,
+   "data-confirm" => "削除してよろしいですか？" %>
+<% end %>
+
+
+
+<%# ワイヤーフレーム通りに６人ずつ表示させてみた %>
+  <caption>アーティスト一覧</caption>
+  <table class="table table-hover">
+    <thead>
+      <tr>
+        <th></th>
+        <th></th>
+        <th></th>
+        <th></th>
+        <th></th>
+        <th></th>
+      </tr>
+    </thead>
+	  <tbody>
+      <tr>
+
+        <% @artists.each.with_index(1) do |artist, index| %>
+
+          <td><%= link_to "#{artist.name}", edit_admin_artist_path(artist.id) %></td>
+
+          <% if index == @artists.size %>
+            <% break %>
+          <% end %>
+
+          <% if index % 6 == 0 %>
+            </tr>
+            <tr>
+          <% end %>
+
+        <% end %>
+
+      </tr>
+  	</tbody>
+  </table>
+
+
+
+
+
+
+
+
+
+
