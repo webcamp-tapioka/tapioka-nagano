@@ -23,11 +23,11 @@
   <%= f.select :product_status_id, Product.product_status_ids.keys %>
 	<%= f.submit "編集する" %>
 	
+
+
+	<% end %>
 	<td><%= link_to '曲追加',admin_product_songs_path(product_id: params[:id])%></td>
 
-
-
-<% end %>
 
 
 <div class="artist_product">
