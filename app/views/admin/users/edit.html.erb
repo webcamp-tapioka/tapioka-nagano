@@ -3,7 +3,7 @@
     <div class="col-lg-12">
 <h2>ユーザー編集(管理者）</h2>
 
-<%= form_for @user do |f| %>
+<%= form_for(@user, url: admin_user_path(@user), method: "patch") do |f| %>
 <p>
 	<%= f.label(:first_name_kana, "セイ") %>
 	<%= f.text_field :first_name_kana %>
@@ -30,5 +30,6 @@
 </p>
   <%= f.submit "編集する" %>
  <%end%>
+ <%= link_to "詳細に戻る", admin_user_path(@user) %>
 
  <%= link_to "退会させる", user_path(@user), method: :delete, data: {confirm: "本当に削除しますか？"} %>

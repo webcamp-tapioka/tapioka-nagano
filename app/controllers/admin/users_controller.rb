@@ -17,7 +17,7 @@ end
 def update
   	@user = User.find(params[:id])
   	  if @user.update(user_params)
-  	  	 redirect_to admin_users_path,notice: "succsess!"
+  	  	 redirect_to admin_users_path, notice: "succsess!"
   	  else
   	  	render :edit
   	  end
