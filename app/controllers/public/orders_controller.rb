@@ -33,10 +33,9 @@ class Public::OrdersController < ApplicationController
 				product.update(amount: n)
 			elsif n === 0
 				product.update(amount: n, product_status_id: 1)
-
 			end
-		end
-
+    end
+    
     current_user.cart_items.destroy_all
     redirect_to users_thank_you_path
 

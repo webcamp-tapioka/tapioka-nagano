@@ -16,12 +16,12 @@ class Public::CartItemsController < ApplicationController
 		if cart_item.product_amount > Product.find(cart_item.product_id).amount
 			redirect_to cart_items_path, notice: "在庫が足りないため、更新できません"
 			return
-		elsif Product.find(cart_item.product_id).product_status_id == 1
+		elsif Product.find(cart_item.product_id).product_status_id_before_type_cast == 1
 			redirect_to cart_items_path, notice: "この商品は販売停止中です"
 			return
 		end
 		cart_item.update(cart_item_params)
-		redirect_to cart_items_path
+		redirect_to cart_items_path, notice: "更新しました"
 		return
 	end
 
