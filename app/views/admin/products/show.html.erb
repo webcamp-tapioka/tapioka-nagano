@@ -63,5 +63,25 @@
         <%= link_to("削除", admin_product_path(@products.id), method: "delete") %>
     </div>
 
+
+      <table class="table table-hover">
+    <thead>
+      <tr>
+        <th>ディスク番号</th>
+        <th>曲順</th>
+        <th>曲名</th>
+      </tr>
+    </thead>
+    <tbody>
+        <% @products.songs.each do |song| %>
+          <tr>
+              <td><%= song.disc_number %></td>
+              <td><%= song.track_number %></td>
+              <td><%=  "#{song.song}" %></td>
+          </tr>
+        <% end %>
+    </tbody>
+  </table>
+
   </div>
 </div>
