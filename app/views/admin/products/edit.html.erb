@@ -20,8 +20,9 @@
 	<p>販売状況</p>
   <%= f.select :product_status_id, Product.product_status_ids.keys %><br>
 	<%= f.submit "編集する" %>
-	
 <% end %>
+<% link_to "曲追加", admin_product_songs_path(product_id: params[:id]) %>
+
 
 <div class="artist_product">
   <p>登録済みアーティスト</p>

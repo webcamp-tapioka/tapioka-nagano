@@ -17,14 +17,12 @@ class ProductsController < ApplicationController
 		@products_all = Product.page(params[:page]).per(6)
   end
 
-
-
-	
-
   def search
     #Viewのformで取得したパラメータをモデルに渡す
     @products = Product.search(params[:search])
   end
+
+  
   
  private
   
