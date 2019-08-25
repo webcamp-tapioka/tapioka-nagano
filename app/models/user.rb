@@ -17,6 +17,7 @@ class User < ApplicationRecord
   def total_price
     a = 0
     cart_items.each do |f|
+      #Product.find(f.product_id)
       a += f.product_amount * f.product.price
     end
     a = (a * ((PostageAndConsumptiontax.find(1).consumption_tax) * 0.01r + 1)).floor

@@ -14,7 +14,7 @@ class Admin::GenreProductsController < ApplicationController
 
   private
   def genre_product_params
-    params.require(:genre_product).permite(:genre_id :product_id)
+    params.require(:genre_product).permit(:genre_id, :product_id)
   end
   
 end

@@ -1,16 +1,14 @@
 <div class="container">
-    <div class="row">
-　　　　　　<div class="col-lg-1">
+   
 <h1>購入確認ページ</h1>
 
 <%= "#{current_user.first_name} #{current_user.last_name}様" %>
 
 <% if current_user.addresses %>
-<%# チェックボックスは最終的にJQueryでどれか一つをチェックすると、先につけたチェックを外すようにする予定です %>
   <p>送付先のご住所を選択してください</p>
   <%= form_tag(new_order_path, method: 'get') do %>
   　<% @addresses.each do |address| %>
-      <div class="check_box_tag">
+      <div class="radio_button_tag">
         <%= radio_button_tag :to_create_order, address.id %>
         <%= address.delivery_name %><br>
         <%= address.delivery_postal_code %><br>
@@ -22,7 +20,7 @@
 <% end %>
 <%= link_to("住所登録画面へ", addresses_path) %>
 
-<table class="table table-hover">
+<table class="table table-striped table-bordered"">
   <thead>
 	  <tr>
 		  <th>タイトル</th>
@@ -56,7 +54,7 @@
 <%= "消費税 #{@new_order.consumption_tax}%" %><br>
 
 <% if @new_order.delivery_postal_code %>
-<%= form_with(model: @new_order) do |f| %>
+<%= form_for(@new_order) do |f| %>
   <%= f.hidden_field :delivery_postal_code %>
   <%= f.hidden_field :delivery_address %>
   <%= f.hidden_field :delivery_name_kana %>
@@ -69,3 +67,5 @@
   <%= f.submit "購入を確定する",data: {confirm: "ほんとに買うよん"}%>
 <% end %>
 <% end %>
+
+</div>
