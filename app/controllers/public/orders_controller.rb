@@ -23,21 +23,22 @@ class Public::OrdersController < ApplicationController
         new_order_product.product_id = cart_item.product_id
         new_order_product.order_amount = cart_item.product_amount
         new_order_product.price = Product.find(cart_item.product_id).price
-        new_order_product.save
+        new_order_product.save!
       end
     end
     current_user.cart_items.all.each do |cart_item|
       product = Product.find(cart_item.product_id)
 			n = product.amount - cart_item.product_amount
 			if n > 0
-				product.update(amount: n)
+				product.update!(amount: n)
 			elsif n === 0
-				product.update(amount: n, product_status_id: 1)
+				product.update!(amount: n, product_status_id: 1)
 
 			end
 		end
 
-    current_user.cart_items.destroy_all
+    # current_user.cart_items.destroy_all
+    current_user.cart_items.each(&:destroy!)
     redirect_to users_thank_you_path
 
   end

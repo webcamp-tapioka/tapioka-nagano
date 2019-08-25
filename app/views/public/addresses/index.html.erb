@@ -2,10 +2,13 @@
 <div class="container">
     <div class="row">
 　　　　　　<div class="col-lg-1">
+<div class="errors_messages">
+  <%= errors_display(@address) %>
+</div>
 <h1>住所登録・編集画面</h1>
 
 <section>
-  <%= form_with(model: @address) do |f| %>
+  <%= form_with(model: @address, local: true) do |f| %>
 
     <% unless @address.id %>
       <p>新規住所登録フォーム</p>

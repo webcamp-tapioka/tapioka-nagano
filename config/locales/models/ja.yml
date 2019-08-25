@@ -1,0 +1,33 @@
+ja:
+  activerecord:
+    attributes:
+      address:
+        delivery_postal_code: 郵便番号
+        delivery_address: 住所
+        delivery_name: 宛名
+        delivery_name_kana: 宛名(カナ)
+      order:
+        delivery_postal_code: 郵便番号
+        delivery_address: 宛先住所
+        delivery_name: 宛名
+        delivery_name_kana: 宛名(カナ)
+      postage_and_consumptiontaxe:
+        postage: 送料
+        consumption_tax: 消費税
+      product:
+        title: CDのタイトル
+        price: 価格(税抜き)
+        amount: 在庫
+      review:
+        review: レビュー
+      song:
+        track_number: 曲順
+        disc_number: 何枚目のCDか
+      user:
+        email: メールアドレス
+        password: パスワード
+        first_name: 姓
+        last_name: 名
+        first_name_kana: 姓(セイ)
+        last_name_kana: 名(メイ)
+        phone_number: 電話番号
