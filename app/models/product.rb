@@ -27,7 +27,6 @@ class Product < ApplicationRecord
 
   # defaultは1で、"販売停止中"になる
   enum product_status_id: %i( 販売中 販売停止中 )
-  
 
   # defaultは0で、"シングル"になる
   enum single_album_flag: %i( シングル アルバム )
@@ -37,4 +36,8 @@ class Product < ApplicationRecord
     likes.where(user_id: current_user.id).exists?
   end
 
+
+  def tax_include_price
+    (self.price * ((PostageAndConsumptiontax.find(1).consumption_tax * 0.01r) + 1)).floor
+  end
 end
