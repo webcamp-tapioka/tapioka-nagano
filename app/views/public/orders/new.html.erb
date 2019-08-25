@@ -33,7 +33,10 @@
 		<% @cart_items.each do |item| %>
 		  <tr>
 			  <td><%= item.product.title %></td>
-			  <td></td>
+			  <td><% item.product.artists.each do |artist| %>
+        <%= artist.name %><br>
+        <% end %>
+        </td>
 			  <td><%= item.product.price.to_i %>円</td>
 			  <td><%= item.product_amount %></td> 
 		  </tr>
