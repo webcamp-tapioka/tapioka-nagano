@@ -7,6 +7,7 @@ class Product < ApplicationRecord
   has_many :artists, through: :artist_products
   has_many :genre_products
   has_many :genres, through: :genre_products
+  accepts_nested_attributes_for :genre_products 
   has_many :order_products
   has_many :orders, through: :order_products
   belongs_to :label
@@ -14,7 +15,7 @@ class Product < ApplicationRecord
   has_many :reviews,dependent: :destroy
 
   attachment :image
-
+  acts_as_paranoid without_default_scope: false
 
   def self.search(search)
       if search
@@ -23,16 +24,9 @@ class Product < ApplicationRecord
         Product.all
       end
   end
-  
-  enum product_status_id: %i( 販売中 販売停止中 )
+
   # defaultは1で、"販売停止中"になる
-
-  acts_as_paranoid without_default_scope: false
-
-
-  accepts_nested_attributes_for :artist_products 
-
-  accepts_nested_attributes_for :genre_products 
+  enum product_status_id: %i( 販売中 販売停止中 )
 
   # defaultは0で、"シングル"になる
   enum single_album_flag: %i( シングル アルバム )
@@ -43,4 +37,7 @@ class Product < ApplicationRecord
   end
 
 
+  def tax_include_price
+    (self.price * ((PostageAndConsumptiontax.find(1).consumption_tax * 0.01r) + 1)).floor
+  end
 end
