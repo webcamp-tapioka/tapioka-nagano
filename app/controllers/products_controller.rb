@@ -20,10 +20,9 @@ class ProductsController < ApplicationController
   def search
     #Viewのformで取得したパラメータをモデルに渡す
     @products = Product.search(params[:search])
+    @products_all = Product.page(params[:page]).per(6)
   end
 
-  
-  
  private
   
   def product_params
