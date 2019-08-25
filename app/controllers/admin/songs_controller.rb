@@ -25,8 +25,10 @@ class Admin::SongsController < ApplicationController
   end
 
   def update
-    edit_song = Product.find(params[:product_id]).songs.find(params[:id])
-    edit_song.update(song_params)
+    @edit_song = Product.find(params[:product_id]).songs.find(params[:id])
+    unless  @edit_song.update(song_params)
+      render 'edit'
+    end
     if Product.find(params[:product_id]).songs.where(disc_number: edit_song.disc_number, track_number: edit_song.track_number).count >= 2
       Product.find(params[:product_id]).songs.where(disc_number: edit_song.disc_number).where('track_number >= ?', edit_song.track_number).
       where.not(id: edit_song.id).update_all('track_number = track_number + 1')

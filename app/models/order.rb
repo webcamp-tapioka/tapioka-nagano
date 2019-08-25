@@ -3,11 +3,6 @@ class Order < ApplicationRecord
   has_many :order_products
   has_many :products, through: :order_products
 
-  validates :delivery_postal_code,presence: true,length: {is: 7}
-  validates :delivery_address,presence: true
-  validates :delivery_name,presence: true
-  validates :delivery_name_kana,presence: true
-
 # defaultは1、"銀行振込"になる
   enum payment_method: %i(クレジットカード 銀行振込 代引き)
 #  defaultは1、"受付中"になる
