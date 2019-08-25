@@ -43,8 +43,8 @@
                 <td><%= link_to  product_path(product.id) do %>
                 <%= product.title %></td>
 
-                <td><%=product.artist_products.name %></td>
-                <% product.artist_products.each do |f| %>
+              
+                <% product.artists.each do |f| %>
                 <td><%= f.name  %></td>
                 <% end %>                 
                 

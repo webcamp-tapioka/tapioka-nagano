@@ -2,8 +2,9 @@
 		<div class="row">
 　　　　　　<div class="col-lg-1">
 
-
-<%= flash[:notice] %>
+　　　　　<% if flash[:notice] %>
+　　　　　　<%= flash[:notice] %>
+　　　　　<% end %>
 
 <h2>カート 合計金額: <%= current_user.total_price %>円(税込)</h2>
 
