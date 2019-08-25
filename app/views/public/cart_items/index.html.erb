@@ -1,38 +1,61 @@
 <div class="container">
-		<div class="row">
-　　　　　　<div class="col-lg-1">
 
-　　　　　<% if flash[:notice] %>
-　　　　　　<%= flash[:notice] %>
-　　　　　<% end %>
+  <div class="flash-messages">
+	  <% if flash[:notice] %>
+		  <%= flash[:notice] %>
+    <% end %>
+  </div>
 
-<h2>カート 合計金額: <%= current_user.total_price %>円(税込)</h2>
+  <p>カート内 合計金額（税込)  <%= number_to_currency(current_user.total_price, unit: "¥", precision: 0) %></p>
 
 
-<table class="table table-hover">
-	<tr>
-		<th>ジャケ写</th>
-		<th>タイトル</th>
-		<th>アーティスト</th>
-		<th>値段</th>
-		<th>ステータス</th>
-		<th>個数</th>
+	<table class="table">
+	  <thead>
+			<tr>
+				<th>ジャケ写</th>
+				<th>タイトル</th>
+				<th>アーティスト</th>
+				<th>値段（税込）</th>
+				<th>ステータス</th>
+				<th>個数</th>
+				<th></th>
+			</tr>
+		</thead>
+		<tbody>
+		  <% @cart_items.each do |item| %>
+				<tr>
+					<td>
+						<%= attachment_image_tag item.product, :image, format: 'jpg', fallback: 'no_image.jpg', size: '40x40' %>
+					</td>
+					<td>
+						<%= item.product.title %>
+					</td>
+					<td>
+						<% item.product.artists.each do |artist| %>
+							<%= artist.name %><br>
+						<% end %>
+					</td>
+					<td>
+						<%= number_to_currency(item.product.tax_include_price, unit: "¥", precision: 0) %>
+					</td>
+					<td><%= item.product.product_status_id %></td>
+					<td>
+						<%= form_for(item) do |f|   %>
+							<%= f.select :product_amount, 1..item.product.amount, default: item.product_amount %>
+							<%= f.submit "変更" %>
+						<%end%>
+					</td> 
+					<td>
+						<%= link_to "カートから消去する", cart_item_path(item), method: :delete, data: {confirm: "カートから消去しますか？"} %>
+					</td>
+				</tr>
+		  <%end%>
+    </tbody>
+	</table>
 
-	</tr>
-		<% @cart_items.each do |item| %>
-		<tr>
-			<td><%= attachment_image_tag item.product , :image, format: 'jpg',fallback: 'no_image.jpg', size: '30x30'  %> </td>
-			<td> <%= item.product.title %> </td>
-			<td>    </td>
-			<td> <%= item.product.price.to_i %>円</td>
-			<td> <%= item.product.product_status_id %></td>
-			 <td><%= form_for(item) do |f|   %>
-				<%= f.select :product_amount, 1..item.product.amount %>
-				<%= f.submit "変更" %>
-				<%end%>
-			</td> 
-			<td> <%= link_to "X", cart_item_path(item), method: :delete, data: {confirm: "消すよん"} %>
-		</tr>
-		<%end%>
 
-		<td> <%= link_to "購入へ進む", new_order_path(current_user) %> </td>
+  <p> <%= link_to "購入へ進む", new_order_path(current_user) %></p>
+</div>
+
+
+
