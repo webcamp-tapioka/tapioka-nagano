@@ -5,6 +5,11 @@ Rails.application.routes.draw do
   devise_for :admins
 
 
+  get '/' => 'products#top', as:"root"
+
+  root to: 'products#top'
+
+
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 
   namespace :admin do

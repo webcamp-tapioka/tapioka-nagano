@@ -14,7 +14,8 @@
 	</tr>
 	<tr>
 		<td>ご住所</td>
-		<td><% if @addresses.delivery_address != nil && @addresses.delivery_address != '' %>
+		<td>
+		<% if @addresses != nil && @addresses.delivery_address != '' %>
 			<%= @addresses.delivery_postal_code %>
 			<%= @addresses.delivery_address %>
 			 <% else %>

@@ -1,29 +1,12 @@
 
 <div class="container">
-    <div class="row">
-　　　　　　<div class="col-lg-1">
-<h1>商品詳細</h1>
 
-<table class="table table-hover">
-        <thead>
+    
+　　　　　　
 
+  <h1>商品詳細</h1>
 
-			  　<tr>
-            <th>ジャケ写</th>
-            <th>CDシングル</th>
-            <th>アーティスト</th>
-            <th>タイトル</th>
-            <th>レーベル</th>
-            <th>ジャンル</th>
-            <th>在庫</th>
-            <th>ステータス</th>
-            <th>価格</th>
-          </tr>
-          <th></th>
-
-      　</thead> 
-
-
+<<<<<<< HEAD
  　            <td>
                 <% if  @products.image %>
                   <%= attachment_image_tag @products, :image, :fill, 30, 30, format: 'jpeg' %>
@@ -57,6 +40,48 @@
             </td>
 
 </table>
+=======
+  <table class="table table-hover">
+    <thead>
+	    <tr>
+        <th>ジャケ写</th>
+        <th>CDシングル</th>
+        <th>アーティスト</th>
+        <th>タイトル</th>
+        <th>レーベル</th>
+        <th>ジャンル</th>
+        <th>在庫</th>
+        <th>ステータス</th>
+        <th>価格</th>
+      </tr>
+    </thead> 
+    <tbody>
+      <tr>
+        <td>
+          <% if  @products.image %>
+            <%= attachment_image_tag @products, :image, :fill, 30, 30, format: 'jpeg' %>
+          <% end %>
+        </td>
+        <td><%= @products.single_album_flag %></td>
+        <td>
+          <% @products.artists.each do |f| %>
+            <%= f.name %><br>
+          <% end %>
+        </td>
+        <td><%= @products.title %></td>
+        <td><%= @products.label.name %></td>
+        <td>
+          <% @products.genres.each do |f| %>
+            <%= f.name %><br>
+          <% end %>
+        </td>        
+        <td><%= @products.amount %></td>
+        <td><%= @products.product_status_id %></td>
+        <td><%= number_to_currency(@products.tax_include_price, unit: "¥", precision: 0) %></td>
+      </tr>
+    </tbody>        
+  </table>
+>>>>>>> 02849d6670bf9fc4a2e1025acc4b96fe973552e4
 
 
 <table class="table table-hover">
