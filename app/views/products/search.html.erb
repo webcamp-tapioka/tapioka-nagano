@@ -26,10 +26,9 @@
                   <p> <%= link_to 'Details',product_path(product.id) %></p>
                 </div>
 
-
-             <div id="likes_partial_<%= product.id %>"><%= render partial: 'public/likes/like',locals: {products: product} %>
-              </div>
-            </div>
+                 <div id="likes_partial_<%= product.id %>"><%= render partial: 'public/likes/like',locals: {products: product} %>
+                  </div>
+                </div>
           <% end %>
       <%= paginate @products_all %>
   </div>
