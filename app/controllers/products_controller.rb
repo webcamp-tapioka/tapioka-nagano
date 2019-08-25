@@ -6,7 +6,7 @@ class ProductsController < ApplicationController
   def show 
    	  @products = Product.find(params[:id])
       @review = Review.new
-      @reviews = Review.where(product_id: params[:id])
+      @reviews = Review.where(product_id: params[:id]).order(created_at: "DESC")
       if current_user.present?
       @new_cart_item = current_user.cart_items.new
       @new_cart_item.product_id = @products.id

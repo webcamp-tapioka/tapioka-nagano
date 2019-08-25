@@ -34,8 +34,6 @@
                 <% @products.artists.each do |f| %>
                 <td><%= f.name  %></td>
                 <% end %>
-
-              
                 <td><%= @products.title %></td>
 
                 <td><%= @products.label.name %></td>
@@ -116,10 +114,10 @@
   <div class="first-review-name">
     <% if @reviews.any? %>
       <span class="glyphicon glyphicon-user"></span>
-      <%= @reviews.last.user.first_name + @reviews.last.user.last_name %>
+      <%= @reviews.first.user.first_name + @reviews.first.user.last_name %>
   </div>
   <div class="first-review-review">
-    <%= @reviews.last.review %>
+    <%= @reviews.first.review %>
   </div>
     <% if @reviews.any? && current_user.id == @reviews.last.user_id %>
       <span class="review">
