@@ -20,11 +20,6 @@ class Admin::ProductsController < ApplicationController
 		@genre_product = @product.genre_products.build
 	end
 
-	def new
-	    @product = Product.new
-			@product.artist_products.build
-			@product.genre_products.build
-  	end
 
 	def create
 		@product = Product.new(product_params)
@@ -36,6 +31,7 @@ class Admin::ProductsController < ApplicationController
 		Product.find(params[:id]).destroy
 		redirect_to admin_products_path, notice: "succsess!"
 	end
+
 
 	
     
