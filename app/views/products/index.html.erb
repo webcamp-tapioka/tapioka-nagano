@@ -39,18 +39,15 @@
                   </td>
               <% end %>
 
-                <td><%= link_to  product_path(product.id) do %>
+                <td>
+                <div data-turbolinks="false"><%= link_to  product_path(product.id) do %>
                 
-                <%= product.title %></td>
-                <%end%>
+                <%= product.title %>                <%end%></div></td>
 
-                <td><%= product.single_album_flag %>
+                <td><%= product.single_album_flag %></td>
+                
+                
                 <% product.artists.each do |f| %>
-                <%= f.name  %></td>
-                <% end %>
-
-                <td><%= product.artist_products.name %></td>
-                <% product.artist_products.each do |f| %>
                 <td><%= f.name  %></td>
                 <% end %>
 
@@ -59,7 +56,7 @@
                 <td><%= product.amount %></td>
                 <td><%= product.product_status_id %></td>
                
-               <td><%= link_to '商品詳細',product_path(product.id) %></td>
+               <td><div data-turbolinks="false"><%= link_to '商品詳細',product_path(product.id) %></div></td>
 
             
 
