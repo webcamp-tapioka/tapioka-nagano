@@ -2,7 +2,7 @@ class Admin::ArtistsController < Admin::ApplicationController
 
 	def index
 		@new_artist = Artist.new
-		@artists = Artist.all
+		@artists = Artist.order("name")
 	end
 
 	def edit
