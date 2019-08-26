@@ -1,23 +1,19 @@
-<<<<<<< HEAD
-class Public::AddressesController < ApplicationController
-
-def create
-  current_user.addresses.create(address_params)
-  redirect_to(session[:referrer])
-  session.delete(:referrer)
-=======
 class Public::AddressesController < Public::ApplicationController
 
 def create
-  @address = current_user.addresses.new
+  @address = current_user.addresses.new(address_params)
   @addresses = current_user.addresses.all
+  if @address.delivery_address_flag === "メイン住所"
+    if current_user.addresses.find_by(delivery_address_flag: 0)
+      current_user.addresses.find_by(delivery_address_flag: 0).update(delivery_address_flag: 1)
+    end
+  end
   if @address.save(address_params)
   redirect_to(session[:referrer])
   session.delete(:referrer)
   else
   render 'index'
   end
->>>>>>> origin/master
 end
 
 
@@ -29,10 +25,11 @@ def edit
 end
 
 def update
-<<<<<<< HEAD
-  current_user.addresses.find(params[:id]).update(address_params)
-  redirect_to addresses_path
-=======
+  if address_params[:delivery_address_flag] === "メイン住所"
+    if current_user.addresses.find_by(delivery_address_flag: 0)
+      current_user.addresses.find_by(delivery_address_flag: 0).update(delivery_address_flag: 1)
+    end
+  end
   @address = current_user.addresses.find(params[:id])
   @addresses = current_user.addresses.all
   if @address.update(address_params)
@@ -40,7 +37,6 @@ def update
 else
   render 'index'
 end
->>>>>>> origin/master
 end
 
 
