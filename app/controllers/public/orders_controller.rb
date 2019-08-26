@@ -21,6 +21,7 @@ class Public::OrdersController < Public::ApplicationController
   end
 
   def create
+    ActiveRecord::Base.transaction do
     if new_order = current_user.orders.create(order_params)
       current_user.cart_items.all.each do |cart_item|
         new_order_product = new_order.order_products.build
@@ -60,6 +61,7 @@ class Public::OrdersController < Public::ApplicationController
     redirect_to users_thank_you_path
 
   end
+end
   
   
 

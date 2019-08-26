@@ -10,8 +10,10 @@
     <% end %>
 
           <% @products_all.each do |product| %>
+          <div class = "productbox">
                 <% if  product.image %>
                   <p> <div class = "productbox"><%= attachment_image_tag product, :image, :fill, 140, 140, format: 'jpeg' %></p>
+
 
           <% end %>
                   <p><%= product.title %></p>
@@ -33,3 +35,5 @@
           <% end %>
       <%= paginate @products_all %>
   </div>
+</div>
+</div>
