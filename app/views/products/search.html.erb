@@ -9,6 +9,8 @@
             <%= form_tag(products_search_path,:method => 'get') do %>
               <%= text_field_tag :search %>
               <%= submit_tag 'Search', :name => nil %>
+             <% end %>
+
       <tbody>
 
         <thead>
@@ -50,7 +52,6 @@
                     </td>
                     <td></td>
                   </tr>
-          <% end %>
         </tbody>
       </table>
 </div>
