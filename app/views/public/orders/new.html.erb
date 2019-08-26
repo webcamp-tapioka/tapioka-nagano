@@ -18,7 +18,7 @@
       
         <div class="row">
           <div class="col-md-6">
-          <% if current_user.addresses.where(id: true).any? %>
+          <% if current_user.addresses.any? %>
             <p>お届け住所を選択してください</p>
             <%= form_tag(new_order_path, method: 'get') do %>
             　<% @addresses.each do |address| %>
@@ -48,7 +48,7 @@
 
         <div class="col-md-6 go_to_new_address">
           <%= link_to(addresses_path) do %>
-            <% if current_user.addresses.where(id: true).any? %>
+            <% if current_user.addresses.any? %>
               <p>別の住所を使う</p>
             <% else %>
               <p class="text-right">住所登録画面へ</p>
