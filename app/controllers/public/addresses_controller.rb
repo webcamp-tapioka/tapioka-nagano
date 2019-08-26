@@ -1,9 +1,9 @@
 class Public::AddressesController < Public::ApplicationController
 
 def create
-  @address = current_user.addresses.new
+  @address = current_user.addresses.new(address_params)
   @addresses = current_user.addresses.all
-  if @address.save(address_params)
+  if @address.save
   redirect_to(session[:referrer])
   session.delete(:referrer)
   else
