@@ -1,8 +1,4 @@
-<<<<<<< HEAD
-class Admin::GenresController < ApplicationController
-=======
 class Admin::GenresController < Admin::ApplicationController
->>>>>>> origin/master
 def index
 		@new_genre = Genre.new
 		@genres = Genre.all
