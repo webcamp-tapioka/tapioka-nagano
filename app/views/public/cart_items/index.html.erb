@@ -1,6 +1,6 @@
 <div class="container-fluid">
   <div class="cart_items_index">
-	  <div class="col-md-8 col-md-offset-2">
+	  <div class="col-md-10">
 
       <div class="notice row">
 				<% if flash[:notice] %>
@@ -9,7 +9,7 @@
       </div>
       <p class="cart_items_total_price">カート内 合計金額（税込)  <%= number_to_currency(current_user.total_price, unit: "¥", precision: 0) %></p>
       <div class="row">
-        <div class="col-md-8 col-md-offset-2"> 
+        <div class="col-md-10"> 
 					<table class="table row">
 						<thead>
 							<tr>
