@@ -32,4 +32,4 @@
  <%end%>
  <%= link_to "詳細に戻る", admin_user_path(@user) %>
 
- <%= link_to "退会させる", user_path(@user), method: :delete, data: {confirm: "本当に削除しますか？"} %>
+ <%= link_to "退会させる", admin_user_path(@user), method: :delete, data: {confirm: "本当に削除しますか？"} %>
