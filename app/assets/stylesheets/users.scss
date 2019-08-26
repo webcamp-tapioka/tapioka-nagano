@@ -4,3 +4,12 @@
   margin-right: auto;
   margin-left: auto;
 }
+.profile-box{
+	width: 300px;
+	border-collapse: collapse;
+	table-layout: 500px;
+}
+.profile-box th,td {
+	border: 1px solid;
+	padding: 5px 10px;
+}
