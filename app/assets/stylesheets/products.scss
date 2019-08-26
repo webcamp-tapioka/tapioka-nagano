@@ -54,9 +54,13 @@
   background-size:cover;
 }
 
+.image{
+  text-align: center;
+}
+
 .productbox {
   width: 23%;
-  height: 400px;
+  height: 500px;
   font-size:20px;
   float: left;
   list-style: none;
@@ -64,7 +68,7 @@
   margin: 5px;
   padding: 5px;
   color: white ;
-  background-color: #d5aaff ;
+  background-color: #DDA0DD ;
   font-family: Comic Sans MS ;
   text-align: center;
   box-sizing: border-box;
