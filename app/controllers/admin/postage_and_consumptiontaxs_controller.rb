@@ -1,8 +1,16 @@
-class Admin::PostageAndConsumptiontaxsController < ApplicationController
+class Admin::PostageAndConsumptiontaxsController < Admin::ApplicationController
+
+def edit
+	@postage_and_consumptiontaxes = PostageAndConsumptiontax.find(1)
+end
+
 def update
     @postage_and_consumptiontaxes = PostageAndConsumptiontax.find(1)
-	@postage_and_consumptiontaxes.update(postage_and_consumptiontaxes_params)
-	redirect_to edit_admin_admins_path
+	if @postage_and_consumptiontaxes.update(postage_and_consumptiontaxes_params)
+	   redirect_to edit_admin_admins_path
+    else
+        render 'edit'
+    end
 end
 
 private

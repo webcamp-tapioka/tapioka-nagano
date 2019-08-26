@@ -1,4 +1,4 @@
-class Admin::ArtistsController < ApplicationController
+class Admin::ArtistsController < Admin::ApplicationController
 
 	def index
 		@new_artist = Artist.new

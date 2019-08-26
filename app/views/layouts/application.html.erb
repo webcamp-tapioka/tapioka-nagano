@@ -39,46 +39,39 @@
                 <%= link_to "ログアウト", destroy_user_session_path, method: :delete, class:"glyphicon glyphicon-log-out" %>
               </li>
 
-              　　
-
-
         <% elsif admin_signed_in?  %>
-             
-
-
-        　<li>
-        　　　　<%= link_to "レーベル", admin_labels_path,class:"　　　glyphicon glyphicon-tags" %>
-          </li>
-
-
-          <li>
-        　　　　<%= link_to "アーティスト", admin_artists_path,class:"　　　glyphicon glyphicon-font" %>
+         　<li>
+        　　　　<%= link_to "レーベル", admin_labels_path,class:"glyphicon glyphicon-tags" %>
           </li>
 
           <li>
-        　　　　<%= link_to "ジャンル", admin_genres_path,class:"　　　glyphicon glyphicon-record" %>
+        　　　　<%= link_to "アーティスト", admin_artists_path,class:"glyphicon glyphicon-font" %>
           </li>
 
           <li>
-        　　　　<%= link_to "商品一覧", admin_products_path,class:"　　　glyphicon glyphicon-list-alt" %>
+        　　　　<%= link_to "ジャンル", admin_genres_path,class:"glyphicon glyphicon-record" %>
           </li>
 
           <li>
-        　　　　<%= link_to "ユーザ一覧", admin_users_path,class:"　　　glyphicon glyphicon-user" %>
+        　　　　<%= link_to "商品一覧", admin_products_path,class:"glyphicon glyphicon-list-alt" %>
           </li>
 
           <li>
-        　　　　<%= link_to "受注履歴一覧", admin_orders_path,class:"　　　glyphicon glyphicon-book" %>
+        　　　　<%= link_to "ユーザ一覧", admin_users_path,class:"glyphicon glyphicon-user" %>
+          </li>
+
+          <li>
+        　　　　<%= link_to "受注履歴一覧", admin_orders_path,class:"glyphicon glyphicon-book" %>
           </li>
 
           <li>
 
-        　　　　<%= link_to "未対応履歴", admin_root_path,class:"　　　glyphicon glyphicon-home" %>
+        　　　　<%= link_to "未対応履歴", admin_root_path,class:"glyphicon glyphicon-home" %>
 
           </li>
 
           <li>
-        　　　　<%= link_to "ログアウト", destroy_admin_session_path, method: :delete ,class:"　　　glyphicon glyphicon-log-out" %>
+        　　　　<%= link_to "ログアウト", destroy_admin_session_path, method: :delete ,class:"glyphicon glyphicon-log-out" %>
           </li>
 
               　　<%= form_tag(products_search_path,:method => 'get') do %>
@@ -107,28 +100,12 @@
                 <%= text_field_tag :search %>
                 <%= submit_tag 'Search', :name => nil %>
             　　<% end %>
-
-
-
         <% end %>
-
-
-
-
       </ul>
     </nav>
   </div>
 </header>
-
-
-
-
     <%= yield %>
-        <% if session[:user_id] %>
-    <li>
-    現在ログインしているユーザーのid: <%= session[:user_id] %>
-   </li>
-    <% end %>
 
   </body>
 </html>

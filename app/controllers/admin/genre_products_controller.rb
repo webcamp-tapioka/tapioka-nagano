@@ -1,4 +1,4 @@
-class Admin::GenreProductsController < ApplicationController
+class Admin::GenreProductsController < Admin::ApplicationController
 
   def create
     GenreProduct.create(genre_product_params)

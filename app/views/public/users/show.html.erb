@@ -1,19 +1,27 @@
 <div class="container">
 		<div class="row">
-　　　　　　<div class="col-lg-1">
-<h3>プロフィール</h3>
+　　　　　　<div class="col-lg-9">
+<h3><span class="glyphicon glyphicon-user">
+プロフィール</span>
+</h3>
 
 <table border="1">
 	<tr>
-		<td>オナマエ</td>
+		<td>
+		<span class="glyphicon glyphicon-user">お名前</span>
+		</td>
 		<td><%= current_user.first_name_kana + current_user.last_name_kana %></td>
 	</tr>
 	<tr>
-		<td>お名前</td>
+		<td>
+		<span class="glyphicon glyphicon-user">お名前</span>
+		</td>
 		<td><%= current_user.first_name + current_user.last_name %></td>
 	</tr>
 	<tr>
-		<td>ご住所</td>
+		<td>
+			<span class="glyphicon glyphicon-home" aria-hidden="true">ご住所
+		</td>
 		<td>
 		<% if @addresses != nil && @addresses.delivery_address != '' %>
 			<%= @addresses.delivery_postal_code %>
@@ -25,7 +33,9 @@
 	</tr>
 	<tr>
 
-		<td>ご住所</td>
+		<td>
+		<span class="glyphicon glyphicon-home" aria-hidden="true">ご住所</span>
+		</td>
 		<td>
 			<% if @sub_addresses.first != nil %>
 			<% @sub_addresses.each do |f| %>
@@ -37,15 +47,21 @@
 			<%end%>
 		</td>
 		<tr>
-		<td>お電話番号</td>
+		<td>
+		<span class="glyphicon glyphicon-phone-alt" aria-hidden="true">お電話番号</span>
+		</td>
 		<td><%= current_user.phone_number %></td>
 	</tr>
 	<tr>
-		<td>メールアドレス</td>
+		<td>
+		<span class="glyphicon glyphicon-envelope" aria-hidden="true">メールアドレス</span>
+		</td>
 		<td><%= current_user.email %></td>
 	</tr>
 	<tr>
-		<td>購入履歴</td>
+		<td>
+		<span class="glyphicon glyphicon-barcode" aria-hidden="true">購入履歴</span>
+		</td>
 		<td><%= link_to '購入履歴へ', orders_path(current_user) %></td>
 	</tr>
 </table>
