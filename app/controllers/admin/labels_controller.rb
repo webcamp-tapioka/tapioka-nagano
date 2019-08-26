@@ -2,7 +2,7 @@ class Admin::LabelsController < Admin::ApplicationController
 
 	def index
 		@new_label = Label.new
-		@labels = Label.all
+		@labels = Label.order("name")
 	end
 
 	def edit

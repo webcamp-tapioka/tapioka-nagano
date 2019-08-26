@@ -7,9 +7,9 @@ end
 def update
     @postage_and_consumptiontaxes = PostageAndConsumptiontax.find(1)
 	if @postage_and_consumptiontaxes.update(postage_and_consumptiontaxes_params)
-	   redirect_to edit_admin_admins_path
+       redirect_to edit_admin_admins_path
     else
-        render 'edit'
+      render 'edit'
     end
 end
 
