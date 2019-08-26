@@ -2,7 +2,7 @@ class Address < ApplicationRecord
 	  validates :delivery_postal_code,presence: true,length: {is: 7}
 	  validates :delivery_address,presence: true
 	  validates :delivery_name,presence: true
-	  validates :delivery_name_kana,presence: true
+	  validates :delivery_name_kana,presence: true,format: {with: /\A[ァ-ヶー－]+\z/, message: 'は全角カタカナで入力してください'}
 
 	belongs_to :user
 
