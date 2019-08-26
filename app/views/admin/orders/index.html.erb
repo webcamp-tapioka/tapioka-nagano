@@ -14,7 +14,6 @@
       <tr>
         <th></th>
         <th>タイトル</th>
-        <th>アーティスト名</th>
         <th>価格（税別）</th>
         <th>購入枚数</th>
       </tr>
@@ -26,7 +25,6 @@
               :image, format: 'jpg', fallback: 'no_image.jpg', size: '30x30'  %>
           </td>
           <td><%= order_product.product.title %></td>
-          <td><%= order_product.product.id %></td>
           <td><%= number_to_currency(order_product.price, precision: 0) %></td>
           <td><%= order_product.order_amount %></td> 
         </tr>
@@ -35,6 +33,9 @@
   </table>
 
   <%= "お客様氏名 #{order.user.first_name} #{order.user.last_name} 様" %><br>
+  <% if order.user.deleted_at %>
+  <%= "このユーザーは退会済みです" %>
+  <% end %>
 
    <%= "ステータス #{order.order_status_id}" %><br>
     <%= "購入枚数 #{order.order_products.sum(:order_amount)}" %><br>
