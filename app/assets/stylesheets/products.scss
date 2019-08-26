@@ -18,14 +18,13 @@
 	text-align: right;
 	padding-left: 150px;
 }
-body {
-	padding-top: 50px;
-}
+
 .container {
-  padding-right: 15px;
-  padding-left: 15px;
+  padding-right: 0px;
+  padding-left: 0px;
   margin-right: auto;
   margin-left: auto;
+  
 }
 
 .first-review-name {
@@ -52,8 +51,9 @@ body {
 
 .top {
   background-image: url(nagano2.jpg);
-  height: 800px;
+  height: 1000px;
   background-size:cover;
+}
 
 .productbox {
   width: 22%;
@@ -67,3 +67,4 @@ body {
   text-align: center;
   box-sizing: border-box;
   border-radius: 240px 15px 100px 15px / 15px 200px 15px 185px;
+}

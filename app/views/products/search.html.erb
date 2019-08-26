@@ -1,3 +1,4 @@
+
 <div class="container">
     <div class="row">
 　　　　　　<div class="col-lg-1">
@@ -40,8 +41,7 @@
                 <%= attachment_image_tag product, :image, :fill, 30, 30, format: 'jpeg' %>
               <% end %></td>
 
-                <td><%= link_to  product_path(product.id) do %>
-                <%= product.title %></td>
+                <td><%= product.title %></td>
 
               
                 <% product.artists.each do |f| %>
@@ -65,6 +65,4 @@
   </div>
 
 </div>
-
 </div>
-

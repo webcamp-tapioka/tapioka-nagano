@@ -39,7 +39,8 @@
 	padding-left: 150px;
 }
 body {
-	padding-top: 50px;
+  padding-top: 0px;
+
 }
 .alert{
 	color: green;
@@ -71,6 +72,7 @@ nav ul li a:hover{
 
  .navbar{
  background-color:#660099;
+ margin-bottom: 0;
  }
 
  .navbar-header{

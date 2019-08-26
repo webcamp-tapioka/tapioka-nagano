@@ -1,10 +1,9 @@
-
+<div class="top">
 <div class="container">
   <div class = "row">
     <div class="col-lg-12">
 
       <hi>CD買え〜るの商品一覧</hi>
-    <p>検索</p>
     <%= form_tag(products_search_path,:method => 'get') do %>
       <%= text_field_tag :search %>
       <%= submit_tag 'Search', :name => nil %>
@@ -31,4 +30,5 @@
             </div>
           <% end %>
       <%= paginate @products_all %>
+  </div>
   </div>
