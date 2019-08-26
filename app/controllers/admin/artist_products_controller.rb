@@ -1,8 +1,5 @@
-<<<<<<< HEAD
-class Admin::ArtistProductsController < ApplicationController
-=======
+
 class Admin::ArtistProductsController < Admin::ApplicationController
->>>>>>> origin/master
 
   def create
     ArtistProduct.create(artist_product_params)
