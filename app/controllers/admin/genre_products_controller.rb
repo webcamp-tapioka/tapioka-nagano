@@ -1,8 +1,4 @@
-<<<<<<< HEAD
-class Admin::GenreProductsController < ApplicationController
-=======
 class Admin::GenreProductsController < Admin::ApplicationController
->>>>>>> origin/master
 
   def create
     GenreProduct.create(genre_product_params)
