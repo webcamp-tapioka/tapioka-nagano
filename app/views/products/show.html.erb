@@ -23,7 +23,7 @@
       <tr>
         <td>
           <% if  @products.image %>
-            <%= attachment_image_tag @products, :image, :fill, 30, 30, format: 'jpeg' %>
+            <%= attachment_image_tag @products, :image, :fill, 100, 100, format: 'jpeg' %>
           <% end %>
         </td>
         <td><%= @products.single_album_flag %></td>
