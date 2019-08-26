@@ -1,15 +1,6 @@
 Rails.application.routes.draw do
-  get 'likes/create'
-  get 'likes/destroy'
   devise_for :users
   devise_for :admins
-
-
-  get '/' => 'products#top', as:"root"
-
-  root to: 'products#top'
-
-
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 
   namespace :admin do
@@ -28,13 +19,9 @@ Rails.application.routes.draw do
     resources :songs
   end
   resources :users
-  resource :postage_and_consumptiontaxs,only: %i(edit update)
-
- 
+  resource :postage_and_consumptiontaxs,only: %i(show edit update)
   end
- 
-  get'/products/search' => 'products#search'
- 
+
  scope module:  :public do
   get'/users/leave' => 'users#leave'
   get'/users/thank_you' => 'users#thank_you'
@@ -46,7 +33,7 @@ Rails.application.routes.draw do
   resources :products,only: %i() do
   resources :cart_items,only: %i(create)
   resource :likes,only: %i(create destroy)
-  resource :reviews,only: %i(create)
+  resource :reviews,only: %i(show create)
   resources :reviews,only: %i(destroy)
 end
 end
