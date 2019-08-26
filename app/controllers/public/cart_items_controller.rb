@@ -1,7 +1,7 @@
 class Public::CartItemsController < ApplicationController
 
 	def create
-		new_cart_item = current_user.cart_items.create(product_id: params[:product_id], 
+		new_cart_item = current_user.cart_items.create!(product_id: params[:product_id], 
 		product_amount: cart_item_params[:product_amount])
 		redirect_to cart_items_path
 	end
