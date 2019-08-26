@@ -1,4 +1,4 @@
-class Public::OrdersController < ApplicationController
+class Public::OrdersController < Public::ApplicationController
   before_action :require_cart_items, except: :index
   before_action :require_product, only: :create
   

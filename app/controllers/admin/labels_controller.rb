@@ -1,4 +1,4 @@
-class Admin::LabelsController < ApplicationController
+class Admin::LabelsController < Admin::ApplicationController
 
 	def index
 		@new_label = Label.new

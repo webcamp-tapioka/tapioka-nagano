@@ -1,4 +1,4 @@
-class Admin::PostageAndConsumptiontaxsController < ApplicationController
+class Admin::PostageAndConsumptiontaxsController < Admin::ApplicationController
 
 def edit
 	@postage_and_consumptiontaxes = PostageAndConsumptiontax.find(1)

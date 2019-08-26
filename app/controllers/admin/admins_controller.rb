@@ -1,4 +1,4 @@
-class Admin::AdminsController < ApplicationController
+class Admin::AdminsController < Admin::ApplicationController
 
 	def show
 		@orders = Order.where.not(order_status_id: 2)
