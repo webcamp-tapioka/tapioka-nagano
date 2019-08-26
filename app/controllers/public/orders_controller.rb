@@ -44,8 +44,6 @@ class Public::OrdersController < Public::ApplicationController
 
   end
 end
-  
-  
 
   private
 
