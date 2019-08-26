@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 class Admin::LabelsController < ApplicationController
+=======
+class Admin::LabelsController < Admin::ApplicationController
+>>>>>>> origin/master
 
 	def index
 		@new_label = Label.new

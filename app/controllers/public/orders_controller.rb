@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 class Public::OrdersController < ApplicationController
+=======
+class Public::OrdersController < Public::ApplicationController
+>>>>>>> origin/master
   before_action :require_cart_items, except: :index
   before_action :require_product, only: :create
   
@@ -23,21 +27,36 @@ class Public::OrdersController < ApplicationController
         new_order_product.product_id = cart_item.product_id
         new_order_product.order_amount = cart_item.product_amount
         new_order_product.price = Product.find(cart_item.product_id).price
+<<<<<<< HEAD
         new_order_product.save
+=======
+        new_order_product.save!
+>>>>>>> origin/master
       end
     end
     current_user.cart_items.all.each do |cart_item|
       product = Product.find(cart_item.product_id)
 			n = product.amount - cart_item.product_amount
 			if n > 0
+<<<<<<< HEAD
 				product.update(amount: n)
 			elsif n === 0
 				product.update(amount: n, product_status_id: 1)
+=======
+				product.update!(amount: n)
+			elsif n === 0
+				product.update!(amount: n, product_status_id: 1)
+>>>>>>> origin/master
 
 			end
 		end
 
+<<<<<<< HEAD
     current_user.cart_items.destroy_all
+=======
+    # current_user.cart_items.destroy_all
+    current_user.cart_items.each(&:destroy!)
+>>>>>>> origin/master
     redirect_to users_thank_you_path
 
   end
@@ -55,7 +74,11 @@ class Public::OrdersController < ApplicationController
   def require_product
     current_user.cart_items.all.each do |cart_item|
       if Product.find(cart_item.product_id).amount < cart_item.product_amount or Product.find(cart_item.product_id).product_status_id_before_type_cast == 1
+<<<<<<< HEAD
         redirect_to cart_items_path notice: "在庫が足りないか、商品が販売停止中です" and return
+=======
+        redirect_to cart_items_path, notice: "在庫が足りないか、商品が販売停止中です" and return
+>>>>>>> origin/master
       end
     end
   end

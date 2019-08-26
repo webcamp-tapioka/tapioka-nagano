@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 class Admin::ArtistsController < ApplicationController
+=======
+class Admin::ArtistsController < Admin::ApplicationController
+>>>>>>> origin/master
 
 	def index
 		@new_artist = Artist.new

@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 class Admin::OrdersController < ApplicationController
+=======
+class Admin::OrdersController < Admin::ApplicationController
+>>>>>>> origin/master
 
   def index
     @orders = Order.all

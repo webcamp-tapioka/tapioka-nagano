@@ -11,13 +11,21 @@
 
           <% @products_all.each do |product| %>
                 <% if  product.image %>
+<<<<<<< HEAD
                   <p> <div class = "productbox"><%= attachment_image_tag product, :image, :fill, 140, 140, format: 'jpeg' %></p>
+=======
+                  <p> <div class = "productbox"><%= attachment_image_tag product, :image, :fill, 150, 150, format: 'jpeg' %></p>
+>>>>>>> origin/master
           <% end %>
                   <p><%= product.title %></p>
           <% product.artists.each do |f| %>
                   <p><%= f.name %><br></p>
           <% end %>
+<<<<<<< HEAD
               <%= number_to_currency(product.tax_include_price, unit: "¥", precision: 0) %>(税込)
+=======
+              <%= number_to_currency(product.tax_include_price, unit: "¥", precision: 0) %>
+>>>>>>> origin/master
                   <p><%= product.amount %>枚</p>
           <%= product.product_status_id %>
                 <div data-turbolinks="false">

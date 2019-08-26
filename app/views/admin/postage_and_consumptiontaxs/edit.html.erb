@@ -1,0 +1,20 @@
+<div class="container">
+  <div class="row">
+    <div class="col-lg-12">
+    	<div class="errors_messages">
+  <%= errors_display(@postage_and_consumptiontaxes) %>
+</div>
+<h2>送料、消費税変更ページ</h2>
+
+<%= form_for(@postage_and_consumptiontaxes, url: admin_postage_and_consumptiontaxs_path) do |f| %>
+
+<p>
+	<%= f.label :postage, "送料" %>
+    <%= f.text_field :postage %>
+</p>
+<p>
+	<%= f.label :consumption_tax, "消費税" %>
+	<%= f.text_field :consumption_tax %> ％
+</p>
+<%= f.submit "更新" %>
+<%end%>

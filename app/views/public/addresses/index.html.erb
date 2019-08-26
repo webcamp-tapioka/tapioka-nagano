@@ -1,6 +1,7 @@
 
 <div class="container">
     <div class="row">
+<<<<<<< HEAD
 　　　　　　<div class="col-lg-1">
 <h1>住所登録・編集画面</h1>
 
@@ -10,6 +11,21 @@
     <% unless @address.id %>
       <p>新規住所登録フォーム</p>
       <% else %>
+=======
+　　　　　　<div class="col-md-10 col-ms-offset-1">
+　　　　　　
+<div class="errors_messages">
+  <%= errors_display(@address) %>
+</div>
+<h1>住所登録・編集画面</h1>
+
+<section>
+  <%= form_with(model: @address, local: true) do |f| %>
+
+    <% unless @address.id %>
+      <p>新規住所登録フォーム</p>
+    <% else %>
+>>>>>>> origin/master
       <p>住所編集フォーム</p>
     <% end %>
   
@@ -28,7 +44,11 @@
   <% end %>
 </div>
 
+<<<<<<< HEAD
 <% if current_user.addresses.where(id: true) %>
+=======
+<% if @addresses.any? %>
+>>>>>>> origin/master
 
 <table class="table table-hover">
   <thead>
@@ -47,12 +67,28 @@
       <tr>
         <td><%= address.delivery_name %></td>
         <td><%= address.delivery_name_kana %></td>
+<<<<<<< HEAD
         <td><%= address.delivery_postal_code %></td>
         <td><%= address.delivery_address %></td>
         <td><%= address.delivery_address_flag %></td>
         <td><%= link_to "編集", edit_address_path(address) %></td>
 
         <td><%= link_to"削除", address_path(address), method: "delete" %></td>
+=======
+        <td><%= "〒 #{address.delivery_postal_code}" %></td>
+        <td><%= address.delivery_address %></td>
+        <td><%= address.delivery_address_flag %></td>
+        <td>
+          <%= link_to edit_address_path(address) do %>
+            <button class="btn btn-info">編集</button>
+          <% end %>
+        </td>
+        <td>
+          <%= link_to(address_path(address), method: :delete) do %>
+						<span class="glyphicon glyphicon-trash" aria-hidden="true"></span>						
+          <% end %>
+        </td>
+>>>>>>> origin/master
       </tr>
     <% end %>
   </tbody>
@@ -60,7 +96,13 @@
 
 <% end %>
 
+<<<<<<< HEAD
 
+=======
+</div>
+</div>
+</div>
+>>>>>>> origin/master
 
 
 <script>

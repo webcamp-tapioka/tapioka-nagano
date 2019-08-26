@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 class Public::UsersController < ApplicationController
+=======
+class Public::UsersController < Public::ApplicationController
+>>>>>>> origin/master
 def show  
     @addresses = current_user.addresses.find_by(delivery_address_flag: 0)
     @sub_addresses = current_user.addresses.where(delivery_address_flag: 1)

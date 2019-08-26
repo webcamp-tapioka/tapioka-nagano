@@ -1,10 +1,17 @@
 
 <div class="container">
+<<<<<<< HEAD
+=======
+
+>>>>>>> origin/master
     
 　　　　　　
 
   <h1>商品詳細</h1>
+<<<<<<< HEAD
 
+=======
+>>>>>>> origin/master
   <table class="table table-hover">
     <thead>
 	    <tr>
@@ -46,7 +53,10 @@
     </tbody>        
   </table>
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> origin/master
 <table class="table table-hover">
     <thead>
       <tr>
@@ -102,10 +112,17 @@
   <div class="first-review-name">
     <% if @reviews.any? %>
       <span class="glyphicon glyphicon-user"></span>
+<<<<<<< HEAD
       <%= @reviews.last.user.first_name + @reviews.last.user.last_name %>
   </div>
   <div class="first-review-review">
     <%= @reviews.last.review %>
+=======
+      <%= @reviews.first.user.first_name + @reviews.first.user.last_name %>
+  </div>
+  <div class="first-review-review">
+    <%= @reviews.first.review %>
+>>>>>>> origin/master
   </div>
     <% if @reviews.any? && current_user.id == @reviews.last.user_id %>
       <span class="review">
@@ -133,6 +150,12 @@ _______________________
 <%end%>
 <%end%>
 </div>
+<<<<<<< HEAD
+=======
+<div class="errors_messages">
+  <%= errors_display(@review) %>
+</div>
+>>>>>>> origin/master
 <button class="review-button">レビュー投稿</button>
               <div class="review-content" style="display:none">
               	<%= form_for [@products,@review] do |f| %>

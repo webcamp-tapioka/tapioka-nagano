@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 class Admin::UsersController < ApplicationController
+=======
+class Admin::UsersController < Admin::ApplicationController
+>>>>>>> origin/master
 
 def index
     @users = User.all

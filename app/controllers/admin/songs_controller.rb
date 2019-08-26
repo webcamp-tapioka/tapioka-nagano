@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 class Admin::SongsController < ApplicationController
+=======
+class Admin::SongsController < Admin::ApplicationController
+>>>>>>> origin/master
   
   def create
     songs_params[:song].each do |song|
