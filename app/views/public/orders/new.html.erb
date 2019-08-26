@@ -1,58 +1,104 @@
-<div class="container">
-<h1>購入確認ページ</h1>
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-md-8 col-md-offset-2">
 
-<%= "#{current_user.first_name} #{current_user.last_name}様" %>
-
-<% if current_user.addresses %>
-  <p>送付先のご住所を選択してください</p>
-  <%= form_tag(new_order_path, method: 'get') do %>
-  　<% @addresses.each do |address| %>
-      <div class="radio_button_tag">
-        <%= radio_button_tag :to_create_order, address.id %>
-        <%= address.delivery_name %><br>
-        <%= address.delivery_postal_code %><br>
-        <%= address.delivery_address %><br>
+      <div class="row">
+        <div class="col-md-10 col-md-offset-1">
+          <h1>購入確認ページ</h1>
+        </div>
       </div>
-    <% end %>
-    <%= submit_tag "この住所を使う" %>
-  <% end %>
-<% end %>
-<%= link_to("住所登録画面へ", addresses_path) %>
 
-<table class="table table-striped table-bordered"">
-  <thead>
-	  <tr>
-		  <th>タイトル</th>
-		  <th>アーティスト</th>
-		  <th>値段</th>
-		  <th>個数</th>
-	  </tr>
-  </thead>
-  <tbody>
-		<% @cart_items.each do |item| %>
-		  <tr>
-			  <td><%= item.product.title %></td>
-			  <td><% item.product.artists.each do |artist| %>
-        <%= artist.name %><br>
-        <% end %>
-        </td>
-			  <td><%= item.product.price.to_i %>円</td>
-			  <td><%= item.product_amount %></td> 
-		  </tr>
-    <% end %>
-  </tbody>
-</table>
+      <div class="row">
+        <div class="text-right customer">
+          <%= "#{current_user.first_name} #{current_user.last_name}様" %>
+        </div>      
+      </div>
 
+      
+      
+        <div class="row">
+          <div class="col-md-6">
+          <% if current_user.addresses.where(id: true).any? %>
+            <p>お届け住所を選択してください</p>
+            <%= form_tag(new_order_path, method: 'get') do %>
+            　<% @addresses.each do |address| %>
+                <table class="table">
+                  <thead>
+                    <tr>
+                      <th></th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td>
+                      　<%= radio_button_tag :to_create_order, address.id %><br>
+                        <%= " 〒 #{address.delivery_postal_code}" %><br>
+                        <%= address.delivery_address %><br>
+                        <div class="delivery_name_kana"><%= address.delivery_name_kana %></div>
+                        <%= "#{address.delivery_name} 様" %>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              <% end %>
+              <button class="btn btn-info" type="submit">この住所を使う</button>
+            <% end %>
+            <% end %>
+          </div>
+
+        <div class="col-md-6 go_to_new_address">
+          <%= link_to(addresses_path) do %>
+            <% if current_user.addresses.where(id: true).any? %>
+              <p>別の住所を使う</p>
+            <% else %>
+              <p class="text-right">住所登録画面へ</p>
+            <% end %>
+          <% end %>
+        </div>
+      </div>
+      
+      <div class="row">
+        <div class="col-md-10 col-md-offset-1 order_table">
+          <table class="table table-striped table-condensed">
+            <thead>
+              <tr>
+                <th>タイトル</th>
+                <th>アーティスト</th>
+                <th>値段（税抜）</th>
+                <th>個数</th>
+              </tr>
+            </thead>
+            <tbody>
+              <% @cart_items.each do |item| %>
+                <tr>
+                  <td><%= item.product.title %></td>
+                  <td>
+                    <% item.product.artists.each do |artist| %>
+                      <%= artist.name %><br>
+                    <% end %>
+                  </td>
+                  <td><%= number_to_currency(item.product.price, unit: "¥", precision: 0) %></td>
+                  <td><%= item.product_amount %></td> 
+                </tr>
+              <% end %>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+
+      <div class="row">
+        <div class="col-md-10 col-md-offset-1">
 
 <% if @new_order.delivery_postal_code %>
   <p>送付先住所</p>
-  <%= "#{@new_order.delivery_postal_code}" %><br>
+  <%= "〒 #{@new_order.delivery_postal_code}" %><br>
   <%= @new_order.delivery_address %><br>
   <%= "フリガナ #{@new_order.delivery_name_kana}" %><br>
   <%= "送付先宛名 #{@new_order.delivery_name}" %><br>
 <% end %>
-<%= "送料 ¥#{@new_order.postage}" %><br>
-<%= "価格総計（税込） ¥#{@new_order.total_price}" %><br>
+<%= "送料 #{number_to_currency(@new_order.postage, unit: "¥", precision: 0)}" %><br>
+<%= "価格総計（税込） #{number_to_currency(@new_order.total_price, unit: "¥", precision: 0)}" %><br>
 <%= "消費税 #{@new_order.consumption_tax}%" %><br>
 
 <% if @new_order.delivery_postal_code %>
@@ -66,8 +112,13 @@
   <%= f.hidden_field :consumption_tax %><br>
   <%= f.label :payment_method, "支払い方法" %>
   <%= f.select :payment_method, Order.payment_methods.keys %><br>
-  <%= f.submit "購入を確定する",data: {confirm: "ほんとに買うよん"}%>
+  <%= f.submit "購入を確定する", data: {confirm: "このご注文でよろしいですか？"}%>
 <% end %>
 <% end %>
 
+</div>
+</div>
+
+</div>
+</div>
 </div>

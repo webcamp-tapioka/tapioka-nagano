@@ -1,3 +1,24 @@
 // Place all the styles related to the Public::orders controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+*{
+  font-size: 20px;
+}
+
+.customer{
+  font-size: 25px;
+  font-weight: bold;
+}
+
+.delivery_name_kana{
+  font-size: 10px;
+}
+
+.go_to_new_address{
+  padding: 50px;
+}
+
+.order_table{
+  padding: 50px;
+}
