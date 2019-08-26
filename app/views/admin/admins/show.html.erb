@@ -4,51 +4,45 @@
 
       <h1>未対応商品一覧</h1>
 
-     
-      <%=link_to "送料、消費税変更", edit_admin_postage_and_consumptiontaxs_path %><br>
-
+      <%=link_to "送料、消費税変更", edit_admin_postage_and_consumptiontaxs_path %>
 
       <% @orders.each do |order| %>
-     <div class="row not_shipped_order">
-     <div class="col-md-10 sol-md-offset-1">
-    
+        <div class="row not_shipped_order">
+          <div class="col-md-10 sol-md-offset-1">
+            <table class="table table-bordered">
+              <thead>
+                <tr>
+                  <th>タイトル</th>
+                </tr>
+              </thead>
+              <tbody>
 
+                <% order.order_products.each do |order_product| %>
+                  <tr>
+                    <td><%= order_product.product.title %> </td>
+                  </tr>
+                <% end %>
 
-        <table class="table table-bordered">
-          <thead>
-            <tr>
-              <th>タイトル</th>
-            </tr>
-          </thead>
-          <tbody>
-
-            <% order.order_products.each do |order_product| %>
-              <tr>
-                <td><%= order_product.product.title %> </td>
-              </tr>
-            <% end %>
-
-          </tbody>
-        </table>
-
-       
+              </tbody>
+            </table>
          
-        <p> 送付先名前 </p>
-        <%= "#{order.delivery_name} 様" %><br>
-        <p> 郵便番号 </p>
-        <%= "〒 #{order.delivery_postal_code}" %><br>
-        <%= "送付先住所 #{order.delivery_address}" %>
-        <%= form_for(order, url: admin_order_path(order), method: "patch") do |f| %>
-            <%= f.select :order_status_id, Order.order_status_ids.keys %>
-            <%= f.submit "更新" %>
-          <% end %>
-  
-
-        </div>
-        </div>
-
-
-        
+            <p> 送付先名前 </p>
+            <%= "#{order.delivery_name} 様" %><br>
+            <p> 郵便番号 </p>
+            <%= "〒 #{order.delivery_postal_code}" %><br>
+            <%= "送付先住所 #{order.delivery_address}" %>
+            <%= form_for(order, url: admin_order_path(order), method: "patch") do |f| %>
+              <%= f.select :order_status_id, Order.order_status_ids.keys %>
+              <%= f.submit "更新" %>
+            <% end %>
+             
+            <div class="text-right">
+              <%= link_to(admin_order_path(order)) do %>
+                <button class="btn btn-success">この受注履歴詳細へ</button>
+              <% end %>
+            </div>
+          </div>
+        </div>  
       <% end %>
 
     </div>
