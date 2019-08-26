@@ -1,6 +1,6 @@
 <div class="container">
     <div class="row">
-       <div class="col-lg-1">
+       <div class="col-lg-12">
 <h1>検索結果</h1>
 
 
@@ -17,7 +17,7 @@
           <% product.artists.each do |f| %>
                   <p><%= f.name %><br></p>
           <% end %>
-              <%= number_to_currency(product.tax_include_price, unit: "¥", precision: 0) %>(税込)
+              <%= number_to_currency(product.tax_include_price, precision: 0) %>(税込)
                   <p><%= product.amount %>枚</p>
           <%= product.product_status_id %>
                 <div data-turbolinks="false">

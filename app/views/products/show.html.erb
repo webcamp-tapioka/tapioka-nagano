@@ -1,77 +1,74 @@
 
 <div class="container">
-
-    
+   <div class = "row">
+    <div class="col-lg-12">
 　　　　　　
 
   <h1>商品詳細</h1>
+  <div class= "table">
   <table class="table table-hover">
-    <thead>
-	    <tr>
-        <th>ジャケ写</th>
-        <th>CDシングル</th>
-        <th>アーティスト</th>
-        <th>タイトル</th>
-        <th>レーベル</th>
-        <th>ジャンル</th>
-        <th>在庫</th>
-        <th>ステータス</th>
-        <th>価格</th>
-      </tr>
-    </thead> 
-    <tbody>
-      <tr>
-        <td>
-          <% if  @products.image %>
-            <%= attachment_image_tag @products, :image, :fill, 30, 30, format: 'jpeg' %>
+          <div class="image">
+            <% if  @products.image %>
+            <%= attachment_image_tag @products, :image, :fill, 200, 200, format: 'jpeg' %>
+          </div>
           <% end %>
-        </td>
+        <tr>
+        <td bgcolor="#99CC00">CDシングル</td>
         <td><%= @products.single_album_flag %></td>
-        <td>
-          <% @products.artists.each do |f| %>
-            <%= f.name %><br>
+        </tr>
+        <td bgcolor="#99CC00">アーティスト</td>
+          <td><% @products.artists.each do |f| %>
+            <%= f.name %><br></td>
           <% end %>
-        </td>
-        <td><%= @products.title %></td>
-        <td><%= @products.label.name %></td>
-        <td>
+        </tr>
+        <tr>
+         <td bgcolor="#99CC00">タイトル</td>
+         <td><%= @products.title %></td>
+        </tr>
+        <tr>
+          <td bgcolor="#99CC00">レーベル</td>
+          <td><%= @products.label.name %></td>
+         </tr>
+         <tr>
+          <td bgcolor="#99CC00">ジャンル</td>
+         <td>
           <% @products.genres.each do |f| %>
             <%= f.name %><br>
           <% end %>
-        </td>        
-        <td><%= @products.amount %></td>
-        <td><%= @products.product_status_id %></td>
-        <td><%= number_to_currency(@products.tax_include_price, unit: "¥", precision: 0) %></td>
+        </td>
       </tr>
-    </tbody>        
-  </table>
-
-<table class="table table-hover">
-    <thead>
       <tr>
-        <th>ディスク番号</th>
-        <th>曲順</th>
-        <th>曲名</th>
+        <td bgcolor="#99CC00">在庫</td>
+        <td><%= @products.amount %></td>
       </tr>
-    </thead>
-    <tbody>
-        <% @products.songs.each do |song| %>
-          <tr>
-              <td><%= song.disc_number %></td>
-              <td><%= song.track_number %></td>
-              <td><%=  "#{song.song}" %></td>
-          </tr>
+      <tr>
+        <td bgcolor="#99CC00">ステータス</td>
+        <td><%= @products.product_status_id %></td>
+      </tr>
+      <tr>
+        <td bgcolor="#99CC00">prace</td>
+        <td><%= number_to_currency(@products.tax_include_price, precision: 0) %></td>
+      </tr>
+    </table>
+  </div>
+
+  <div class= "table_2">
+    <table class="table table-hover">
+      <tr>
+        <td bgcolor="#99CC00">ディスク番号</td>
+        <td>1</td>
+      </tr>
+      <tr><% @products.songs.each do |song| %>
+        <td bgcolor="#99CC00">曲順</td>
+        <td><%= song.track_number %></td>
+      </tr>
+      <tr>
+        <td bgcolor="#99CC00">曲名</td>
+        <td><%=  "#{song.song}" %></td>
+      </tr>
         <% end %>
-    </tbody>
   </table>
-
-
-
-
-
-
-
-
+</div>
 
     <table class="table table-hover">
 
