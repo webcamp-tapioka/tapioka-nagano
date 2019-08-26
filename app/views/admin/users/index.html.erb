@@ -9,7 +9,9 @@
 		<th>ユーザー名　(漢字)</th>
 		<th>e-mail</th>
 		<th>電話番号</th>
+		
 		<th>編集</th>
+		<th></th>
 
 	</tr>
 		<% @users.each do |user| %>
@@ -19,4 +21,11 @@
 			<td> <%= user.email %> </td>
 			<td> <%= user.phone_number %> </td>
 			<td> <%= link_to "編集", edit_admin_user_path(user) %> </td>
-			<%end%>
+			<td>
+			<%if user.deleted_at %>
+			<%= "このユーザーは退会済みです" %>
+			<% end %>
+			</td>
+			
+		</tr>
+		<%end%>

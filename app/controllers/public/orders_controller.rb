@@ -34,7 +34,6 @@ class Public::OrdersController < Public::ApplicationController
 				product.update!(amount: n)
 			elsif n === 0
 				product.update!(amount: n, product_status_id: 1)
-
 			end
 		end
 
@@ -43,7 +42,7 @@ class Public::OrdersController < Public::ApplicationController
     redirect_to users_thank_you_path
 
   end
-
+end
   private
 
   def require_cart_items

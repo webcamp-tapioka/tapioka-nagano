@@ -4,7 +4,7 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
-	acts_as_paranoid without_default_scope: false
+	acts_as_paranoid without_default_scope: true
 
   has_many :addresses
   has_many :orders
