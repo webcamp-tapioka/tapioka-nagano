@@ -1,4 +1,4 @@
-class Public::ReviewsController < ApplicationController
+class Public::ReviewsController < Public::ApplicationController
 
 	def create
 		@products = Product.find(params[:product_id])

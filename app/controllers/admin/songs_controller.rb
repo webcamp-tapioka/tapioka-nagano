@@ -1,4 +1,4 @@
-class Admin::SongsController < ApplicationController
+class Admin::SongsController < Admin::ApplicationController
   
   def create
     songs_params[:song].each do |song|

@@ -1,4 +1,4 @@
-class Admin::ProductsController < ApplicationController
+class Admin::ProductsController < Admin::ApplicationController
 
 	def show
 		if Product.find(params[:id]).deleted_at

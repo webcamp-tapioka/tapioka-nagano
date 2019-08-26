@@ -1,70 +1,32 @@
+
 <div class="container">
     <div class="row">
-　　　　　　<div class="col-lg-1">
-<h1>商品検索結果一覧(一般)</h1>
-
-      <table class="table table-hover">
-       
+       <div class="col-lg-1">
+<h1>検索結果</h1>
 
 
-            <p>検索</p>
             <%= form_tag(products_search_path,:method => 'get') do %>
               <%= text_field_tag :search %>
               <%= submit_tag 'Search', :name => nil %>
             <% end %>
-
-        <tbody>   
-        <thead>
-         <tr>
-            <th>ジャケ写真</th>
-            <th>タイトル</th>
-            <th>アーティスト</th>
-            <th>価格</th>
-            <th>在庫</th>
-            <th>ステータス</th>
-          </tr>
-        </thead>
-        
-         
-          <tr>
-            <td>
-              <td>
              <% @products.each do |product| %>
-            <tr>
-              <td>
-              <td>
-              
-
-
-               <td><% if  product.image %>
-                <%= attachment_image_tag product, :image, :fill, 30, 30, format: 'jpeg' %>
-              <% end %></td>
-
-                <td><%= link_to  product_path(product.id) do %>
-                <%= product.title %></td>
-
-              
-                <% product.artists.each do |f| %>
-                <td><%= f.name  %></td>
-                <% end %>                 
-                
-                <td><%= product.price %></td>
-                <td><%= product.amount %></td>
-                <td><%= product.product_status_id %></td>
-               
-               <td><%= link_to '商品詳細',products_path(product.id) %></td>
-                            
-              <% end %>
-              </td>
-              <td></td>
-            </tr>
+               <% if  product.image %>
+                <p> <div class = "productbox"><%= attachment_image_tag product, :image, :fill, 140, 140, format: 'jpeg' %></p>
           <% end %>
-        </tbody>
-      </table>
-    </div>
+                  <p><%= product.title %></p>
+          <% product.artists.each do |f| %>
+                  <p><%= f.name %><br></p>
+          <% end %>
+              <%= number_to_currency(product.tax_include_price, unit: "¥", precision: 0) %>(税込)
+                  <p><%= product.amount %>枚</p>
+          <%= product.product_status_id %>
+                <div data-turbolinks="false">
+                  <p> <%= link_to 'Details',product_path(product.id) %></p>
+                </div>
+
+                 <div id="likes_partial_<%= product.id %>"><%= render partial: 'public/likes/like',locals: {products: product} %>
+                  </div>
+                </div>
+          <% end %>
+      <%= paginate @products %>
   </div>
-
-</div>
-
-</div>
-

@@ -1,17 +1,20 @@
-
+<div class="top">
 <div class="container">
   <div class = "row">
     <div class="col-lg-12">
 
+
       <h1>CD買え〜るの商品一覧</h1>
+
     <%= form_tag(products_search_path,:method => 'get') do %>
       <%= text_field_tag :search %>
       <%= submit_tag 'Search', :name => nil %>
     <% end %>
 
           <% @products_all.each do |product| %>
+          <div class = "productbox">
                 <% if  product.image %>
-                  <p> <div class = "productbox"><%= attachment_image_tag product, :image, :fill, 150, 150, format: 'jpeg' %></p>
+                  <p> <%= attachment_image_tag product, :image, :fill, 150, 150, format: 'jpeg' %></p>
           <% end %>
                   <p><%= product.title %></p>
           <% product.artists.each do |f| %>
@@ -31,3 +34,5 @@
           <% end %>
       <%= paginate @products_all %>
   </div>
+</div>
+</div>

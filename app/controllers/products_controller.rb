@@ -15,20 +15,21 @@ class ProductsController < ApplicationController
       @new_cart_item.product_id = @products.id
       end
    end
-   
-	def index
-		@products_all = Product.where(deleted_at: nil).page(params[:page]).per(6)
+
+  def index
+    @products_all = Product.where(deleted_at: nil).page(params[:page]).per(8)
+
   end
 
   def search
     #Viewのformで取得したパラメータをモデルに渡す
-    @products = Product.search(params[:search]).where(deleted_at: nil)
+    @products = Product.search(params[:search]).where(deleted_at: nil).page(params[:page]).per(8)
+   
   end
 
-  
-  
+
  private
-  
+
   def product_params
     params.require(:products).permit(:image, :title, :artist, :stock, :price, :product_status_id)
   end
