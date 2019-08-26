@@ -2,6 +2,7 @@ Rails.application.routes.draw do
   devise_for :users
   devise_for :admins
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
+  get'/products/search' => 'products#search'
 
   namespace :admin do
   get'/products/search' => 'products#search'
@@ -29,7 +30,7 @@ Rails.application.routes.draw do
  	resources :addresses,except: %i(new show)
  	resources :order_products,only: %i(create)
  	resources :orders,only: %i(new create index)
- 	resources :users,only: %i(edit show update destroy)
+ 	resources :users,only: %i(index edit show update destroy)
   resources :products,only: %i() do
   resources :cart_items,only: %i(create)
   resource :likes,only: %i(create destroy)
@@ -39,7 +40,6 @@ end
 end
 
  	resources :products,only:  %i(index show)
- 	get'/products/search' => 'products#search'
  	root 'products#top'
 end
 
