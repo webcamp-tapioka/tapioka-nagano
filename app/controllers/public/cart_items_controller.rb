@@ -1,4 +1,4 @@
-class Public::CartItemsController < ApplicationController
+class Public::CartItemsController < Public::ApplicationController
 
 	def create
 		new_cart_item = current_user.cart_items.create!(product_id: params[:product_id], 

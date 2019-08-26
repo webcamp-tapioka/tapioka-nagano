@@ -1,4 +1,4 @@
-class Public::UsersController < ApplicationController
+class Public::UsersController < Public::ApplicationController
 def show  
     @addresses = current_user.addresses.find_by(delivery_address_flag: 0)
     @sub_addresses = current_user.addresses.where(delivery_address_flag: 1)

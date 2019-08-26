@@ -1,4 +1,4 @@
-class Public::LikesController < ApplicationController
+class Public::LikesController < Public::ApplicationController
   def create
   	like = current_user.likes.create!(product_id: params[:product_id])
   	# redirect_to product_path(like.product_id)

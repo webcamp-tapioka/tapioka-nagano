@@ -1,4 +1,4 @@
-class Admin::ArtistProductsController < ApplicationController
+class Admin::ArtistProductsController < Admin::ApplicationController
 
   def create
     ArtistProduct.create(artist_product_params)
