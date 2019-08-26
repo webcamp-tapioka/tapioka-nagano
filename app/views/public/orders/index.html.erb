@@ -3,10 +3,11 @@
 　　　　　　
 <h1>購入履歴</h1>
 
+  <div style="padding: 10px; margin-bottom: 10px; border: 5px double #333333; border-radius: 10px; background-color: white; color: black;">
 
 
-	<% current_user.orders.each do |order| %>
-
+  <% current_user.orders.each do |order| %>
+<div class="box14">
     <%= "購入日 #{order.created_at.strftime("%Y-%m-%d")}" %><br>
 
     <table class="table table-hover">
@@ -26,7 +27,9 @@
             <td><%= order_product.order_amount %></td>
             <td><%= order_product.price * order_product.order_amount %>円</td>
           </tr>
+         </div> 
         <% end %>
+
       </tbody>
       <%= "ステータス #{order.order_status_id}" %><br>
       <p>お届け先ご住所</p>
@@ -36,10 +39,10 @@
       <%= "#{order.delivery_name}様" %><br>
       <%= "価格総計 #{order.total_price}円(税込)" %>
     </table>
-
+  </div>
+  
   <% end %>
-
-
+  
   </div>
 
 

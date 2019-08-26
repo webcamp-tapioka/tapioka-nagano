@@ -26,6 +26,9 @@ def show
     end
   end
 
+  def index
+  end
+
 
 
   private
