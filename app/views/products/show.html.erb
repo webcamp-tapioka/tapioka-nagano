@@ -5,42 +5,6 @@
 　　　　　　
 
   <h1>商品詳細</h1>
-
-<<<<<<< HEAD
- 　            <td>
-                <% if  @products.image %>
-                  <%= attachment_image_tag @products, :image, :fill, 30, 30, format: 'jpeg' %>
-                <% end %>
-              </td>
-
-                <td><%= @products.single_album_flag %></td>
-                <% @products.artists.each do |f| %>
-                <td><%= f.name  %></td>
-                <% end %>
-                <td><%= @products.title %></td>
-
-                <td><%= @products.label.name %></td>
-                <% @products.genres.each do |f| %>
-                <td><%= f.name  %></td>
-                <% end %>
-
-               
-                
-                <td><%= @products.amount %></td>
-
-                <td><%= @products.product_status_id %></td>
-
-                <td><%= @products.price %></td>
-              
-
-                </td>
-          </td>
-            <td>
-
-            </td>
-
-</table>
-=======
   <table class="table table-hover">
     <thead>
 	    <tr>
@@ -81,8 +45,6 @@
       </tr>
     </tbody>        
   </table>
->>>>>>> 02849d6670bf9fc4a2e1025acc4b96fe973552e4
-
 
 <table class="table table-hover">
     <thead>
