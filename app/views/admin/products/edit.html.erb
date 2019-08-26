@@ -1,78 +1,98 @@
-<div class="errors_messages">
-  <%= errors_display(@product) %>
-</div>
-<h1>商品編集(管理者)</h1>
-	
-	<% if  @product.image %>
-		<%= attachment_image_tag @product, :image, :fill, 30, 30, format: 'jpeg' %>
-	<% end %>
+<div class="container-fluid">
+<div class="row">
+<div class="col-md-10 col-md-offset-1">
+	<div class="errors_messages">
+		<%= errors_display(@product) %>
+	</div>
 
-<%= form_for([:admin, @product]) do |f| %>
-  <p>ジャケット写真</p>
-  <%= f.attachment_field :image %>
-	<p>タイトル</p>
-	<%= f.text_field :title %>
-	<p>レーベル</p>
-	<%= f.collection_select :label_id, Label.all, :id, :name %>
-	<p>シングル/アルバム選択</p>
-  <%= f.select :single_album_flag, Product.single_album_flags.keys %>
-	<p>価格</p>
-	<%= f.number_field :price %>
-	<p>在庫</p>
-	<%= f.number_field :amount %>
-	<p>販売状況</p>
-  <%= f.select :product_status_id, Product.product_status_ids.keys %><br>
-	<%= f.submit "編集する" %>
+  <h1>商品編集(管理者)</h1>
+	<div class="row">
+	  <div class="col-md-6">
+		  
+			<% if  @product.image %>
+				<%= attachment_image_tag @product, :image, :fill, 120, 120, format: 'jpeg' %>
+			<% end %>
+			<%= link_to(admin_product_songs_path(product_id: params[:id])) do %>
+        <button class="btn btn-success">曲の編集画面へ</button>
+			<% end %>
 
-<% end %>
-<%= link_to "曲追加", admin_product_songs_path(product_id: params[:id]) %>
+			<%= form_for([:admin, @product]) do |f| %>
+				<p>ジャケット写真</p>
+				<%= f.attachment_field :image %>
+				<p>タイトル</p>
+				<%= f.text_field :title %>
+				<p>レーベル</p>
+				<%= f.collection_select :label_id, Label.all, :id, :name %>
+				<p>シングル/アルバム選択</p>
+				<%= f.select :single_album_flag, Product.single_album_flags.keys %>
+				<p>価格</p>
+				<%= f.number_field :price %>
+				<p>在庫</p>
+				<%= f.number_field :amount %>
+				<p>販売状況</p>
+				<%= f.select :product_status_id, Product.product_status_ids.keys %><br>
+				<%= f.submit "編集する" %>
+			<% end %>
+			
 
+    </div>
+    <div class="col-md-6">
+      <div class="artist_product">
+				<p>登録済みアーティスト</p>
+				<table class="table">
+					<% @product.artist_products.all.each do |artist_product| %>
+						<tr>
+							<td><%= artist_product.artist.name %></td>
+							<td><%= link_to("削除", admin_artist_product_path(artist_product.id), method: "delete")%></td>
+						</tr>
+					<% end %>
+				</table>
 
+				<div class="create_artst_product">
+					<p>アーティストを追加</p>
+					<%= form_with(model: @artist_product, url: admin_artist_products_path, method: 'post') do |f2| %>
+						<%= f2.hidden_field :product_id, :value => @product.id %>
+						<%= f2.collection_select :artist_id, Artist.all, :id, :name %>
+						<%= f2.submit "アーティストを追加する" %>
+					<% end %>
+				</div>
+      </div>
 
-<div class="artist_product">
-  <p>登録済みアーティスト</p>
-	<table>
-		<% @product.artist_products.all.each do |artist_product| %>
-			<tr>
-				<td><%= artist_product.artist.name %></td>
-				<td><%= link_to("削除", admin_artist_product_path(artist_product.id), method: "delete")%></td>
-			</tr>
-		<% end %>
-  </table>
+			<div class="genre_product">
+				<p>登録済みジャンル</p>
+				<table class="table">
+					<% @product.genre_products.all.each do |genre_product| %>
+						<tr>
+							<td><%= genre_product.genre.name %></td>
+							<td><%= link_to("削除", admin_genre_product_path(genre_product.id), method: "delete") %></td>
+						</tr>
+					<% end %>
+				</table>
 
-	<div class="create_artst_product">
-	  <p>アーティストを追加</p>
-		<%= form_with(model: @artist_product, url: admin_artist_products_path, method: 'post') do |f2| %>
-			<%= f2.hidden_field :product_id, :value => @product.id %>
-			<%= f2.collection_select :artist_id, Artist.all, :id, :name %>
-			<%= f2.submit "アーティストを追加する" %>
-		<% end %>
+				<div class="create_genre_product">
+					<p>ジャンルを追加</p>
+					<%= form_with(model: @genre_product, url: admin_genre_products_path, method: 'post') do |f2| %>
+						<%= f2.hidden_field :product_id, :value => @product.id %>
+						<%= f2.collection_select :genre_id, Genre.all, :id, :name %>
+						<%= f2.submit "ジャンルを追加する" %>
+					<% end %>
+				</div>
+			</div>
+    </div>
   </div>
-</div>
-
-<div class="genre_product">
-  <p>登録済みジャンル</p>
-	<table>
-		<% @product.genre_products.all.each do |genre_product| %>
-			<tr>
-				<td><%= genre_product.genre.name %></td>
-				<td><%= link_to("削除", admin_genre_product_path(genre_product.id), method: "delete") %></td>
-			</tr>
-		<% end %>
-  </table>
-
-	<div class="create_genre_product">
-	  <p>ジャンルを追加</p>
-		<%= form_with(model: @genre_product, url: admin_genre_products_path, method: 'post') do |f2| %>
-			<%= f2.hidden_field :product_id, :value => @product.id %>
-			<%= f2.collection_select :genre_id, Genre.all, :id, :name %>
-			<%= f2.submit "ジャンルを追加する" %>
-		<% end %>
+ 
+	<div class="row">
+	  <div class="col-md-12 text-right">
+		  <%= link_to(admin_product_path(@product.id), method: "delete") do %>
+        <button class="btn btn-danger">削除する</button>
+			<% end %>
+			<%= link_to(admin_product_path(@product.id)) do %>
+        <button class="btn btn-success">商品詳細に戻る</button>
+			<% end %>
+		</div>
   </div>
+
+
 </div>
-
- <%= link_to("削除", admin_product_path(@product.id), method: "delete") %>
- <%= link_to("商品詳細に戻る", admin_product_path(@product.id)) %>
-
-
-
+</div>
+</div>
