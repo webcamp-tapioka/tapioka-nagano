@@ -23,8 +23,11 @@ class Admin::ProductsController < ApplicationController
 
 	def create
 		@product = Product.new(product_params)
-		@product.save
-	  	redirect_to admin_products_path, notice: "succsess!"
+		if @product.save
+	  	  redirect_to admin_products_path, notice: "succsess!"
+	  	else
+	  		render 'new'
+	  	end
 	end
 
 	def destroy
@@ -43,8 +46,11 @@ class Admin::ProductsController < ApplicationController
     
 	def update
 	  @product = Product.find(params[:id])
-		@product.update(product_params)
-	  redirect_to admin_product_path(@product), notice: "succsess!"
+	if  @product.update(product_params)
+	    redirect_to admin_product_path(@product), notice: "succsess!"
+	else
+		render 'edit'
+	end
 	end
 
 
