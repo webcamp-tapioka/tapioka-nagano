@@ -1,74 +1,80 @@
 <div class="container">
   <div class="row">
     <div class="col-lg-12">
-<h1>受注履歴詳細</h1>
+      <h1>受注履歴詳細</h1>
 
 
-<table class="table table-hover">
-  <tr>
-    <td>購入者</td>
-    <td><%= link_to("#{@order.user.first_name} #{@order.user.last_name}", admin_user_path(@order.user_id)) %></td>
-  </tr>
-  <tr>
-    <td>受注日</td>
-    <td><%= "#{@order.created_at.strftime("%Y-%m-%d")}" %></td>
-  </tr>
-  <tr>
-    <td>支払い方法</td>
-    <td><%= "#{@order.payment_method}" %></td>
-  </tr>
-  <tr>
-    <td>ステータス</td>
-    <td><%= "#{@order.order_status_id}" %></td>
-  </tr>
-</table>
+      <table class="table">
+        <tr>
+          <td>購入者</td>
+          <td>
+            <%= link_to("#{@order.user.first_name} #{@order.user.last_name}", admin_user_path(@order.user_id)) %>
+            <% if @order.user.deleted_at %>
+              <%= "このユーザーは退会済みです" %>
+            <% end %>
+          </td>
+        </tr>
+        <tr>
+          <td>受注日</td>
+          <td><%= "#{@order.created_at.strftime("%Y-%m-%d")}" %></td>
+        </tr>
+        <tr>
+          <td>支払い方法</td>
+          <td><%= "#{@order.payment_method}" %></td>
+        </tr>
+        <tr>
+          <td>ステータス</td>
+          <td><%= "#{@order.order_status_id}" %></td>
+        </tr>
+        <tr>
+          <td>購入価格総計（税込）</td>
+          <td><%= "¥ #{@order.total_price}" %></td>
+        </tr>
+        <tr>
+          <td>送料</td>
+          <td><%= @order.postage %></td>
+        </tr>
+      </table>
+    
+      <table class="table">
+        <tr>
+          <td>送付先氏名</td>
+          <td><%= "#{@order.delivery_name} (#{@order.delivery_name_kana})" %></td>
+        </tr>
+        <tr>
+          <td>送付先住所</td>
+          <td>
+            <%= "〒 #{@order.delivery_postal_code}" %><br>
+            <%= @order.delivery_address %>
+          </td>
+        </tr>
+      </table>
 
 
+      <table class="table table-hover">
+        <thead>
+          <tr>
+            <th>タイトル</th>
+            <th>価格 (税別)</th>
+            <th>枚数</th>
+            <th>小計 (税別)</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @order.order_products.each do |order_product| %>
+            <tr>
+              <td><%= order_product.product.title %></td>
+              <td><%= order_product.price %></td>
+              <td><%= order_product.order_amount %></td>
+              <td><%= order_product.price * order_product.order_amount %></td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
 
-<table>
-  <tr>
-    <td>送付先氏名</td>
-    <td><%= "#{@order.delivery_name} (#{@order.delivery_name_kana})" %></td>
-  </tr>
-  <tr>
-    <td>送付先住所</td>
-    <td>
-      <%= "〒 #{@order.delivery_postal_code}" %><br>
-      <%= @order.delivery_address %>
-    </td>
-  </tr>
-</table>
+     
 
-
-<table>
-  <thead>
-    <tr>
-      <th>タイトル</th>
-      <th>価格 (税別)</th>
-      <th>枚数</th>
-      <th>小計 (税別)</th>
-    </tr>
-  </thead>
-  <tbody>
-    <% @order.order_products.each do |order_product| %>
-      <tr>
-        <td><%= order_product.product.title %></td>
-        <td><%= order_product.price %></td>
-        <td><%= order_product.order_amount %></td>
-        <td><%= order_product.price * order_product.order_amount %></td>
-      </tr>
-    <% end %>
-    <tr>
-      <td colspan="2">送料</td>
-      <td colspan="2"><%= @order.postage %></td>
-    </tr>
-  </tbody>
-</table>
-
-<table>
-  <tr>
-    <td>購入価格総計</td>
-    <td><%= "¥ #{@order.total_price}" %></td>
-  </tr>
-</table>
+    </div>
+  </div>
+</div>
 
