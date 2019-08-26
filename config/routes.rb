@@ -2,7 +2,7 @@ Rails.application.routes.draw do
   devise_for :users
   devise_for :admins
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
-
+  get'/products/search' => 'products#search'
   namespace :admin do
   get'/products/search' => 'products#search'
 
@@ -39,7 +39,6 @@ end
 end
 
  	resources :products,only:  %i(index show)
- 	get'/products/search' => 'products#search'
  	root 'products#top'
 end
 

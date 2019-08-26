@@ -4,8 +4,7 @@
 <h3><span class="glyphicon glyphicon-user">
 プロフィール</span>
 </h3>
-
-<table border="1">
+<table class="table">
 	<tr>
 		<td>
 		<span class="glyphicon glyphicon-user">お名前(カナ)</span>
@@ -64,6 +63,7 @@
 		</td>
 		<td><%= link_to '購入履歴へ', orders_path(current_user) %></td>
 	</tr>
+</div>
 </table>
 
 	<%= link_to 'プロフィール編集', edit_user_path,class: "col-xs-12 btn btn-default glyphicon glyphicon-wrench" %>
