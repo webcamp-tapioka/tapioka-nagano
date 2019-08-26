@@ -19,6 +19,10 @@ class Public::ReviewsController < Public::ApplicationController
 		redirect_to product_path(params[:product_id])
 	end
 
+	def show
+		redirect_to product_path(params[:product_id])
+	end
+
 	private
 	def reviews_params
 		params.require(:review).permit(:review)

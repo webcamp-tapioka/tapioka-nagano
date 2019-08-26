@@ -1,7 +1,7 @@
 class Admin::GenresController < Admin::ApplicationController
 def index
 		@new_genre = Genre.new
-		@genres = Genre.all
+		@genres = Genre.order("name")
 	end
 
 	def edit

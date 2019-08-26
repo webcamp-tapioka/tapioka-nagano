@@ -14,11 +14,10 @@
   clear: both;
 }
 .notice{
-	color: green;
-	text-align: right;
-	padding-left: 150px;
+  color: green;
+  text-align: right;
+  padding-left: 150px;
 }
-
 .container {
   padding-right: 0px;
   padding-left: 0px;
@@ -32,20 +31,20 @@
 }
 
 .review {
-	line-height: 4;
-	
+  line-height: 4;
+  
 }
 
 .first-review-review {
-	line-height: 4;
+  line-height: 4;
 }
 
 .total-review {
-	line-height: 4;
+  line-height: 4;
 }
 
 .review-button {
-	coler: #660099;
+  coler: #660099;
 }
 
 
@@ -55,10 +54,13 @@
   background-size:cover;
 }
 
+.image{
+  text-align: center;
+}
 
 .productbox {
   width: 23%;
-  height: 400px;
+  height: 500px;
   font-size:20px;
   float: left;
   list-style: none;
@@ -66,7 +68,7 @@
   margin: 5px;
   padding: 5px;
   color: white ;
-  background-color: #d5aaff ;
+  background-color: #DDA0DD ;
   font-family: Comic Sans MS ;
   text-align: center;
   box-sizing: border-box;

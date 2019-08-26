@@ -1,11 +1,14 @@
 class Admin::ProductsController < Admin::ApplicationController
 
 	def show
+		if Product.find(params[:id]).deleted_at
+			redirect_to admin_products_path and return
+		end
 		@products = Product.find(params[:id])
 	end
 
 	def index
-		@products = Product.all
+		@products = Product.where(deleted_at: nil)
 	end
 	
 	def new
@@ -15,11 +18,13 @@ class Admin::ProductsController < Admin::ApplicationController
 	end
 
 	def edit
+		if Product.find(params[:id]).deleted_at
+			redirect_to admin_products_path and return
+		end
 		@product = Product.find(params[:id])
 		@artist_product = @product.artist_products.build
 		@genre_product = @product.genre_products.build
 	end
-
 
 	def create
 		@product = Product.new(product_params)
@@ -31,7 +36,10 @@ class Admin::ProductsController < Admin::ApplicationController
 	end
 
 	def destroy
-		Product.find(params[:id]).destroy
+		destroy_product = Product.find(params[:id])
+		destroy_product.title += "は、削除済みの商品です"
+		destroy_product.update(product_status_id: 1)
+		destroy_product.destroy
 		redirect_to admin_products_path, notice: "succsess!"
 	end
 
@@ -40,7 +48,7 @@ class Admin::ProductsController < Admin::ApplicationController
     
     def search
 	    #Viewのformで取得したパラメータをモデルに渡す
-	    @products = Product.search(params[:search])
+	    @products = Product.search(params[:search]).where(deleted_at: nil)
     end
 
     

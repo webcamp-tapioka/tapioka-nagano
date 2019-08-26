@@ -8,7 +8,7 @@ def create
       current_user.addresses.find_by(delivery_address_flag: 0).update(delivery_address_flag: 1)
     end
   end
-  if @address.save(address_params)
+  if @address.save
   redirect_to(session[:referrer])
   session.delete(:referrer)
   else
@@ -62,6 +62,5 @@ end
 
   
 end
-
 
 

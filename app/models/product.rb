@@ -15,7 +15,7 @@ class Product < ApplicationRecord
   has_many :reviews,dependent: :destroy
 
   attachment :image
-  acts_as_paranoid without_default_scope: false
+  acts_as_paranoid without_default_scope: true
 
   validates :title,presence: true
   validates :price,presence: true,numericality: true
