@@ -17,14 +17,12 @@ class Product < ApplicationRecord
   attachment :image
   acts_as_paranoid without_default_scope: false
 
-<<<<<<< HEAD
-=======
+
   validates :title,presence: true
   validates :price,presence: true,numericality: true
   validates :amount,presence: true,numericality: true
 
 
->>>>>>> origin/master
   def self.search(search)
       if search
         Product.where(['title LIKE ?', "%#{search}%"])

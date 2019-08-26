@@ -14,8 +14,7 @@ class User < ApplicationRecord
   has_many :likes,dependent: :destroy
   has_many :reviews,dependent: :destroy
 
-<<<<<<< HEAD
-=======
+
   validates :email,uniqueness: true, presence: true
   validates :first_name, presence: true
   validates :last_name, presence: true
@@ -23,7 +22,6 @@ class User < ApplicationRecord
   validates :last_name_kana, presence: true
   validates :phone_number, presence: true,uniqueness: true
 
->>>>>>> origin/master
   def total_price
     a = 0
     cart_items.each do |f|

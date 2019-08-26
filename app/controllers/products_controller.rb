@@ -3,43 +3,29 @@ class ProductsController < ApplicationController
   def top
   end
 
-  def show 
+  def show
    	  @products = Product.find(params[:id])
       @review = Review.new
-<<<<<<< HEAD
-      @reviews = Review.where(product_id: params[:id])
-=======
       @reviews = Review.where(product_id: params[:id]).order(created_at: "DESC")
->>>>>>> origin/master
       if current_user.present?
       @new_cart_item = current_user.cart_items.new
       @new_cart_item.product_id = @products.id
       end
    end
-   
+
 	def index
-<<<<<<< HEAD
-		@products_all = Product.page(params[:page]).per(6)
-=======
-		@products_all = Product.where(deleted_at: nil).page(params[:page]).per(6)
->>>>>>> origin/master
+		@products_all = Product.where(deleted_at: nil).page(params[:page]).per(8)
+
   end
 
   def search
     #Viewのformで取得したパラメータをモデルに渡す
-    @products = Product.search(params[:search])
-<<<<<<< HEAD
-    @products_all = Product.page(params[:page]).per(6)
+    @products = Product.search(params[:search]).page(params[:page]).per(8)
   end
 
-=======
-  end
 
-  
-  
->>>>>>> origin/master
  private
-  
+
   def product_params
     params.require(:products).permit(:image, :title, :artist, :stock, :price, :product_status_id)
   end
