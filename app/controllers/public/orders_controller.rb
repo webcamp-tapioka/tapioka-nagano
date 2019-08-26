@@ -43,6 +43,7 @@ class Public::OrdersController < Public::ApplicationController
     redirect_to users_thank_you_path
 
   end
+end
 
   private
 
