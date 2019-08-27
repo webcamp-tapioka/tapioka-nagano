@@ -39,9 +39,12 @@
 	padding-left: 150px;
 }
 body {
-  padding-top: 0px;
-  padding-bottom: 0px;
+  
   font-family: Comic Sans MS ;
+  height: 100%;
+}
+
+html {
   height: 100%;
 }
 .alert{
@@ -113,16 +116,6 @@ footer {
 }
 
 .font{
-<<<<<<< HEAD
-  font-size: 50px;
-}
-
-
-.footer-shop-name{
-  color: white;
-  margin: auto;
-}
-=======
   font-size:10px;
 }
 
@@ -130,6 +123,6 @@ footer {
 
 .kabegami {
     background-image: url(kabegami.jpg);
-    background-repeat:repeat-30;             
+    background-repeat: repeat;
+    height: 100%;           
 }
->>>>>>> 895c7efc17c94b3d504fde4ff28e700f50d3dd2c
