@@ -42,6 +42,7 @@ body {
   
   font-family: Comic Sans MS ;
   height: 100%;
+  padding-bottom: 50px;
 }
 
 html {
@@ -107,15 +108,6 @@ color:#9d9d9d;
     border: dashed 2px white;
     }
 
-footer {
-  bottom: 0;
-  width: 100%;
-  background: #660099;
-  position: fixed;
-  height: 50px;
-  color: white;
-}
-
 .font{
   font-size:10px;
 }
@@ -125,7 +117,7 @@ footer {
 .kabegami {
     background-image: url(kabegami.jpg);
     background-repeat: repeat;
-    height: 100%;           
+    height: 100%;
 }
 
 
