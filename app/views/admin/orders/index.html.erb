@@ -27,7 +27,7 @@
           </td>
           <td><%= order_product.product.title %></td>
           <td><%= order_product.product.id %></td>
-          <td><%= number_to_currency(order_product.price, unit: "¥", precision: 0) %></td>
+          <td><%= number_to_currency(order_product.price, precision: 0) %></td>
           <td><%= order_product.order_amount %></td> 
         </tr>
       <% end %>

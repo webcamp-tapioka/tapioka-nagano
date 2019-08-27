@@ -44,7 +44,7 @@
                 <% end %>
               </td>
               <td> <%= product.amount %></td>
-              <td><%= number_to_currency(product.price, unit: "¥", precision: 0) %></td>
+              <td><%= number_to_currency(product.price, precision: 0) %></td>
               <td> <%= product.product_status_id %></td>
               <td><%= link_to '商品詳細',admin_product_path(product)%></td>
             </tr>
