@@ -2,9 +2,7 @@
 <div class="container">
 		<div class="row">
 　　　　　　<div class="col-lg-9">
-<h3><span class="glyphicon glyphicon-user">
-プロフィール</span>
-</h3>
+<h3><span class="glyphicon glyphicon-user">プロフィール</span></h3>
 <table class="table">
 	<tr>
 		<td>
@@ -67,7 +65,7 @@
 </div>
 </table>
 
-	<%= link_to 'プロフィール編集', edit_user_path,class: "col-xs-12 btn btn-default glyphicon glyphicon-wrench" %>
+	<div class= "btn"><%= link_to 'プロフィール編集', edit_user_path,class: "col-xs-12 btn btn-info glyphicon glyphicon-wrench" %></div>
 
 </li>
 <%= link_to '住所登録 / 変更',addresses_path %>
