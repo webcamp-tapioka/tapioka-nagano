@@ -2,7 +2,6 @@ Rails.application.routes.draw do
   devise_for :users
   devise_for :admins
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
-
   get'/products/search' => 'products#search'
   namespace :admin do
   get'/products/search' => 'products#search'
@@ -36,7 +35,6 @@ Rails.application.routes.draw do
   resource :likes,only: %i(create destroy)
   resource :reviews,only: %i(show create)
   resources :reviews,only: %i(destroy)
-
 end
 end
 

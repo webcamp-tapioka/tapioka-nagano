@@ -1,25 +1,25 @@
-<div class="kabegami">
+
 <div class="container">
     <div class="row">
        <div class="col-lg-12">
 <h1>検索結果</h1>
 
-
-
             <%= form_tag(products_search_path,:method => 'get') do %>
               <%= text_field_tag :search %>
               <%= submit_tag 'Search', :name => nil %>
             <% end %>
-             <% @products.each do |product| %>
-               <% if  product.image %>
-                <p> <div class = "productbox"><%= attachment_image_tag product, :image, :fill, 140, 140, format: 'jpeg' %></p>
-          <% end %>
+
+              <% @products.each do |product| %>
+          <div class = "productbox">
+                <% if  product.image %>
+                  <p> <%= attachment_image_tag product, :image, :fill, 150, 150, format: 'jpeg' %></p>
+                <% end %>
                   <p><%= product.title %></p>
           <% product.artists.each do |f| %>
                   <p><%= f.name %><br></p>
           <% end %>
               <%= number_to_currency(product.tax_include_price, precision: 0) %>(税込)
-                  <p><%= product.amount %>枚</p>
+                  <p>残り<%= product.amount %>枚</p>
           <%= product.product_status_id %>
                 <div data-turbolinks="false">
                   <p> <%= link_to 'Details',product_path(product.id) %></p>
@@ -30,5 +30,4 @@
                 </div>
           <% end %>
       <%= paginate @products %>
-</div>
-</div>
+  </div>

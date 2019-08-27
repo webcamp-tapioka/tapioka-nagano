@@ -10,7 +10,12 @@
 	</tr>
 	<tr>
 		<td>お名前</td>
-		<td><%= @user.first_name + @user.last_name %></td>
+		<td>
+		  <%= @user.first_name + @user.last_name %>
+			<% if @user.deleted_at %>
+			  <%= "このユーザーは退会済みです" %>
+			<% end %>
+		</td>
 	</tr>
 	<tr>
 		<td>ご住所</td>

@@ -93,20 +93,27 @@ color:#9d9d9d;
  padding-right:100px;
  }
 
+
 .box14{
     padding: 0.2em 0.5em;
     margin: 2em 0;
     background: #d6ebff;
     box-shadow: 0px 0px 0px 10px #d6ebff;
-    border: dashed 2px white;
+    border: dashed 2px white;}
+
+footer {
+  text-align: right;
+
+  bottom: 0;
+  margin: 20;
+  width: 100%;
+  height: 60px;
+  background: #fff;
+  color: #000;
+  margin-bottom: 30px;
+
 }
 
 .font{
   font-size:10px;
-}
-
-.kabegami{
-  background-image: url(kabegami.jpg);
-  background-size: 225px,225px;
-  background-repeat: repeat;
 }

@@ -1,4 +1,4 @@
-<div class="kabegami">
+
 <div class="container">
    <div class = "row">
     <div class="col-lg-12">
@@ -12,6 +12,9 @@
             <%= attachment_image_tag @products, :image, :fill, 200, 200, format: 'jpeg' %>
           </div>
           <% end %>
+          <div class ="iine"><div id="likes_partial_<%= @products.id %>"><%= render partial: 'public/likes/like',locals: {products: @products} %>
+          </div>
+        </div>
         <tr>
         <td bgcolor="#99CC00">CDシングル</td>
         <td><%= @products.single_album_flag %></td>
@@ -91,8 +94,7 @@
               
 </table>
 
-<div id="likes_partial_<%= @products.id %>"><%= render partial: 'public/likes/like',locals: {products: @products} %>
-</div>
+
 <% if current_user.present? %>
 <div class="first-review">
   <div class="first-review-name">
@@ -175,4 +177,3 @@ _______________________
   });
 
 </script>
-</div>
