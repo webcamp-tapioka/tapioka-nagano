@@ -43,6 +43,7 @@ class Public::OrdersController < Public::ApplicationController
 
   end
 end
+
   private
 
   def require_cart_items

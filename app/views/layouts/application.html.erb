@@ -16,83 +16,91 @@
 
   <header class="navbar navbar-inverse">
   
-    <nav class="nav navbar-nav navbar-left">
-      <span class="navbar-brand">CDかえ～る</span>
-    </nav>
 
-    <nav>
-      <ul class="nav navbar-nav navbar-right">
+    <div class="font">
 
-        <% if user_signed_in? %>
-              <li>
-                <%= link_to "商品一覧", products_path(current_user.id),class:"glyphicon glyphicon-list-alt" %>
-              </li>
-              <li>
-              <%= link_to "カート", cart_items_path, class:"glyphicon glyphicon-shopping-cart" %>
-              </li>
-              <li>
-                <%= link_to "購入履歴一覧",orders_path,class:"glyphicon glyphicon-shopping-cart" %>
-              <li>
-                <%= link_to "マイページ", user_path(current_user), class:"glyphicon glyphicon-user" %>
-              </li>
-              <li>
-                <%= link_to "ログアウト", destroy_user_session_path, method: :delete, class:"glyphicon glyphicon-log-out" %>
-              </li>
+        <nav class="nav navbar-nav navbar-left">
+          <span class="navbar-brand">CDかえ～る</span>
+        </nav>
 
-        <% elsif admin_signed_in?  %>
-         　<li>
-        　　　　<%= link_to "レーベル", admin_labels_path,class:"glyphicon glyphicon-tags" %>
-          </li>
+      <nav>
+        <ul class="nav navbar-nav navbar-right">
 
-          <li>
-        　　　　<%= link_to "アーティスト", admin_artists_path,class:"glyphicon glyphicon-font" %>
-          </li>
+          <% if user_signed_in? %>
+                <li>
+                  <%= link_to "商品一覧", products_path(current_user.id),class:"glyphicon glyphicon-list-alt" %>
+                </li>
+                <li>
+                <%= link_to "カート", cart_items_path, class:"glyphicon glyphicon-shopping-cart" %>
+                </li>
+                <li>
+                  <%= link_to "購入履歴一覧",orders_path,class:"glyphicon glyphicon-shopping-cart" %>
+                <li>
+                  <%= link_to "マイページ", user_path(current_user), class:"glyphicon glyphicon-user" %>
+                </li>
+                <li>
+                  <%= link_to "ログアウト", destroy_user_session_path, method: :delete, class:"glyphicon glyphicon-log-out" %>
+                </li>
 
-          <li>
-        　　　　<%= link_to "ジャンル", admin_genres_path,class:"glyphicon glyphicon-record" %>
-          </li>
+          <% elsif admin_signed_in?  %>
+           　<li>
+          　　　　<%= link_to "レーベル", admin_labels_path,class:"glyphicon glyphicon-tags" %>
+            </li>
 
-          <li>
-        　　　　<%= link_to "商品一覧", admin_products_path,class:"glyphicon glyphicon-list-alt" %>
-          </li>
+            <li>
+          　　　　<%= link_to "アーティスト", admin_artists_path,class:"glyphicon glyphicon-font" %>
+            </li>
 
-          <li>
-        　　　　<%= link_to "ユーザ一覧", admin_users_path,class:"glyphicon glyphicon-user" %>
-          </li>
+            <li>
+          　　　　<%= link_to "ジャンル", admin_genres_path,class:"glyphicon glyphicon-record" %>
+            </li>
 
-          <li>
-        　　　　<%= link_to "受注履歴一覧", admin_orders_path,class:"glyphicon glyphicon-book" %>
-          </li>
+            <li>
+          　　　　<%= link_to "商品一覧", admin_products_path,class:"glyphicon glyphicon-list-alt" %>
+            </li>
 
-          <li>
+            <li>
+          　　　　<%= link_to "ユーザ一覧", admin_users_path,class:"glyphicon glyphicon-user" %>
+            </li>
 
-        　　　　<%= link_to "未対応履歴", admin_root_path,class:"glyphicon glyphicon-home" %>
+            <li>
+          　　　　<%= link_to "受注履歴一覧", admin_orders_path,class:"glyphicon glyphicon-book" %>
+            </li>
 
-          </li>
+            <li>
+          　　　　<%= link_to "未対応履歴", admin_root_path,class:"glyphicon glyphicon-home" %>
+            </li>
 
-          <li>
-        　　　　<%= link_to "ログアウト", destroy_admin_session_path, method: :delete ,class:"glyphicon glyphicon-log-out" %>
-          </li>
+            <li>
+          　　　　<%= link_to "ログアウト", destroy_admin_session_path, method: :delete ,class:"glyphicon glyphicon-log-out" %>
+            </li>
+
+                　　<%= form_tag(products_search_path,:method => 'get') do %>
+                  <%= text_field_tag :search %>
+                  <%= submit_tag 'Search', :name => nil %>
+            <% end %>
 
 
 
-        <% else %>
+          <% else %>
 
 
-              <li>
-                <%= link_to "商品一覧", products_path,class:"glyphicon glyphicon-list-alt" %>
-              </li>
-             
-              <li>
-                <%= link_to "ログイン", new_user_session_path, class:"glyphicon glyphicon-log-in" %>
-              </li>
+                <li>
+                  <%= link_to "商品一覧", products_path,class:"glyphicon glyphicon-list-alt" %>
+                </li>
+               
+                <li>
+                  <%= link_to "ログイン", new_user_session_path, class:"glyphicon glyphicon-log-in" %>
+                </li>
 
-              <li>
-                <%= link_to "新規登録", new_user_registration_path, class:"glyphicon glyphicon-log-in" %>
-              </li>
-        <% end %>
-      </ul>
-    </nav>
+                <li>
+                  <%= link_to "新規登録", new_user_registration_path, class:"glyphicon glyphicon-log-in" %>
+                </li>
+          <% end %>
+        </ul>
+      </nav>
+    </div>
+
   </div>
 </header>
     <%= yield %>
