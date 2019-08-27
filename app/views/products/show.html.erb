@@ -64,7 +64,7 @@
     </div>
 <% @songs = @products.songs.all.order(:disc_number).order(:track_number) %>
 <% disc_number = 0 %>
-        <% @songs&.last.disc_number.times do %>
+        <% @songs&.last&.disc_number&.times do %>
           <% disc_number += 1 %>
           <table class="table table-bordered">
             <tr>
