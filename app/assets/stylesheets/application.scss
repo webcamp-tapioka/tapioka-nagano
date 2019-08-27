@@ -39,8 +39,13 @@
 	padding-left: 150px;
 }
 body {
-  padding-top: 0px;
+  
   font-family: Comic Sans MS ;
+  height: 100%;
+}
+
+html {
+  height: 100%;
 }
 .alert{
 	color: green;
@@ -103,16 +108,11 @@ color:#9d9d9d;
     }
 
 footer {
-  text-align: right;
-
   bottom: 0;
-  margin: 20;
   width: 100%;
-  height: 60px;
-  background: #fff;
-  color: #000;
-  margin-bottom: 30px;
-
+  background: #660099;
+  position: fixed;
+  height: 50px;
 }
 
 .font{
@@ -123,5 +123,6 @@ footer {
 
 .kabegami {
     background-image: url(kabegami.jpg);
-    background-repeat:repeat-30;             
+    background-repeat: repeat;
+    height: 100%;           
 }
