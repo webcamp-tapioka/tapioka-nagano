@@ -28,9 +28,9 @@
                 <% end %>
               </tbody>
             </table>
-
-            <%= "お客様氏名 #{order.user.first_name} #{order.user.last_name} 様" %>
-              <% if order.user.deleted_at %>
+            <%= "お客様氏名 #{User.with_deleted.find(order.user_id).first_name + 
+            User.with_deleted.find(order.user_id).last_name}  様" %>
+              <% unless order&.user %>
                 <%= "このユーザーは退会済みです" %><br>
               <% else %>
                 <br>

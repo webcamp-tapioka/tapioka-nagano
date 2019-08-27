@@ -8,8 +8,9 @@
         <tr>
           <td>購入者</td>
           <td>
-            <%= link_to("#{@order.user.first_name} #{@order.user.last_name}", admin_user_path(@order.user_id)) %>
-            <% if @order.user.deleted_at %>
+          <%= link_to("お客様氏名 #{User.with_deleted.find(@order.user_id).first_name + 
+            User.with_deleted.find(@order.user_id).last_name}  様", admin_user_path(@order.user_id)) %>
+            <% unless @order.user %>
               <%= "このユーザーは退会済みです" %>
             <% end %>
           </td>
@@ -28,11 +29,11 @@
         </tr>
         <tr>
           <td>購入価格総計（税込）</td>
-          <td><%= "¥ #{@order.total_price}" %></td>
+          <td><%= number_to_currency(@order.total_price, precision: 0) %></td>
         </tr>
         <tr>
           <td>送料</td>
-          <td><%= @order.postage %></td>
+          <td><%= number_to_currency(@order.postage, precision: 0) %></td>
         </tr>
       </table>
     
@@ -64,9 +65,9 @@
           <% @order.order_products.each do |order_product| %>
             <tr>
               <td><%= order_product.product.title %></td>
-              <td><%= order_product.price %></td>
+              <td><%= number_to_currency(order_product.price, precision: 0) %></td>
               <td><%= order_product.order_amount %></td>
-              <td><%= order_product.price * order_product.order_amount %></td>
+              <td><%= number_to_currency(order_product.price * order_product.order_amount, precision: 0) %></td>
             </tr>
           <% end %>
         </tbody>

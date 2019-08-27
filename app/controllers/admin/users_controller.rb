@@ -1,21 +1,21 @@
 class Admin::UsersController < Admin::ApplicationController
 
 def index
-    @users = User.all
+    @users = User.with_deleted
 end
 
 
 def show
-    @user = User.find(params[:id])
+    @user = User.with_deleted.find(params[:id])
     @addresses = @user.addresses.find_by(delivery_address_flag: 0)
 		@sub_addresses = @user.addresses.where(delivery_address_flag: 1)
-		@orders = User.find(params[:id]).orders.all
+		@orders = User.with_deleted.find(params[:id]).orders.all
 		
 
 end
 
 def update
-  	@user = User.find(params[:id])
+  	@user = User.with_deleted.find(params[:id])
   	  if @user.update(user_params)
   	  	 redirect_to admin_users_path, notice: "succsess!"
   	  else
@@ -24,11 +24,11 @@ def update
 end
 
 def edit
-  	@user = User.find(params[:id])
+  	@user = User.with_deleted.find(params[:id])
   end
 
 def destroy
-		@user = User.find(params[:id])
+		@user = User.with_deleted.find(params[:id])
   	@user.destroy
   	redirect_to admin_users_path
 end

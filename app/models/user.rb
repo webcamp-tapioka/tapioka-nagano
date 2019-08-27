@@ -4,8 +4,7 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
-	acts_as_paranoid without_default_scope: true
-
+	acts_as_paranoid
   has_many :addresses
   has_many :orders
   has_many :order_products, through: :orders
@@ -30,10 +29,6 @@ class User < ApplicationRecord
     a = (a * ((PostageAndConsumptiontax.find(1).consumption_tax) * 0.01r + 1)).floor
     return a
   end
-
-
-
-
  
 
   
