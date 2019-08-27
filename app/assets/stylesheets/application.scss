@@ -43,7 +43,10 @@
 body {
   font-family: Comic Sans MS ;
   height: 100%;
-  padding-bottom: 50px;
+}
+
+html{
+  height: 100%;
 }
 
 .alert{
@@ -73,8 +76,10 @@ nav ul li a:hover{
 }
 
  .navbar{
- background-color:#660099;
+ background-color: #660099;
  margin-bottom: 0;
+ position: fixed;
+ width: 100%;
  }
 
  .navbar-header{
@@ -111,8 +116,11 @@ color:#9d9d9d;
     background-image: url(kabegami.jpg);
     background-repeat: repeat;
     width: 100%;
-    
-    
+    height: auto;
+    padding-bottom: 50px;
+    background-size: cover;
+    min-height: 100%; 
+    padding-top: 50px;
 }
 
 .footer-shop-name{
@@ -120,17 +128,15 @@ color:#9d9d9d;
   color: white;
 }
 
-.paginate{
-  margin-bottom: 50px;
-}
-
-
-header{
-  top: 0;
-
-  height: 50px;
+footer {
   position: fixed;
+  bottom: 0; 
+  background-color: #660099;
+  height: 50px;
   width: 100%;
-
 }
 
+
+body > .kabegami {
+  height: auto;
+  }

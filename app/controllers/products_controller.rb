@@ -8,7 +8,7 @@ class ProductsController < ApplicationController
       redirect_to products_path and return
     end
      @products = Product.where(deleted_at: nil).find(params[:id])
-     @songs = @products.songs.all.order(:disc_number).order(:track_number)
+     
       @review = Review.new
       @reviews = Review.where(product_id: params[:id]).order(created_at: "DESC")
       if current_user.present?
@@ -18,7 +18,7 @@ class ProductsController < ApplicationController
    end
 
   def index
-    @products_all = Product.where(deleted_at: nil).page(params[:page]).per(1)
+    @products_all = Product.where(deleted_at: nil).page(params[:page]).per(8)
   end
 
   def search

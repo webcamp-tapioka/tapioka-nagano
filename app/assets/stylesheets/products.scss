@@ -13,11 +13,13 @@
   display: block;
   clear: both;
 }
+
 .notice{
   color: green;
   text-align: right;
   padding-left: 150px;
 }
+
 .container {
   padding-right: 0px;
   padding-left: 0px;
@@ -44,7 +46,7 @@
 }
 
 .review-button {
-  coler: #660099;
+  color: #660099;
 }
 
 
@@ -61,6 +63,7 @@
   transform: scale(1.2,1.2);
   cursor:pointer;
 }
+
 .iine{
   text-align: center;
 }
@@ -81,11 +84,15 @@
   box-sizing: border-box;
   border-radius: 240px 15px 100px 15px / 15px 200px 15px 185px;
 }
+
 .productbox:hover {
   transform: scale(1.2,1.2);
   cursor:pointer;
 }
 .paginate{
   text-align: center;
-  padding: 5px;
+  position: fixed;
+  bottom: 100px;
+  color: white;
+  margin: 0 auto;
 }

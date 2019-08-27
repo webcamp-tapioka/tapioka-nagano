@@ -57,11 +57,34 @@
           <td><%= @products.product_status_id %></td>
         </tr>
         <tr>
-          <td bgcolor="#99CC00">prace</td>
+          <td bgcolor="#99CC00">price</td>
           <td><%= number_to_currency(@products.tax_include_price, precision: 0) %></td>
         </tr>
       </table>
     </div>
+<% @songs = @products.songs.all.order(:disc_number).order(:track_number) %>
+<% disc_number = 0 %>
+        <% @songs&.last.disc_number.times do %>
+          <% disc_number += 1 %>
+          <table class="table table-bordered">
+            <tr>
+              <%= "#{disc_number}" %>
+            </tr>
+            <% @songs.where(disc_number: disc_number).each do |song| %>
+              <tr>
+                <td><%= "#{song.track_number}. #{song.song}" %></td>
+              </tr>
+            <% end %>
+          </table>
+        <% end %>
+
+
+
+
+
+
+
+
 
       <% if current_user.present? %>
 
@@ -120,8 +143,6 @@
 </div>
 
 
-<<<<<<< HEAD
-=======
     <% if current_user.present? %>
       <% if @products.product_status_id_before_type_cast == 0 %>
         <%= form_with(model: @new_cart_item, url: product_cart_items_path(@products), method: "post") do |f| %>
@@ -131,77 +152,10 @@
         <% end %>
       <% end %>
     <% end %>
->>>>>>> 334605cc05b1774e99142b0ae4e08bfeaeeee4cd
 
 
 
 
-<<<<<<< HEAD
-=======
-<% if current_user.present? %>
-  <div class="first-review">
-    <div class="first-review-name">
-      <% if @reviews.any? %>
-        <span class="glyphicon glyphicon-user"></span>
-        <%= @reviews.first.user.first_name + @reviews.first.user.last_name %>
-    </div>
-    <div class="first-review-review">
-      <%= @reviews.first.review %>
-    </div>
-      <% if @reviews.any? && current_user.id == @reviews.last.user_id %>
-        <span class="review">
-          <%= link_to 'レビューを削除',product_review_path(@products,@reviews.last.id),method: :delete %>
-        </span>
-      <%end%>
-  </div>
-      <% else %>
-    </div>
-  </div>
-      <%end%>
-
-
-<button class="total-review-button">もっと見る</button>
-
-<div class="total-review" style="display:none">
-  <% @reviews.each do |f| %>
-    <p><span class="glyphicon glyphicon-user"></span>
-    <%= f.user.first_name + f.user.last_name %></p>
-    <div>
-      <%= f.review %>
-    </div>
-    <% if f.user_id = current_user.id %>
-      <p> <%= link_to 'レビューを削除',product_review_path(@products,f.id),method: :delete %></p>
-      _______________________
-    <%end%>
-  <%end%>
-</div>
-
-<div class="errors_messages">
-  <%= errors_display(@review) %>
-</div>
-<button class="review-button">レビュー投稿</button>
-<div class="review-content" style="display:none">
-  <%= form_for [@products,@review] do |f| %>
-  <%= f.text_area :review, :size=>"80x10" %>
-  <%= f.submit '投稿' %>
-  <%end%>
-</div>
-
-
-<% end %>
-
-</div>
-</div>
-
-</div>
-</div>
-
-</div>
-
-
-
-
->>>>>>> 334605cc05b1774e99142b0ae4e08bfeaeeee4cd
 <script>
   const reviewButton = document.querySelector('.review-button');
   const reviewContent = document.querySelector('.review-content');
