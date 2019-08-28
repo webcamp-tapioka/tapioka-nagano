@@ -1,51 +1,118 @@
 <div class="kabegami">
-<div class="container">
-  
-　　　　　　
-<h1>購入履歴</h1>
+  <div class="container">
 
-  <div style="padding: 10px; margin-bottom: 10px; border: 5px double #333333; border-radius: 10px; background-color: white; color: black;">
+    <h1>購入履歴</h1>
 
+    <div style="padding: 10px; margin-bottom: 10px; border: 5px double #333333; border-radius: 10px; background-color: white; color: black;">
 
-  <% current_user.orders.each do |order| %>
-<div class="box14">
-    <%= "購入日 #{order.created_at.strftime("%Y-%m-%d")}" %><br>
+      <div class="enduser-orders">
+        <% @orders.each do |order| %>
+          <div class="box14">
+            <%= "購入日 #{order.created_at.strftime("%Y-%m-%d")}" %><br>
 
-    <table class="table table-hover">
-      <thead>
-        <tr>
-          <th>タイトル</th>
-          <th>価格（税別）</th>
-          <th>購入枚数</th>
-          <th>合計（税別）</th>
-        </tr>
-      </thead>
-      <tbody>
-        <% order.order_products.each do |order_product| %>
-          <tr>
-            <td><%= order_product.product.title %> </td>
-            <td><%= order_product.price %></td>
-            <td><%= order_product.order_amount %></td>
-            <td><%= order_product.price * order_product.order_amount %>円</td>
-          </tr>
-         </div> 
+            <table class="table table-hover">
+              <thead>
+                <tr>
+                  <th>タイトル</th>
+                  <th>価格（税別）</th>
+                  <th>購入枚数</th>
+                  <th>合計（税別）</th>
+                </tr>
+              </thead>
+              <tbody>
+                <% order.order_products.each do |order_product| %>
+                  <tr>
+                    <td><%= order_product.product.title %> </td>
+                    <td><%= order_product.price %></td>
+                    <td><%= order_product.order_amount %></td>
+                    <td><%= order_product.price * order_product.order_amount %>円</td>
+                  </tr>
+                </div> 
+                <% end %>
+
+              </tbody>
+              <%= "ステータス #{order.order_status_id}" %><br>
+              <p>お届け先ご住所</p>
+              <%= "〒 #{order.delivery_postal_code}" %>
+              <%= order.delivery_address %><br>
+              <%= order.delivery_name_kana %><br>
+              <%= "#{order.delivery_name}様" %><br>
+              <%= "価格総計 #{order.total_price}円(税込)" %>
+            </table>
+          </div>
         <% end %>
 
-      </tbody>
-      <%= "ステータス #{order.order_status_id}" %><br>
-      <p>お届け先ご住所</p>
-      <%= "〒 #{order.delivery_postal_code}" %>
-      <%= order.delivery_address %><br>
-      <%= order.delivery_name_kana %><br>
-      <%= "#{order.delivery_name}様" %><br>
-      <%= "価格総計 #{order.total_price}円(税込)" %>
-    </table>
+
+
+        <div class="paginate" data-turbolinks="false">
+          <%= paginate @orders %>
+        </div>
+      
+      </div>
+    </div>
   </div>
-  
-  <% end %>
-  
-  </div>
-  </div>
+</div>
+
+
+
+
+<script>
+
+
+$(function() {
+// 使用する要素名
+var IScontentItems = '.box14'; // 取得する要素
+var IScontent = '.enduser-orders'; // 取得要素を追加するコンテンツ
+var ISlink = 'a[rel=next]'; // 次のページのリンク
+var ISlinkarea = '.paginate'; // 次のページのリンクの親要素
+var loadingFlag = false; // 読み込み中はtrueにして、複数回発生しないようにする
+
+$(window).on('load scroll', function() {
+// 次のページ読み込み中の場合は処理を行わない
+if(!loadingFlag) {
+var winHeight = $(window).height();
+var scrollPos = $(window).scrollTop();
+var linkPos = $(ISlink).offset().top;
+
+if(winHeight + scrollPos > linkPos) {
+loadingFlag = true;
+
+// 次のページのリンクを取得して、要素を削除しておく
+var nextPage = $(ISlink).attr('href');
+$(ISlink).remove();
+// 次のページの要素を取得
+$.ajax({
+type: 'GET',
+url: nextPage,
+dataType: 'html'
+}).done(function(data) {
+// 次のページのリンクを取得
+var nextLink = $(data).find(ISlink);
+// コンテンツ要素を取得
+var contentItems = $(data).find(IScontentItems);
+
+// コンテンツ要素を追加
+$(IScontent).append(contentItems);
+
+// 次のページがある場合はリンクを追加する
+if(nextLink.length > 0) {
+$(ISlinkarea).append(nextLink);
+loadingFlag = false; // 次のページがない場合はloadingFlagをtrueにしたままにして、処理を発生しないようにする
+}
+}).fail(function () {
+alert('ページの取得に失敗しました。');
+});
+}
+}
+});
+});
+
+
+
+
+</script>
+
+
 
 
 
