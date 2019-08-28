@@ -10,7 +10,7 @@
           <%= text_field_tag :search %>
           <%= submit_tag 'Search', :name => nil %>
         <% end %>
-
+<div class="products">
         <% @products_all.each do |product| %>
           <div class="box-box">
             <div class = "productbox">
@@ -35,7 +35,7 @@
             </div>
           </div>
         <% end %>
-
+</div>
         <div class="paginate">
           <%= paginate @products_all %>
         </div>
@@ -54,7 +54,7 @@ $(function() {
 // 使用する要素名
 var IScontentItems = '.box-box'; // 取得する要素
 var IScontent = '.products'; // 取得要素を追加するコンテンツ
-var ISlink = 'nav.pagination a[rel=next]'; // 次のページのリンク
+var ISlink = 'a[rel=next]'; // 次のページのリンク
 var ISlinkarea = '.paginate'; // 次のページのリンクの親要素
 var loadingFlag = false; // 読み込み中はtrueにして、複数回発生しないようにする
 
