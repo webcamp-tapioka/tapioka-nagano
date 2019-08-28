@@ -25,7 +25,6 @@ Rails.application.routes.draw do
 
  scope module:  :public do
   get'/users/leave' => 'users#leave'
-  get'/users/thank_you' => 'users#thank_you'
   resources :cart_items, only: %i(create index destroy update)
  	resources :addresses,except: %i(new show)
  	resources :order_products,only: %i(create)
