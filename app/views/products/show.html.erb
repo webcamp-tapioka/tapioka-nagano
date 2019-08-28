@@ -81,6 +81,19 @@
 
 
 
+    <% if current_user.present? %>
+      <% if @products.product_status_id_before_type_cast == 0 %>
+        <%= form_with(model: @new_cart_item, url: product_cart_items_path(@products), method: "post") do |f| %>
+          <% f.hidden_field :product_id, value: @new_cart_item.product_id %>
+          <%= f.select :product_amount, 1..@products.amount %>
+          <%= f.submit "カートに入れる" %>
+        <% end %>
+      <% end %>
+    <% end %>
+
+
+
+
 
 
 
@@ -137,21 +150,13 @@
         </div>
       <% end %>
 
-      </div>
+   
+
+       </div>
     </div>
   </div>
 </div>
 
-
-    <% if current_user.present? %>
-      <% if @products.product_status_id_before_type_cast == 0 %>
-        <%= form_with(model: @new_cart_item, url: product_cart_items_path(@products), method: "post") do |f| %>
-          <% f.hidden_field :product_id, value: @new_cart_item.product_id %>
-          <%= f.select :product_amount, 1..@products.amount %>
-          <%= f.submit "カートに入れる" %>
-        <% end %>
-      <% end %>
-    <% end %>
 
 
 
