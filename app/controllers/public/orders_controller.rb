@@ -44,6 +44,10 @@ class Public::OrdersController < Public::ApplicationController
   end
 end
 
+def index
+  @orders = current_user.orders.page(params[:page]).per(4)
+end
+
   private
 
   def require_cart_items

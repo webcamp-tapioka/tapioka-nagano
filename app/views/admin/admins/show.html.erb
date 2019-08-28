@@ -5,49 +5,53 @@
       <h1>未対応商品一覧</h1>
 
       <%=link_to "送料、消費税変更", edit_admin_postage_and_consumptiontaxs_path %>
-<div class="infinite-scroll"></div>
-      <% @orders.each do |order| %>
-        <div class="row not-shipped-order">
-          <div class="col-md-10 sol-md-offset-1">
-            <table class="table table-bordered">
-              <thead>
-                <tr>
-                  <th>タイトル</th>
-                </tr>
-              </thead>
-              <tbody>
 
-                <% order.order_products.each do |order_product| %>
+      <div class="infinite-scroll">
+
+        <% @orders.each do |order| %>
+
+          <div class="row not-shipped-order">
+            <div class="col-md-10 sol-md-offset-1">
+          
+              <table class="table table-bordered">
+                <thead>
                   <tr>
-                    <td><%= order_product.product.title %></td>
+                    <th>タイトル</th>
                   </tr>
-                <% end %>
-
-              </tbody>
-            </table>
-         
-            <p> 送付先名前 </p>
-            <%= "#{order.delivery_name} 様" %><br>
-            <p> 郵便番号 </p>
-            <%= "〒 #{order.delivery_postal_code}" %><br>
-            <%= "送付先住所 #{order.delivery_address}" %>
-            <%= form_for(order, url: admin_order_path(order), method: "patch") do |f| %>
-              <%= f.select :order_status_id, Order.order_status_ids.keys %>
-              <%= f.submit "更新" %>
-            <% end %>
-             
-            <div class="text-right">
-              <%= link_to(admin_order_path(order)) do %>
-                <button class="btn btn-success">この受注履歴詳細へ</button>
+                </thead>
+                <tbody>
+                  <% order.order_products.each do |order_product| %>
+                    <tr>
+                      <td><%= order_product.product.title %></td>
+                    </tr>
+                  <% end %>
+                </tbody>
+              </table>
+          
+              <p> 送付先名前 </p>
+              <%= "#{order.delivery_name} 様" %><br>
+              <p> 郵便番号 </p>
+              <%= "〒 #{order.delivery_postal_code}" %><br>
+              <%= "送付先住所 #{order.delivery_address}" %>
+              <%= form_for(order, url: admin_order_path(order), method: "patch") do |f| %>
+                <%= f.select :order_status_id, Order.order_status_ids.keys %>
+                <%= f.submit "更新" %>
               <% end %>
+              
+              <div class="text-right">
+                <%= link_to(admin_order_path(order)) do %>
+                  <button class="btn btn-success">この受注履歴詳細へ</button>
+                <% end %>
+              </div>
+
             </div>
-          </div>
-        </div>  
+          </div>  
+      
+      
       <% end %>
+    </div>
 
-</div>
-
- <div class="paginate-admin-show">
+        <div class="paginate-admin-show">
           <%= paginate @orders %>
         </div>
 
@@ -66,7 +70,7 @@
 
 $(function() {
 // 使用する要素名
-var IScontentItems = '.not-shipped-order'; // 取得する要素
+var IScontentItems = '.row .not-shipped-order'; // 取得する要素
 var IScontent = '.infinite-scroll'; // 取得要素を追加するコンテンツ
 var ISlink = 'a[rel=next]'; // 次のページのリンク
 var ISlinkarea = '.paginate-admin-show'; // 次のページのリンクの親要素

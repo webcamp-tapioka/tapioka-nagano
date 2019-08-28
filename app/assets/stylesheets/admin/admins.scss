@@ -3,17 +3,9 @@
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
 
-.not-shipped-order{
-  padding: 20px 0px;
-  border: solid 1px black;
-  margin: 20px 0px;
-}
-
-
 .paginate-admin-show{
-  text-align: center;
+  display: none;
   position: fixed;
-  bottom: 100px;
-  color: white;
-  margin: 0 auto;
+  bottom: 0;
 }
+
