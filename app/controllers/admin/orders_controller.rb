@@ -1,7 +1,7 @@
 class Admin::OrdersController < Admin::ApplicationController
 
   def index
-    @orders = Order.all
+    @orders = Order.preload(:order_products)
   end
 
   def show

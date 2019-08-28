@@ -18,7 +18,7 @@ class ProductsController < ApplicationController
    end
 
   def index
-    @products_all = Product.where(deleted_at: nil).page(params[:page]).per(3)
+    @products_all = Product.where(deleted_at: nil).page(params[:page]).per(8)
   end
 
   def search
