@@ -8,9 +8,7 @@
 
       
       <div class="image">
-        <% if  @products.image %>
-          <%= attachment_image_tag @products, :image, :fill, 200, 200, format: 'jpeg' %>
-        <% end %>
+          <%= attachment_image_tag @products, :image, :fill, 200, 200, format: 'jpeg', format: 'jpeg', fallback: 'no_image.jpg', format: 'jpeg' %>
       </div>
       
       <div class ="iine">

@@ -28,9 +28,7 @@
           <% @products.each do |product| %>
             <tr>
               <td>
-                <% if  product.image %>
-                  <%= attachment_image_tag product, :image, :fill, 30, 30, format: 'jpeg' %>
-                <% end %>
+                  <%= attachment_image_tag product, :image, :fill, 90, 90,fallback: 'no_image.jpg', format: 'jpeg'   %>
               </td>
               <td>
                 <%= link_to admin_product_path(product.id) do %>
