@@ -43,6 +43,7 @@
 body {
   font-family: Comic Sans MS ;
   height: 100%;
+  padding-bottom: 50px;
 }
 
 html{
@@ -137,4 +138,8 @@ footer {
 
 body > .kabegami {
   height: auto;
+  }
+
+  .container{
+    padding-bottom: 50px;
   }

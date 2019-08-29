@@ -14,9 +14,8 @@
         <% @products_all.each do |product| %>
           <div class="box-box">
             <div class = "productbox">
-              <% if  product.image %>
-                <p><%= attachment_image_tag product, :image, :fill, 150, 150, format: 'jpeg' %></p>
-              <% end %>
+<p><%= attachment_image_tag product, :image, :fill, 150, 150, fallback: 'no_image.jpg', format: 'jpeg' %></p>
+            
               <p><%= product.title %></p>
               <% product.artists.each do |f| %>
                 <p><%= f.name %><br></p>

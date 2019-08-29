@@ -9,9 +9,9 @@
 	<div class="row">
 	  <div class="col-md-6">
 		  
-			<% if  @product.image %>
-				<%= attachment_image_tag @product, :image, :fill, 120, 120, format: 'jpeg' %>
-			<% end %>
+	
+				<%= attachment_image_tag @product, :image, :fill, 90, 90, format: 'jpeg' ,fallback: 'no_image.jpg'  %>
+	
 			<%= link_to(admin_product_songs_path(product_id: params[:id])) do %>
         <button class="btn btn-success">曲の編集画面へ</button>
 			<% end %>
@@ -30,8 +30,7 @@
 				<p>在庫</p>
 				<%= f.number_field :amount %>
 				<p>販売状況</p>
-				<%= f.select :product_status_id, Product.product_status_ids.keys %><br>
-				<%= f.submit "編集する" %>
+				<%= f.select :product_status_id, Product.product_status_ids.keys %><%= f.submit "編集確定" %>
 			<% end %>
 			
 

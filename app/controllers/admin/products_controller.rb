@@ -68,7 +68,7 @@ class Admin::ProductsController < Admin::ApplicationController
     def product_params                
 			params.require(:product).permit(:image, :title, 
 			:price, :product_status_id, :label_id, :amount, 
-			:artist, artist_products_attributes: [:artist_id ], 
+			:artist, :single_album_flag, artist_products_attributes: [:artist_id ], 
 			genre_products_attributes: [:genre_id ])
     end
  

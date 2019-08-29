@@ -25,9 +25,7 @@
         <tbody>
             <tr>
               <td>
-                <% if  @products.image %>
-                  <%= attachment_image_tag @products, :image, :fill, 30, 30, format: 'jpeg' %>
-                <% end %>
+                  <%= attachment_image_tag @products, :image, :fill, 90, 90, format: 'jpeg' ,fallback: 'no_image.jpg'  %>
               </td>
               <td><%= @products.title %></td>
               <td>
