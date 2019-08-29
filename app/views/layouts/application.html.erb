@@ -19,14 +19,16 @@
 
     <div class="font">
 
-        <nav class="nav navbar-nav navbar-left">
-          <span class="navbar-brand">CDかえ～る</span>
-        </nav>
 
-      <nav>
-        <ul class="nav navbar-nav navbar-right">
+      
 
           <% if user_signed_in? %>
+        <nav class="nav navbar-nav navbar-left">
+          <span class="navbar-brand">CDかえ～る ログイン</span>
+        </nav>
+
+        <nav>
+        <ul class="nav navbar-nav navbar-right">
                 <li>
                   <%= link_to "商品一覧", products_path(current_user.id),class:"glyphicon glyphicon-list-alt" %>
                 </li>
@@ -35,14 +37,23 @@
                 </li>
                 <li>
                   <%= link_to "購入履歴一覧",orders_path,class:"glyphicon glyphicon-shopping-cart" %>
+                </li>
                 <li>
                   <%= link_to "マイページ", user_path(current_user), class:"glyphicon glyphicon-user" %>
                 </li>
                 <li>
                   <%= link_to "ログアウト", destroy_user_session_path, method: :delete, class:"glyphicon glyphicon-log-out" %>
                 </li>
+        </nav>      
 
           <% elsif admin_signed_in?  %>
+
+        <nav class="nav navbar-nav navbar-left">
+          <span class="navbar-brand">CDかえ～る (管理者)ログイン</span>
+        </nav>
+
+        <nav>
+          <ul class="nav navbar-nav navbar-right">
            　<li>
           　　　　<%= link_to "レーベル", admin_labels_path,class:"glyphicon glyphicon-tags" %>
             </li>
@@ -75,16 +86,18 @@
           　　　　<%= link_to "ログアウト", destroy_admin_session_path, method: :delete ,class:"glyphicon glyphicon-log-out" %>
             </li>
 
-                　　<%= form_tag(products_search_path,:method => 'get') do %>
-                  <%= text_field_tag :search %>
-                  <%= submit_tag 'Search', :name => nil %>
-            <% end %>
-
+          </nav> 
 
 
           <% else %>
 
 
+        <nav class="nav navbar-nav navbar-left">
+          <span class="navbar-brand">CDかえ～る</span>
+        </nav>
+
+        <nav>
+        <ul class="nav navbar-nav navbar-right">
                 <li>
                   <%= link_to "商品一覧", products_path,class:"glyphicon glyphicon-list-alt" %>
                 </li>
@@ -98,7 +111,7 @@
                 </li>
           <% end %>
         </ul>
-      </nav>
+        </nav> 
   
 
   </div>

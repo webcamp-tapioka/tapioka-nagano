@@ -1,45 +1,105 @@
 <div class="kabegami">
-<div class="container">
-  <div class = "row">
-    <div class="col-lg-12">
+  <div class="container">
+    <div class = "row">
+      <div class="col-lg-12">
 
-      <h1>CD買え〜るの商品一覧</h1>
+        <h1>CD買え〜るの商品一覧</h1>
 
-    <%= form_tag(products_search_path,:method => 'get') do %>
-      <%= text_field_tag :search %>
-      <%= submit_tag 'Search', :name => nil %>
-    <% end %>
-
-          <% @products_all.each do |product| %>
+        <%= form_tag(products_search_path,:method => 'get') do %>
+          <%= text_field_tag :search %>
+          <%= submit_tag 'Search', :name => nil %>
+        <% end %>
+<div class="products">
+        <% @products_all.each do |product| %>
           <div class="box-box">
-          <div class = "productbox">
-                <% if  product.image %>
-                  <p> <%= attachment_image_tag product, :image, :fill, 150, 150, format: 'jpeg' %></p>
-          <% end %>
-                  <p><%= product.title %></p>
-          <% product.artists.each do |f| %>
-                  <p><%= f.name %><br></p>
-          <% end %>
+            <div class = "productbox">
+              <% if  product.image %>
+                <p><%= attachment_image_tag product, :image, :fill, 150, 150, format: 'jpeg' %></p>
+              <% end %>
+              <p><%= product.title %></p>
+              <% product.artists.each do |f| %>
+                <p><%= f.name %><br></p>
+              <% end %>
               <%= number_to_currency(product.tax_include_price, precision: 0) %>
-                  <p>残り<%= product.amount %>枚</p>
-          <%= product.product_status_id %>
-                <div data-turbolinks="false">
-                  <p> <%= link_to 'Details',product_path(product.id) %></p>
-                </div>
+              <p>残り<%= product.amount %>枚</p>
+              <%= product.product_status_id %>
+              <div data-turbolinks="false">
+                <p><%= link_to 'Details',product_path(product.id) %></p>
+              </div>
 
 
-             <div id="likes_partial_<%= product.id %>"><%= render partial: 'public/likes/like',locals: {products: product} %>
+              <div id="likes_partial_<%= product.id %>">
+                <%= render partial: 'public/likes/like',locals: {products: product} %>
               </div>
             </div>
           </div>
-          <% end %>
+        <% end %>
+</div>
+        <div class="paginate" data-turbolinks="false">
+          <%= paginate @products_all %>
         </div>
       </div>
-    <div class="paginate">
-      <%= paginate @products_all %>
     </div>
   </div>
 </div>
 
-</div>
+
+
+
+<script>
+
+
+$(function() {
+// 使用する要素名
+var IScontentItems = '.box-box'; // 取得する要素
+var IScontent = '.products'; // 取得要素を追加するコンテンツ
+var ISlink = 'a[rel=next]'; // 次のページのリンク
+var ISlinkarea = '.paginate'; // 次のページのリンクの親要素
+var loadingFlag = false; // 読み込み中はtrueにして、複数回発生しないようにする
+
+$(window).on('load scroll', function() {
+// 次のページ読み込み中の場合は処理を行わない
+if(!loadingFlag) {
+var winHeight = $(window).height();
+var scrollPos = $(window).scrollTop();
+var linkPos = $(ISlink).offset().top;
+
+if(winHeight + scrollPos > linkPos) {
+loadingFlag = true;
+
+// 次のページのリンクを取得して、要素を削除しておく
+var nextPage = $(ISlink).attr('href');
+$(ISlink).remove();
+// 次のページの要素を取得
+$.ajax({
+type: 'GET',
+url: nextPage,
+dataType: 'html'
+}).done(function(data) {
+// 次のページのリンクを取得
+var nextLink = $(data).find(ISlink);
+// コンテンツ要素を取得
+var contentItems = $(data).find(IScontentItems);
+
+// コンテンツ要素を追加
+$(IScontent).append(contentItems);
+
+// 次のページがある場合はリンクを追加する
+if(nextLink.length > 0) {
+$(ISlinkarea).append(nextLink);
+loadingFlag = false; // 次のページがない場合はloadingFlagをtrueにしたままにして、処理を発生しないようにする
+}
+}).fail(function () {
+alert('ページの取得に失敗しました。');
+});
+}
+}
+});
+});
+
+
+
+
+</script>
+
 

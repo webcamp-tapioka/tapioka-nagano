@@ -39,9 +39,13 @@ class Public::OrdersController < Public::ApplicationController
 
     # current_user.cart_items.destroy_all
     current_user.cart_items.each(&:destroy!)
-    redirect_to users_thank_you_path
+    render template: "public/users/thank_you"
 
   end
+end
+
+def index
+  @orders = current_user.orders.page(params[:page]).per(4)
 end
 
   private

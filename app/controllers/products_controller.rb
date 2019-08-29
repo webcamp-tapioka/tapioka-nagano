@@ -8,6 +8,7 @@ class ProductsController < ApplicationController
       redirect_to products_path and return
     end
      @products = Product.where(deleted_at: nil).find(params[:id])
+     
       @review = Review.new
       @reviews = Review.where(product_id: params[:id]).order(created_at: "DESC")
       if current_user.present?
